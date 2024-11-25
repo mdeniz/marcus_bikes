@@ -61,3 +61,12 @@ Given the specifications sent to me via email (see [PDF](doc/code_challenge_spec
 #### Language and Framework
 
 The first choice I made was to select [Ruby](https://www.ruby-lang.org) language and leverage of the [Ruby on Rails](https://rubyonrails.org/) framework as I have more experience with.
+
+#### Data model
+#### Main user actions
+#### Product page
+#### Add to cart action
+#### Administrative workflows
+##### New product creation
+##### Adding a new part choice
+##### Setting prices
