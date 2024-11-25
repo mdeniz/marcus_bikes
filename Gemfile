@@ -34,7 +34,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-# TailwindCSS framework
+# Tailwind CSS styles framework
 gem "tailwindcss-rails", "~> 3.0"
 
 group :development, :test do
@@ -49,6 +49,9 @@ group :development, :test do
 
   # Rspec testing framework
   gem "rspec-rails", "~> 7.1"
+
+  # FactoryBot for Rails
+  gem "factory_bot_rails", "~> 6.4"
 end
 
 group :development do
@@ -61,5 +64,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-
