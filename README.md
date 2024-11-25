@@ -21,13 +21,13 @@ You most probably have all the needed libraries set in your system if you have w
 Get all the gem dependencies needed by running bundler like this:
 
 ```bash
-.bin/bundle install
+./bin/bundle install
 ```
 
 To check that the app is working you can boot the webserver like this:
 
 ```bash
-.bin/dev 
+./bin/dev 
 ```
 You should see an output similar to this:
 
@@ -36,3 +36,13 @@ You should see an output similar to this:
 And then browse to the listening url (by default is http://127.0.0.1:3000/). If you see something like this the app is successfully setup:
 
 ![Webserver](doc/assets/server_up.png)
+
+### Tests
+
+The project uses [RSpec](https://rspec.info/) as testing framework. You can run the specs suite like this:
+
+```bash
+./bin/rake spec
+```
+
+Format for the output is set to [documentation](https://rspec.info/features/3-13/rspec-core/command-line/format-option/) by default in the project which prints more verbose sentences. 
