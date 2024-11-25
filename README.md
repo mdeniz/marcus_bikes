@@ -69,14 +69,14 @@ With the specifications and the requisites more clear some questions may appear.
 
 1. Are parts also products we can sell in isolation in the shop? They could be, but we may not want to sell certain parts in isolation.
 2. All the products must be customizable? No, certain products can be sold as they are provided.
-3. All the customizable parts are the same for all the products? No, each product could have different customizable parts. Eg: "Customizable Bike" can have: frame type, frame finish, wheels, chain. Whereas "Ski set" can have: ski, bindings
+3. All the customizable parts are the same for all the products? No, each product could have different customizable parts. Eg: "Customizable Bike" can have: frame type, frame finish, wheels, chain. Whereas "Ski set" can have: ski, bindings, poles
 4. Can a part's price depend on more than one part that are selected too? Yes, it may happen that a price changes for many other parts selected. Eg: frame color depends on frame type and frame finish. 
 
 ### Assumptions
 
 Given the questions we can assume certain things that will shape even more our solution later:
 
-1. A part is always a product. But we may not want to sell them in isolation, we need to mark them for direct sell somehow.
+1. A part is always a product. But we may not want to sell them in isolation, we need to mark them to be part of the catalog somehow.
 2. Not all the products have to be customizable. We need to mark the products as customizable somehow. In order to simplify this exercise, no customizable product can be a part option for another customizable product as this would require a hierarchy of customization that would make the UI much more complex.
 3. Customizable parts can differ from one product to another. This means that the possible options for the parts have to be provided while setting up each product.
 4. In order to permit multiple price changes we need to store those changes as increments for the standalone price. That way we can sum all the changes for the combinations of parts.
