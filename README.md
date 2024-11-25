@@ -1,6 +1,6 @@
 # Factorial's Backend Skills Test (by Moiśes Déniz Alemán)
 
-Welcome to my implemention of the Marcus's Shop, the backend skills test for Factorial. 
+Welcome to my implemention of the Marcus's Bikes Shop, the backend skills test for Factorial. 
 
 ## 📝 Instructions
 
@@ -46,3 +46,18 @@ The project uses [RSpec](https://rspec.info/) as testing framework. You can run 
 ```
 
 Format for the output is set to [documentation](https://rspec.info/features/3-13/rspec-core/command-line/format-option/) by default in the project which prints more verbose sentences. 
+
+## 🏗️ Solution Design
+
+Given the specifications sent to me via email (see [PDF](doc/code_challenge_specifications.pdf)) we can extract the requisites for this project and make some assumptions in order to create the proper solution.
+
+### Requisites
+
+
+### Assumptions
+
+### Solution
+
+#### Language and Framework
+
+The first choice I made was to select [Ruby](https://www.ruby-lang.org) language and leverage of the [Ruby on Rails](https://rubyonrails.org/) framework as I have more experience with.
