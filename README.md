@@ -42,7 +42,7 @@ And then browse to the listening url (by default is http://127.0.0.1:3000/). If 
 The project uses [RSpec](https://rspec.info/) as testing framework. You can run the specs suite like this:
 
 ```bash
-./bin/rake spec
+./bin/rails spec
 ```
 
 Format for the output is set to [documentation](https://rspec.info/features/3-13/rspec-core/command-line/format-option/) by default in the project which prints more verbose sentences. 
