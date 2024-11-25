@@ -1,24 +1,38 @@
-# README
+# Factorial's Backend Skills Test (by Moiśes Déniz Alemán)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to my implemention of the Marcus's Shop, the backend skills test for Factorial. 
 
-Things you may want to cover:
+## 📝 Instructions
 
-* Ruby version
+### Setup
 
-* System dependencies
+As this project is based on the [Ruby on Rails](https://rubyonrails.org/) framework, here you can find the steps in order have it working.
 
-* Configuration
+#### Prerequisites
 
-* Database creation
+You most probably have all the needed libraries set in your system if you have worked with Ruby on Rails lately. Here is a list of the base you need to have:
 
-* Database initialization
+* [Ruby](https://www.ruby-lang.org) language is installed, 3.3.4
+* [Ruby on Rails](https://rubyonrails.org/) framework CLI is installed, version 7.2.2
+* [Bundler](https://bundler.io/) is installed, at least version 2.5
+* [RubyGems](https://rubygems.org/) is installed, at least version 3.5
+* You cloned the private repository and entered in a shell console inside it
 
-* How to run the test suite
+Get all the gem dependencies needed by running bundler like this:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+.bin/bundle install
+```
 
-* Deployment instructions
+To check that the app is working you can boot the webserver like this:
 
-* ...
+```bash
+.bin/dev 
+```
+You should see an output similar to this:
+
+![Webserver](doc/assets/dev_server.png)
+
+And then browse to the listening url (by default is http://127.0.0.1:3000/). If you see something like this the app is successfully setup:
+
+![Webserver](doc/assets/server_up.png)
