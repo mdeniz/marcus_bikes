@@ -96,3 +96,7 @@ The first choice I made was to select [Ruby](https://www.ruby-lang.org) language
 ##### New product creation
 ##### Adding a new part choice
 ##### Setting prices
+
+## 🚀 Potential Improvements
+
+After implementing this project I realized about certain improvements that we could introduce.
