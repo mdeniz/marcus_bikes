@@ -150,12 +150,59 @@ fat_bike_wheels = Product.create_with(description: random_description,
   category: enduro_parts_cat).
 find_or_create_by!(brand: "Half Pipe Wheels", model: "Fat bike wheels", year: 2019)
 
+# Parts for the Rim colors
+red = Product.create_with(description: random_description,
+  price: 20,
+  image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
+  enabled: true,
+  stock_available: true,
+  customizable: false,
+  category: enduro_parts_cat).
+find_or_create_by!(brand: "The Wheeler", model: "Red", year: 2024)
+
+black = Product.create_with(description: random_description,
+  price: 10,
+  image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
+  enabled: true,
+  stock_available: true,
+  customizable: false,
+  category: enduro_parts_cat).
+find_or_create_by!(brand: "The Wheeler", model: "Black", year: 2022)
+
+blue = Product.create_with(description: random_description,
+  price: 20,
+  image: "https://content.bikologi.com/bike/2024/rocky-mountain/element-beige-gray-desktop.png",
+  enabled: true,
+  stock_available: true,
+  customizable: false,
+  category: enduro_parts_cat).
+find_or_create_by!(brand: "Half Pipe Wheels", model: "Blue", year: 2019)
+
+# Parts for the Chains
+red = Product.create_with(description: random_description,
+  price: 43,
+  image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
+  enabled: true,
+  stock_available: true,
+  customizable: false,
+  category: enduro_parts_cat).
+find_or_create_by!(brand: "Chainsaw", model: "Single-speed chain", year: 2024)
+
+black = Product.create_with(description: random_description,
+  price: 52,
+  image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
+  enabled: true,
+  stock_available: true,
+  customizable: false,
+  category: enduro_parts_cat).
+find_or_create_by!(brand: "Chainsaw", model: "8-speed chain", year: 2022)
+
 #-------------------------------------------------------------------------------------------------------------------------------------
 # Customizable parts for the customizable bike
 #-------------------------------------------------------------------------------------------------------------------------------------
 
-CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Frame type", order: 1, product: customizable_bike)
-CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Frame finish", order: 2, product: customizable_bike)
-CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Wheels", order: 3, product: customizable_bike)
-CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 4, product: customizable_bike)
-CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Chain", order: 5, product: customizable_bike)
+frame_type = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Frame type", order: 1, product: customizable_bike)
+frame_finish = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Frame finish", order: 2, product: customizable_bike)
+wheels = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Wheels", order: 3, product: customizable_bike)
+rim_color = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 4, product: customizable_bike)
+chain = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Chain", order: 5, product: customizable_bike)
