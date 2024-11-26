@@ -1,14 +1,39 @@
-# Factorial's Backend Skills Test (by Moiśes Déniz Alemán)
+# Marcu's Bikes, the e-commerce exercise <!-- omit from toc -->
 
-Welcome to my implemention of the Marcus's Bikes Shop, the backend skills test for Factorial. 
+Welcome to Marcus's Bikes online shop, I'm [Moisés Déniz Alemán](https://www.linkedin.com/in/moises-deniz/) and this is the coding exercise for [Factorial](https://factorialhr.com/)'s Senior Backend position.
 
-## 📝 Instructions
+Here you have an index of the sections of this README document:
+
+- [Instructions](#instructions)
+  - [Setup](#setup)
+  - [Tests](#tests)
+- [Specifications](#specifications)
+  - [Requirements](#requirements)
+  - [Questions about the requirements](#questions-about-the-requirements)
+  - [Assumptions](#assumptions)
+- [Solution](#solution)
+  - [Stack](#stack)
+  - [Data model](#data-model)
+    - [Product Catalog domain](#product-catalog-domain)
+    - [Product Customization domain](#product-customization-domain)
+    - [Cart domain](#cart-domain)
+    - [Limitations??](#limitations)
+  - [Main user actions](#main-user-actions)
+  - [Product page](#product-page)
+  - [Add to cart action](#add-to-cart-action)
+  - [Administrative workflows](#administrative-workflows)
+    - [New product creation](#new-product-creation)
+      - [Non customizable product](#non-customizable-product)
+      - [Customizable product](#customizable-product)
+    - [Adding a new part choice](#adding-a-new-part-choice)
+    - [Setting prices](#setting-prices)
+- [Improvements](#improvements)
+
+## Instructions
 
 ### Setup
 
 As this project is based on the [Ruby on Rails](https://rubyonrails.org/) framework, here you can find the steps in order have it working.
-
-#### Environment
 
 You most probably have all the needed libraries set in your system if you have worked with Ruby on Rails lately. Here is a list of the base you need to have:
 
@@ -47,7 +72,7 @@ The project uses [RSpec](https://rspec.info/) as testing framework. You can run 
 
 Format for the output is set to [documentation](https://rspec.info/features/3-13/rspec-core/command-line/format-option/) by default in the project which prints more verbose sentences. 
 
-## 👀 Analyze Specifications
+## Specifications
 
 Given the specifications sent to me via email (see the [PDF](doc/code_challenge_specifications.pdf) version) we can extract the requirements for this project, ask ourserlves questions, answer them and make some assumptions in order to create the proper solution.
 
@@ -82,19 +107,27 @@ Given the questions we can assume certain things that will shape even more our s
 4. Customizable parts can differ from one product to another. This means that the possible options for the parts have to be provided while setting up each product.
 5. In order to permit multiple price changes we need to store those changes as increments for the standalone price. That way we can sum all the changes for the combinations of parts.
 
-## 🏗️ Solution Design
+## Solution
 
-### Language and Framework
+### Stack
 
-The first choice I made was to select [Ruby](https://www.ruby-lang.org) language and leverage of the [Ruby on Rails](https://rubyonrails.org/) framework as I have more experience with.
+The first choice I made was to select [Ruby](https://www.ruby-lang.org) language and leverage of the [Ruby on Rails](https://rubyonrails.org/) framework as I have more experience with to build this project.
+
+As this is only a coding exercise I decided to use [SQLite](https://www.sqlite.org) as SQL database.
+
+This code repository is [git](https://git-scm.com/) based and is hosted in [github.com/mdeniz/marcus_bikes](https://github.com/mdeniz/marcus_bikes).
+
+More concrete, I used [RSpec](https://rspec.info/) as testing framework, [TailwindCSS](https://tailwindcss.com/) as CSS styles framework and [StimulusJS](https://stimulus.hotwired.dev/) for javascript interactions.
 
 ### Data model
 
-#### Product catalog domain
+We can identify three different domains for this project, the **Product Catalog** domain, the **Product Customization** domain and the **Cart** domain.
+
+#### Product Catalog domain
 
 [Description]
 
-This is the diagram for the product definition domain:
+This is the diagram for this domain:
 
 [Diagram]
 
@@ -109,14 +142,15 @@ Here you have a list of the entities identified:
   ```ruby
     id:          int     # Primary key, used as internal identifier for relationships
     uuid:        string  # Unique identifier for external use
-    vendor:      string  # Tradermark that builds the product
+    brand:       string  # Brand that builds the product
     model:       string  # Name of the model
     description: string  # Short description of the product
     price:       decimal # Amount of dollars x 10 (to avoid having separators for the decimal part)
     image:       url     # Picture of the product to show in the UI
     year:        int     # Year of creation
     enabled:     boolean # Is this product active? deactive product aren't visible on the clients' UI
-    stock_disabled: boolean #
+    stock_disabled: boolean # To temporarily disable the product
+    customizable: boolean # This product can be customized?
     category_id: int     # Reference to the Category this product belongs to 
   ```
 
@@ -133,14 +167,47 @@ Here you have a list of the entities identified:
     category_id: int     # Reference to the parent Category
   ```
 
-#### Product customization domain
+#### Product Customization domain
 
+[Description]
+
+This is the diagram for this domain:
+
+[Diagram]
+
+Here you have a list of the entities identified:
+
+* **Xxxx**
+
+  [Description]
+
+  This is the table definition for the entity:
+
+  ```ruby
+    id:          int     # Primary key, used as internal identifier for relationships
+  ```
 
 #### Cart domain
 
+[Description]
 
+This is the diagram for this domain:
 
-#### Limitations
+[Diagram]
+
+Here you have a list of the entities identified:
+
+* **Xxxx**
+
+  [Description]
+
+  This is the table definition for the entity:
+
+  ```ruby
+    id:          int     # Primary key, used as internal identifier for relationships
+  ```
+
+#### Limitations??
 ### Main user actions
 ### Product page
 ### Add to cart action
@@ -151,6 +218,12 @@ Here you have a list of the entities identified:
 #### Adding a new part choice
 #### Setting prices
 
-## 🚀 Potential Improvements
+## Improvements
 
 After implementing this project I realized about certain improvements that we could introduce.
+
+* Multicurrency
+* Multilanguage
+* Variations for products?
+* Bag of properties in each product
+* 
