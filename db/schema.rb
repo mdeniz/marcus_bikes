@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_174604) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_183834) do
   create_table "banned_combinations", force: :cascade do |t|
     t.integer "source_id", null: false
-    t.integer "destination_id", null: false
+    t.integer "target_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["destination_id"], name: "index_banned_combinations_on_destination_id"
-    t.index ["source_id", "destination_id"], name: "index_banned_combinations_on_source_id_and_destination_id", unique: true
+    t.index ["source_id", "target_id"], name: "index_banned_combinations_on_source_id_and_target_id", unique: true
     t.index ["source_id"], name: "index_banned_combinations_on_source_id"
+    t.index ["target_id"], name: "index_banned_combinations_on_target_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "order"
+    t.integer "order", default: 1
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +51,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_174604) do
     t.index ["product_id"], name: "index_part_options_on_product_id"
   end
 
+  create_table "price_changes", force: :cascade do |t|
+    t.integer "changed_product_id", null: false
+    t.integer "on_product_id", null: false
+    t.decimal "change", precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["changed_product_id", "on_product_id"], name: "index_price_changes_on_changed_product_id_and_on_product_id", unique: true
+    t.index ["changed_product_id"], name: "index_price_changes_on_changed_product_id"
+    t.index ["on_product_id"], name: "index_price_changes_on_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "uuid"
     t.string "brand"
@@ -69,11 +80,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_174604) do
     t.index ["uuid"], name: "unique_uuid_on_products", unique: true
   end
 
-  add_foreign_key "banned_combinations", "products", column: "destination_id"
   add_foreign_key "banned_combinations", "products", column: "source_id"
+  add_foreign_key "banned_combinations", "products", column: "target_id"
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "customizable_parts", "products"
   add_foreign_key "part_options", "customizable_parts"
   add_foreign_key "part_options", "products"
+  add_foreign_key "price_changes", "products", column: "changed_product_id"
+  add_foreign_key "price_changes", "products", column: "on_product_id"
   add_foreign_key "products", "categories"
 end

@@ -3,23 +3,23 @@ class Product < ApplicationRecord
   has_many :customizable_parts, dependent: :destroy
   has_many :part_options, dependent: :destroy
   has_many :banned_combinations_as_source, class_name: "BannedCombination", foreign_key: :source_id
-  has_many :banned_combinations_as_destination, class_name: "BannedCombination", foreign_key: :destination_id
-  has_many :incompatible_products_as_source, class_name: "Product", through: :banned_combinations_as_source, source: :destination
-  has_many :incompatible_products_as_destination, class_name: "Product", through: :banned_combinations_as_destination, source: :source
+  has_many :banned_combinations_as_target, class_name: "BannedCombination", foreign_key: :target_id
+  has_many :incompatible_products_as_source, class_name: "Product", through: :banned_combinations_as_source, source: :target
+  has_many :incompatible_products_as_target, class_name: "Product", through: :banned_combinations_as_target, source: :source
 
   before_create :generate_uuid
 
   validates :brand, presence: true
   validates :model, presence: true
   validates :description, presence: true
-  validates :price, presence: true, comparison: { greater_than_or_equal_to: 0 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   def incompatible_products
-    (incompatible_products_as_source + incompatible_products_as_destination).uniq
+    (incompatible_products_as_source + incompatible_products_as_target).uniq
   end
 
   def incompatible_products_ids
-    (incompatible_products_as_source_ids + incompatible_products_as_destination_ids).uniq
+    (incompatible_products_as_source_ids + incompatible_products_as_target_ids).uniq
   end
 
   private

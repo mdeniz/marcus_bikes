@@ -105,7 +105,7 @@ find_or_create_by!(brand: "Transition", model: "Step Through", year: 2023)
 
 # Parts for the Frame finish
 matte = Product.create_with(description: random_description,
-  price: 40,
+  price: 35,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
   stock_available: true,
@@ -233,6 +233,12 @@ PartOption.find_or_create_by!(product: eight_speed, customizable_part: chain)
 # Banned combinations for some customizable parts
 #-------------------------------------------------------------------------------------------------------------------------------------
 
-BannedCombination.find_or_create_by!(source: mountain_wheels, destination: diamon)
-BannedCombination.find_or_create_by!(source: mountain_wheels, destination: step_through)
-BannedCombination.find_or_create_by!(source: fat_bike_wheels, destination: red)
+BannedCombination.find_or_create_by!(source: mountain_wheels, target: diamon)
+BannedCombination.find_or_create_by!(source: mountain_wheels, target: step_through)
+BannedCombination.find_or_create_by!(source: fat_bike_wheels, target: red)
+
+#-------------------------------------------------------------------------------------------------------------------------------------
+# Price changes for some customizable parts
+#-------------------------------------------------------------------------------------------------------------------------------------
+
+PriceChange.find_or_create_by!(changed_product: matte, on_product: full_suspension, change: 15)
