@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :category
-  has_many :customizable_parts, destroy: :cascade
+  has_many :customizable_parts, dependent: :destroy
 
   before_create :generate_uuid
 
