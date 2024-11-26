@@ -18,6 +18,10 @@ class Product < ApplicationRecord
     (incompatible_products_as_source + incompatible_products_as_destination).uniq
   end
 
+  def incompatible_products_ids
+    (incompatible_products_as_source_ids + incompatible_products_as_destination_ids).uniq
+  end
+
   private
 
     def generate_uuid
