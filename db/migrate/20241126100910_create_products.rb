@@ -10,7 +10,7 @@ class CreateProducts < ActiveRecord::Migration[7.2]
       t.integer :year
       t.boolean :enabled, default: false
       t.boolean :stock_available, default: false
-      t.boolean :customizable, default:false
+      t.boolean :customizable, default: false
       t.references :category, null: false, foreign_key: true
 
       t.timestamps
