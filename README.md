@@ -179,7 +179,7 @@ Here you have a list of the entities identified:
 
     # Reference to the Category this product belongs to 
     t.references :category, null: false, foreign_key: true
-    
+
     # created_at and updated_at fields
     t.timestamps
   end
@@ -192,10 +192,22 @@ Here you have a list of the entities identified:
   This is the table definition for the entity:
 
   ```ruby
-    id:          int     # Primary key
-    name:        string  # Name of the category
-    description: string  # Short description of the category
-    category_id: int     # Reference to the parent Category
+  create_table :categories do |t|
+    # Name of the category
+    t.string :name
+
+    # Short description of the category
+    t.string :description
+
+    # Order among sibiling categories
+    t.integer :order
+
+    # Reference to the parent Category
+    t.belongs_to :parent, null: true, foreign_key: { to_table: 'categories' }
+    
+    # created_at and updated_at fields
+    t.timestamps
+  end
   ```
 
 #### Product Customization domain

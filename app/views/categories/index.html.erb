@@ -10,6 +10,10 @@
     <%= link_to "New category", new_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
+  <% Category.walk_tree do |category, level| %>
+    <%= link_to "#{'-'*level}#{category.name}", category_path(category) %><br />
+  <% end %>
+
   <div id="categories" class="min-w-full">
     <% @categories.each do |category| %>
       <%= render category %>
