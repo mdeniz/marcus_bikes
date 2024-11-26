@@ -44,7 +44,7 @@ end
 
 # Non customizable bikes
 Product.create_with(description: random_description,
-                    price: 3500,
+                    standalone_price: 3500,
                     image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
                     enabled: true,
                     stock_available: true,
@@ -53,7 +53,7 @@ Product.create_with(description: random_description,
   find_or_create_by!(brand: "Rocky Mountain", model: "Rocky Mountain Altitude 27.5\" Carbon Frameset", year: 2024)
 
 Product.create_with(description: random_description,
-  price: 4500,
+  standalone_price: 4500,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
   stock_available: true,
@@ -63,7 +63,7 @@ find_or_create_by!(brand: "Rocky Mountain", model: "Rocky Mountain Altitude MX/2
 
 # Customizable bike
 customizable_bike = Product.create_with(description: random_description,
-  price: 0,
+  standalone_price: 0,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/element-beige-gray-desktop.png",
   enabled: true,
   stock_available: true,
@@ -77,7 +77,7 @@ find_or_create_by!(brand: "Rocky Mountain", model: "Customizable Rocky Mountain"
 
 # Parts for the Frame type
 full_suspension = Product.create_with(description: random_description,
-  price: 3000,
+  standalone_price: 3000,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
   stock_available: true,
@@ -86,7 +86,7 @@ full_suspension = Product.create_with(description: random_description,
 find_or_create_by!(brand: "Rocky Mountain", model: "Full-suspension", year: 2023)
 
 diamon = Product.create_with(description: random_description,
-  price: 2000,
+  standalone_price: 2000,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
   enabled: true,
   stock_available: true,
@@ -95,7 +95,7 @@ diamon = Product.create_with(description: random_description,
 find_or_create_by!(brand: "Rocky Mountain", model: "Diamon", year: 2022)
 
 step_through = Product.create_with(description: random_description,
-  price: 2000,
+  standalone_price: 2000,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/element-beige-gray-desktop.png",
   enabled: true,
   stock_available: true,
@@ -105,7 +105,7 @@ find_or_create_by!(brand: "Transition", model: "Step Through", year: 2023)
 
 # Parts for the Frame finish
 matte = Product.create_with(description: random_description,
-  price: 35,
+  standalone_price: 35,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
   stock_available: true,
@@ -114,7 +114,7 @@ matte = Product.create_with(description: random_description,
 find_or_create_by!(brand: "Finisher finishes", model: "Matte", year: 2020)
 
 shiny = Product.create_with(description: random_description,
-  price: 30,
+  standalone_price: 30,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
   enabled: true,
   stock_available: true,
@@ -124,7 +124,7 @@ find_or_create_by!(brand: "Finisher finishes", model: "Shiny", year: 2021)
 
 # Parts for the Wheels
 road_wheels = Product.create_with(description: random_description,
-  price: 80,
+  standalone_price: 80,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
   stock_available: true,
@@ -133,7 +133,7 @@ road_wheels = Product.create_with(description: random_description,
 find_or_create_by!(brand: "The Wheeler", model: "Road wheels", year: 2024)
 
 mountain_wheels = Product.create_with(description: random_description,
-  price: 70,
+  standalone_price: 70,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
   enabled: true,
   stock_available: true,
@@ -142,7 +142,7 @@ mountain_wheels = Product.create_with(description: random_description,
 find_or_create_by!(brand: "The Wheeler", model: "Mountain wheels", year: 2022)
 
 fat_bike_wheels = Product.create_with(description: random_description,
-  price: 100,
+  standalone_price: 100,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/element-beige-gray-desktop.png",
   enabled: true,
   stock_available: true,
@@ -152,7 +152,7 @@ find_or_create_by!(brand: "Half Pipe Wheels", model: "Fat bike wheels", year: 20
 
 # Parts for the Rim colors
 red = Product.create_with(description: random_description,
-  price: 20,
+  standalone_price: 20,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
   stock_available: true,
@@ -161,7 +161,7 @@ red = Product.create_with(description: random_description,
 find_or_create_by!(brand: "The Wheeler", model: "Red", year: 2024)
 
 black = Product.create_with(description: random_description,
-  price: 10,
+  standalone_price: 10,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
   enabled: true,
   stock_available: true,
@@ -170,7 +170,7 @@ black = Product.create_with(description: random_description,
 find_or_create_by!(brand: "The Wheeler", model: "Black", year: 2022)
 
 blue = Product.create_with(description: random_description,
-  price: 20,
+  standalone_price: 20,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/element-beige-gray-desktop.png",
   enabled: true,
   stock_available: true,
@@ -180,7 +180,7 @@ find_or_create_by!(brand: "Half Pipe Wheels", model: "Blue", year: 2019)
 
 # Parts for the Chains
 single_speed = Product.create_with(description: random_description,
-  price: 43,
+  standalone_price: 43,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
   stock_available: true,
@@ -189,7 +189,7 @@ single_speed = Product.create_with(description: random_description,
 find_or_create_by!(brand: "Chainsaw", model: "Single-speed chain", year: 2024)
 
 eight_speed = Product.create_with(description: random_description,
-  price: 52,
+  standalone_price: 52,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
   enabled: true,
   stock_available: true,

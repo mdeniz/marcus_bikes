@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_183834) do
     t.string "brand"
     t.string "model"
     t.string "description"
-    t.decimal "price", precision: 10, scale: 2
+    t.decimal "standalone_price", precision: 10, scale: 2
     t.string "image"
     t.integer "year"
     t.boolean "enabled", default: false

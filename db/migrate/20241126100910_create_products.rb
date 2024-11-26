@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[7.2]
       t.string :brand
       t.string :model
       t.string :description
-      t.decimal :price, precision: 10, scale: 2
+      t.decimal :standalone_price, precision: 10, scale: 2
       t.string :image
       t.integer :year
       t.boolean :enabled, default: false
