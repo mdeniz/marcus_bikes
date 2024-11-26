@@ -17,6 +17,7 @@ Here you have an index of the sections of this README document:
     - [Product Catalog domain](#product-catalog-domain)
     - [Product Customization domain](#product-customization-domain)
     - [Cart domain](#cart-domain)
+    - [Trade-offs](#trade-offs)
     - [Limitations??](#limitations)
   - [Main user actions](#main-user-actions)
   - [Product page](#product-page)
@@ -249,6 +250,13 @@ Here you have a list of the entities identified:
   ```ruby
     id:          int     # Primary key, used as internal identifier for relationships
   ```
+
+#### Trade-offs
+
+[Introduction]
+
+* Entity for different options of products: certain customizable parts are indeed options of the product. Polymorphic relationships
+* Parts as a separate entity from Product.
 
 #### Limitations??
 ### Main user actions
