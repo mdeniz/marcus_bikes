@@ -228,3 +228,11 @@ PartOption.find_or_create_by!(product: blue, customizable_part: rim_color)
 
 PartOption.find_or_create_by!(product: single_speed, customizable_part: chain)
 PartOption.find_or_create_by!(product: eight_speed, customizable_part: chain)
+
+#-------------------------------------------------------------------------------------------------------------------------------------
+# Banned combinations for some customizable parts
+#-------------------------------------------------------------------------------------------------------------------------------------
+
+BannedCombination.find_or_create_by!(source: mountain_wheels, destination: diamon)
+BannedCombination.find_or_create_by!(source: mountain_wheels, destination: step_through)
+BannedCombination.find_or_create_by!(source: fat_bike_wheels, destination: red)

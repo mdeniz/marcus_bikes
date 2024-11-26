@@ -15,7 +15,6 @@ Here you have an index of the sections of this README document:
   - [Stack](#stack)
   - [Data model](#data-model)
     - [Product Catalog domain](#product-catalog-domain)
-    - [Product Customization domain](#product-customization-domain)
     - [Cart domain](#cart-domain)
     - [Trade-offs](#trade-offs)
     - [Limitations??](#limitations)
@@ -126,9 +125,9 @@ More concrete, I used [RSpec](https://rspec.info/) as testing framework, [Tailwi
 
 ### Data model
 
-We can identify three different domains for this project, the **Product Catalog** domain, the **Product Customization** domain and the **Cart** domain.
+We can identify two different domains for this project, the **Product Catalog** domain and the **Cart** domain.
 
-[Diagram for the three domains]
+[Diagram for the two domains]
 
 #### Product Catalog domain
 
@@ -209,26 +208,6 @@ Here you have a list of the entities identified:
     # created_at and updated_at fields
     t.timestamps
   end
-  ```
-
-#### Product Customization domain
-
-[Description]
-
-This is the diagram for this domain:
-
-[Diagram]
-
-Here you have a list of the entities identified:
-
-* **Xxxx**
-
-  [Description]
-
-  This is the table definition for the entity:
-
-  ```ruby
-    id:          int     # Primary key, used as internal identifier for relationships
   ```
 
 #### Cart domain

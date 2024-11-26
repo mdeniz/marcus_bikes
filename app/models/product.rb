@@ -2,6 +2,10 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :customizable_parts, dependent: :destroy
   has_many :part_options, dependent: :destroy
+  has_many :banned_combinations_as_source, class_name: "BannedCombination", foreign_key: :source_id
+  has_many :banned_combinations_as_destination, class_name: "BannedCombination", foreign_key: :destination_id
+  has_many :incompatible_products_as_source, class_name: "Product", through: :banned_combinations_as_source, source: :destination
+  has_many :incompatible_products_as_destination, class_name: "Product", through: :banned_combinations_as_destination, source: :source
 
   before_create :generate_uuid
 
@@ -9,6 +13,10 @@ class Product < ApplicationRecord
   validates :model, presence: true
   validates :description, presence: true
   validates :price, presence: true, comparison: { greater_than_or_equal_to: 0 }
+
+  def incompatible_products
+    (incompatible_products_as_source + incompatible_products_as_destination).uniq
+  end
 
   private
 

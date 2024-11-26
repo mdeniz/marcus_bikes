@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_172237) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_174604) do
+  create_table "banned_combinations", force: :cascade do |t|
+    t.integer "source_id", null: false
+    t.integer "destination_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_banned_combinations_on_destination_id"
+    t.index ["source_id", "destination_id"], name: "index_banned_combinations_on_source_id_and_destination_id", unique: true
+    t.index ["source_id"], name: "index_banned_combinations_on_source_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -59,6 +69,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_172237) do
     t.index ["uuid"], name: "unique_uuid_on_products", unique: true
   end
 
+  add_foreign_key "banned_combinations", "products", column: "destination_id"
+  add_foreign_key "banned_combinations", "products", column: "source_id"
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "customizable_parts", "products"
   add_foreign_key "part_options", "customizable_parts"
