@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :category
   has_many :customizable_parts, dependent: :destroy
+  has_many :selectable_products, class_name: "Product", through: :customizable_parts, source: :products
   has_many :part_options, dependent: :destroy
   has_many :banned_combinations_as_source, class_name: "BannedCombination", foreign_key: :source_id
   has_many :banned_combinations_as_target, class_name: "BannedCombination", foreign_key: :target_id
@@ -23,24 +24,19 @@ class Product < ApplicationRecord
     (incompatible_products_as_source_ids + incompatible_products_as_target_ids).uniq
   end
 
-  def price(selected_products_ids = [])
-    customizable? ? selection_price(selected_products_ids) : standalone_price
+  def selection_price(selected_products_ids = [])
+    price_changes = PriceChange.where(changed_product_id: selected_products_ids)
+
+    result = Product.where(id: selected_products_ids).sum(:standalone_price)
+    price_changes.each do |price_change|
+      result += price_change.change if selected_products_ids.include?(price_change.on_product_id)
+    end
+    result
   end
 
   private
 
     def generate_uuid
       self.uuid ||= SecureRandom.uuid_v7
-    end
-
-    def selection_price(selected_products_ids)
-      selected_products = Product.where(id: selected_products_ids)
-      price_changes = PriceChange.where(changed_product_id: selected_products_ids)
-
-      result = selected_products.map(&:standalone_price).sum
-      price_changes.each do |price_change|
-        result += price_change.change if selected_products_ids.include?(price_change.on_product_id)
-      end
-      result
     end
 end
