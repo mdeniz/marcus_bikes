@@ -6,7 +6,7 @@ class CreatePartOptions < ActiveRecord::Migration[7.2]
 
       t.timestamps
 
-      t.index [:product_id, :customizable_part_id], unique: true
+      t.index [ :product_id, :customizable_part_id ], unique: true
     end
   end
 end
