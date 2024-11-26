@@ -72,6 +72,10 @@ The project uses [RSpec](https://rspec.info/) as testing framework. You can run 
 
 Format for the output is set to [documentation](https://rspec.info/features/3-13/rspec-core/command-line/format-option/) by default in the project which prints more verbose sentences. 
 
+Running the specs should output something similar to this:
+
+[GIF]
+
 ## Specifications
 
 Given the specifications sent to me via email (see the [PDF](doc/code_challenge_specifications.pdf) version) we can extract the requirements for this project, ask ourserlves questions, answer them and make some assumptions in order to create the proper solution.
@@ -123,6 +127,8 @@ More concrete, I used [RSpec](https://rspec.info/) as testing framework, [Tailwi
 
 We can identify three different domains for this project, the **Product Catalog** domain, the **Product Customization** domain and the **Cart** domain.
 
+[Diagram for the three domains]
+
 #### Product Catalog domain
 
 [Description]
@@ -133,25 +139,50 @@ This is the diagram for this domain:
 
 Here you have a list of the entities identified:
 
-* **Product**
+* **Product** (app/models/product)
 
   [Description]
 
   This is the table definition for the entity:
 
   ```ruby
-    id:          int     # Primary key, used as internal identifier for relationships
-    uuid:        string  # Unique identifier for external use
-    brand:       string  # Brand that builds the product
-    model:       string  # Name of the model
-    description: string  # Short description of the product
-    price:       decimal # Amount of dollars x 10 (to avoid having separators for the decimal part)
-    image:       url     # Picture of the product to show in the UI
-    year:        int     # Year of creation
-    enabled:     boolean # Is this product active? deactive product aren't visible on the clients' UI
-    stock_disabled: boolean # To temporarily disable the product
-    customizable: boolean # This product can be customized?
-    category_id: int     # Reference to the Category this product belongs to 
+  create_table :products do |t|
+    # Unique identifier for external use
+    t.string :uuid, index: { unique: true, name: "unique_uuid_on_products" }
+
+    # Brand that builds the product
+    t.string :brand 
+
+    # Name of the model
+    t.string :model 
+
+    # Short description of the product
+    t.string :description
+
+    # Amount in euros
+    t.decimal :price, precision: 10, scale: 2
+
+    # Picture of the product
+    t.string :image 
+
+    # Year of creation
+    t.integer :year
+
+    # Is this product active? deactive product aren't visible on the clients' UI
+    t.boolean :enabled, default: false 
+
+    # To temporarily disable the product
+    t.boolean :stock_available, default: false 
+
+    # This product can be customized?
+    t.boolean :customizable, default:false
+
+    # Reference to the Category this product belongs to 
+    t.references :category, null: false, foreign_key: true
+    
+    # created_at and updated_at fields
+    t.timestamps
+  end
   ```
 
 * **Category**
@@ -226,4 +257,5 @@ After implementing this project I realized about certain improvements that we co
 * Multilanguage
 * Variations for products?
 * Bag of properties in each product
+* Be able to use categories as the products set a CustomizablePart can select options from instead of having to specify product by product as options
 * 
