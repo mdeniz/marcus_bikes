@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_163737) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_172237) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -29,6 +29,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_163737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_customizable_parts_on_product_id"
+  end
+
+  create_table "part_options", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "customizable_part_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customizable_part_id"], name: "index_part_options_on_customizable_part_id"
+    t.index ["product_id", "customizable_part_id"], name: "index_part_options_on_product_id_and_customizable_part_id", unique: true
+    t.index ["product_id"], name: "index_part_options_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -51,5 +61,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_163737) do
 
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "customizable_parts", "products"
+  add_foreign_key "part_options", "customizable_parts"
+  add_foreign_key "part_options", "products"
   add_foreign_key "products", "categories"
 end

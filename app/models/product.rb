@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :category
   has_many :customizable_parts, dependent: :destroy
+  has_many :part_options, dependent: :destroy
 
   before_create :generate_uuid
 

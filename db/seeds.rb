@@ -179,7 +179,7 @@ blue = Product.create_with(description: random_description,
 find_or_create_by!(brand: "Half Pipe Wheels", model: "Blue", year: 2019)
 
 # Parts for the Chains
-red = Product.create_with(description: random_description,
+single_speed = Product.create_with(description: random_description,
   price: 43,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-green-desktop.png",
   enabled: true,
@@ -188,7 +188,7 @@ red = Product.create_with(description: random_description,
   category: enduro_parts_cat).
 find_or_create_by!(brand: "Chainsaw", model: "Single-speed chain", year: 2024)
 
-black = Product.create_with(description: random_description,
+eight_speed = Product.create_with(description: random_description,
   price: 52,
   image: "https://content.bikologi.com/bike/2024/rocky-mountain/altitude-c---v2-black-desktop.png",
   enabled: true,
@@ -206,3 +206,25 @@ frame_finish = CustomizablePart.create_with(description: random_description).fin
 wheels = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Wheels", order: 3, product: customizable_bike)
 rim_color = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 4, product: customizable_bike)
 chain = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Chain", order: 5, product: customizable_bike)
+
+#-------------------------------------------------------------------------------------------------------------------------------------
+# Options for customizable parts
+#-------------------------------------------------------------------------------------------------------------------------------------
+
+PartOption.find_or_create_by!(product: full_suspension, customizable_part: frame_type)
+PartOption.find_or_create_by!(product: diamon, customizable_part: frame_type)
+PartOption.find_or_create_by!(product: step_through, customizable_part: frame_type)
+
+PartOption.find_or_create_by!(product: matte, customizable_part: frame_finish)
+PartOption.find_or_create_by!(product: shiny, customizable_part: frame_finish)
+
+PartOption.find_or_create_by!(product: road_wheels, customizable_part: wheels)
+PartOption.find_or_create_by!(product: mountain_wheels, customizable_part: wheels)
+PartOption.find_or_create_by!(product: fat_bike_wheels, customizable_part: wheels)
+
+PartOption.find_or_create_by!(product: red, customizable_part: rim_color)
+PartOption.find_or_create_by!(product: black, customizable_part: rim_color)
+PartOption.find_or_create_by!(product: blue, customizable_part: rim_color)
+
+PartOption.find_or_create_by!(product: single_speed, customizable_part: chain)
+PartOption.find_or_create_by!(product: eight_speed, customizable_part: chain)
