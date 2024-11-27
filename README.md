@@ -56,11 +56,11 @@ To check that the app is working you can boot the webserver like this:
 ```
 You should see an output similar to this:
 
-![Webserver](doc/assets/dev_server.png)
+![Dev Server](doc/assets/dev_server.png)
 
 And then browse to the listening url (by default is http://127.0.0.1:3000/). If you see something like this the app is successfully setup:
 
-![Webserver](doc/assets/server_up.png)
+![Server Up](doc/assets/server_up.png)
 
 ### Tests
 
@@ -74,7 +74,7 @@ Format for the output is set to [documentation](https://rspec.info/features/3-13
 
 Running the specs should output something similar to this:
 
-[GIF]
+![Specs output](doc/assets/specs_output.png)
 
 ## Specifications
 
