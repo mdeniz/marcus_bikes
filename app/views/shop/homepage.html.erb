@@ -1,7 +1,5 @@
 <div class="grid grid-cols-4 gap-5">
-  <div class="col-span-4 h-80 shadow-lg rounded-md border-slate-600 bg-white p-3 border-slate-300">
-    <%= image_tag "banner.jpg", class: "h-48" %>
-  </div>
+  <%= render partial: "banner" %>
   <% @products.each do |product| %>
     <div class="shadow-lg rounded-md border-slate-600 bg-white p-3 col-span-4 lg:col-span-1">
       <%= render product %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Marcus Bikes" %></title>
+    <title><%= content_for(:title) || "Marcus Bikes Shop" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="turbo-prefetch" content="false">
@@ -20,13 +20,11 @@
   </head>
 
   <body class="bg-gray-100">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
     <%= render partial: "header" %>
-    <main class="container mx-auto my-16 px-5 flex">
-      <%= yield(:breadcrums) if content_for?(:breadcrums) %>
+    <nav class="container mx-auto my-4 px-5 text-slate-600">
+      <%= render partial: "breadcrums" %>
+    </nav>
+    <main class="container mx-auto mt-5 mb-12 px-5 flex">
       <%= yield %>
     </main>
   </body>
