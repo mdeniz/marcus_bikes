@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :customizable_part do
-    name { "Customizable Part #{id}" }
-    description { "Description #{id}" }
+    sequence(:name) { |n| "CustomizablePart #{n}" }
+    sequence(:description) { |n| "Description #{n}" }
     order { 1 }
-    product { nil }
+    product
   end
 end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :banned_combination do
-    source { nil }
-    target { nil }
+    source { create(:product) }
+    target { create(:product) }
   end
 end

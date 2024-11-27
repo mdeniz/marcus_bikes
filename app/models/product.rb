@@ -14,7 +14,7 @@ class Product < ApplicationRecord
   validates :brand, presence: true
   validates :model, presence: true
   validates :description, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :standalone_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   def incompatible_products
     (incompatible_products_as_source + incompatible_products_as_target).uniq

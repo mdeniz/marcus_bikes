@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :price_change do
-    changed_product { nil }
-    on_product { nil }
+    changed_product { create(:product) }
+    on_product { create(:product) }
   end
 end

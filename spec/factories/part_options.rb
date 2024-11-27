@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :part_option do
-    product { nil }
-    customizable_part { nil }
+    product
+    customizable_part
   end
 end

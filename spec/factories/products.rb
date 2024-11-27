@@ -1,15 +1,15 @@
 FactoryBot.define do
   factory :product do
-    uuid { "Product #{id}" }
-    brand { "Brand #{id}" }
-    model { "Model #{id}" }
-    description { "Description #{id}" }
-    price { 9.99 }
+    uuid { SecureRandom.uuid_v7 }
+    sequence(:brand) { |n| "Brand #{n}" }
+    sequence(:model) { |n| "Model #{n}" }
+    sequence(:description) { |n| "Description #{n}" }
+    standalone_price { 9.99 }
     image { "http://example.com/image.jpg" }
     year { 2024 }
     enabled { true }
     stock_available { true }
     customizable { false }
-    category { nil }
+    category
   end
 end
