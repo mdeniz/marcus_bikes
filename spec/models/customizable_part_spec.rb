@@ -19,9 +19,9 @@ RSpec.describe CustomizablePart, type: :model do
 
   context 'whit name already taken for the same product' do
     let!(:product) { create(:product) }
-    let!(:another_customizable_part) { create(:customizable_part, name: "Duplicated name", product: product) }
+    let!(:another_customizable_part) { create(:customizable_part, name: "Duplicated name", product:) }
 
-    subject(:customizable_part) { build(:customizable_part, name: "Duplicated name", product: product) }
+    subject(:customizable_part) { build(:customizable_part, name: "Duplicated name", product:) }
 
     it { is_expected.not_to be_valid }
   end
@@ -29,7 +29,7 @@ RSpec.describe CustomizablePart, type: :model do
   context 'whit the same name but in different products' do
     let!(:product) { create(:product) }
     let!(:another_product) { create(:product) }
-    let!(:another_customizable_part) { create(:customizable_part, name: "Duplicated name", product: product) }
+    let!(:another_customizable_part) { create(:customizable_part, name: "Duplicated name", product:) }
 
     subject(:customizable_part) { build(:customizable_part, name: "Duplicated name", product: another_product) }
 
