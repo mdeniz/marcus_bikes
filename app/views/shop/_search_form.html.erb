@@ -1,13 +1,8 @@
-<div class="flex bg-white rounded-full">
-  <%= button_tag id: "search", name: "", class: "font-semibold pl-3 outline-none" do %>
-    <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<div class="flex">
+  <%= button_tag id: "search", name: "" do %>
+    <svg class="w-6 h-6 text-slate-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
     </svg>
   <% end %>
-  <%= text_field_tag :query, @query, placeholder: "Any product in mind?...", class: "px-2 py-2 rounded-full outline-none border-none focus:ring-0", autofocus: true, autocomplete: false, data: { "search-form-target": "query", action: "focus->search-form#toggleClearButton change->search-form#toggleClearButton" } %>
-  <%= button_tag name: "", type: "button", class: "invisible font-semibold pr-3 outline-none", data: { "search-form-target": "clear_button", action: "click->search-form#clearSearch" } do %>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-400">
-      <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-    </svg>
-  <% end %>
+  <%= text_field_tag :query, @query, placeholder: "Any product in mind?...", class: "ml-2 rounded-full border-slate-600 focus:border-slate-800 hover:border-rose-500 focus:ring-0 ring-slate-600", autofocus: true, autocomplete: false %>
 </div>
