@@ -1,0 +1,26 @@
+<header class="sticky top-0 shadow-lg bg-gradient-to-r from-white to-slate-600 z-10">
+  <div class="mx-auto px-5 flex flex-row h-32">
+    <div class="p-3 pt-3 lg:pt-5 flex-none">
+      <%= link_to root_path, title: "Go to Marcus Bike's Home" do %>
+        <%= image_tag "marcus_bikes_logo.png", class: "h-14 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-100" %>
+      <% end %>
+    </div>
+    <div class="grow"></div>
+    <div class="p-3 pt-3 lg:pt-5 flex-none">
+      <%= render partial: "search_form" %>
+    </div>
+    <div class="grow"></div>
+    <div class="p-3 pt-3 lg:pt-5 flex-none">
+      <%= link_to "#", title: "Need help?" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-100">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+        </svg>
+      <% end %>
+      <%= link_to "#", title: "Account" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-100">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>   
+      <% end %>
+    </div>
+  </div>
+</header>
