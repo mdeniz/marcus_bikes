@@ -3,6 +3,6 @@ FactoryBot.define do
     name { "Category #{id}" }
     description { "Description #{id}" }
     order { 1 }
-    category { nil }
+    parent { nil }
   end
 end
