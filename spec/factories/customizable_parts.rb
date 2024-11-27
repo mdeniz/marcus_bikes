@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :customizable_part do
-    name { "MyString" }
-    description { "MyString" }
+    name { "Customizable Part #{id}" }
+    description { "Description #{id}" }
     order { 1 }
     product { nil }
   end

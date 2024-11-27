@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :category do
-    name { "MyString" }
-    description { "MyString" }
+    name { "Category #{id}" }
+    description { "Description #{id}" }
     order { 1 }
     category { nil }
   end
