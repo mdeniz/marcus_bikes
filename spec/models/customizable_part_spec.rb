@@ -26,7 +26,7 @@ RSpec.describe CustomizablePart, type: :model do
     it { is_expected.not_to be_valid }
   end
 
-  context 'whit name already taken for the same product' do
+  context 'whit the same name but in different products' do
     let!(:product) { create(:product) }
     let!(:another_product) { create(:product) }
     let!(:another_customizable_part) { create(:customizable_part, name: "Duplicated name", product: product) }
