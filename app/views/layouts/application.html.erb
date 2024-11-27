@@ -18,9 +18,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-stone-100">
+  <body class="bg-slate-50">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
     <%= render partial: "header" %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-16 px-5 flex">
       <%= yield %>
     </main>
   </body>
