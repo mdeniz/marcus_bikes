@@ -1,33 +1,35 @@
-<nav class="shadow-lg bg-slate-600 z-10 text-white ">
-  <div class="flex w-full pl-5 py-2">
+<nav class="shadow-lg bg-slate-600 z-20 text-white" data-controller="menu">
+  <div class="flex w-full pl-5">
     <div>
     <% @menu.each do |category| %>
-      <%= link_to category.name, catalog_path(category), class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
+      <%= link_to category.name, catalog_path(category), class: "border-b-2 border-b-slate-600 hover:border-b-rose-600 py-2 px-5 inline-block font-medium", data: { action: "mouseover->menu#showSubmenu mouseout->menu#hideSubmenu" } %>
     <% end %>
     </div>
     <div class="grow"></div>
     <div class="">
-      <%= link_to "Second life", "#", class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
+      <%= link_to "Second life", "#", class: "border-b-2 border-b-slate-600 hover:border-b-rose-600 py-2 px-5 inline-block font-medium" %>
     </div>
     <div class="">
-      <%= link_to "Become a member", "#", class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
+      <%= link_to "Become a member", "#", class: "border-b-2 border-b-slate-600 hover:border-b-rose-600 py-2 px-5 inline-block font-medium" %>
     </div>
   </div>
-  <div class="flex px-20 py-8 bg-white text-slate-800">
-    <% @menu.each do |category| %>
-      <div class="flex flex-col w-full pl-5 pb-1">
-          <div class="font-bold border-0 border-b-2 border-b-slate-800 mb-2">
-            <%= category.name %>
-          </div>
-          <% category.walk_tree do |category, level| %>
-            <div class="flex">
-              <% level.times do %>
-                <div class="w-3"></div>
-              <% end %>
-              <%= link_to category.name, catalog_path(category), class: "hover:text-rose-600"%><br />
+  <div class="absolute top-26 w-full z-20 shadow-lg px-20 py-8 bg-white text-slate-800 hidden" data-menu-target="submenu" data-action="mouseover->menu#showSubmenu mouseout->menu#hideSubmenu">
+    <div class="flex">
+      <% @menu.each do |category| %>
+        <div class="flex flex-col w-full pl-5 pb-1">
+            <div class="font-bold border-0 border-b-2 border-b-slate-800 mb-2">
+              <%= category.name %>
             </div>
-          <% end %>
-      </div>
-    <% end %>
+            <% category.walk_tree do |category, level| %>
+              <div class="flex">
+                <% level.times do %>
+                  <div class="w-3"></div>
+                <% end %>
+                <%= link_to category.name, catalog_path(category), class: "hover:text-rose-600"%><br />
+              </div>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </nav>
