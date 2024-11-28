@@ -1,8 +1,10 @@
 <nav class="shadow-lg bg-slate-600 z-10 text-white ">
   <div class="flex w-full pl-5 py-2">
+    <div>
     <% @menu.each do |category| %>
-      <%= link_to category.name, catalog_path(category:), class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
+      <%= link_to category.name, catalog_path(category), class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
     <% end %>
+    </div>
     <div class="grow"></div>
     <div class="">
       <%= link_to "Second life", "#", class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
@@ -10,5 +12,22 @@
     <div class="">
       <%= link_to "Become a member", "#", class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
     </div>
+  </div>
+  <div class="flex px-20 py-8 bg-white text-slate-800">
+    <% @menu.each do |category| %>
+      <div class="flex flex-col w-full pl-5 pb-1">
+          <div class="font-bold border-0 border-b-2 border-b-slate-800 mb-2">
+            <%= category.name %>
+          </div>
+          <% category.walk_tree do |category, level| %>
+            <div class="flex">
+              <% level.times do %>
+                <div class="w-3"></div>
+              <% end %>
+              <%= link_to category.name, catalog_path(category), class: "hover:text-rose-600"%><br />
+            </div>
+          <% end %>
+      </div>
+    <% end %>
   </div>
 </nav>
