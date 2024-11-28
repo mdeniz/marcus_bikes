@@ -3,7 +3,7 @@ class ShopController < ApplicationController
 
   def homepage
     @breadcrums = []
-    @products = Product.order("RANDOM()").limit(4)
+    @products = Product.order("RANDOM()").limit(8)
   end
 
   def catalog

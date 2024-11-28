@@ -1,8 +1,8 @@
 <div class="grid grid-cols-4 gap-5">
   <%= render partial: "banner" %>
   <% @products.each do |product| %>
-    <div class="shadow-lg rounded-md border-slate-600 bg-white p-3 col-span-4 lg:col-span-1">
-      <%= render product %>
+    <div class="shadow-lg rounded-md border-slate-600 bg-white p-3 col-span-4 lg:col-span-1 overflow-hidden">
+      <%= render partial: "product_catalog_item", locals: { product: } %>
     </div>
   <% end %>
 </div>
