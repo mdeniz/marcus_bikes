@@ -26,7 +26,12 @@
     </div>
 
     <div class="text-right pb-8">
-      <%= link_to "Add to Cart", "#", class: "rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-500 text-white font-medium" %>
+      <% if @product.stock_available? %>
+        <%= link_to "Add to Cart", "#", class: "rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-500 text-white font-medium" %>
+      <% else %>
+        <span class="text-slate-600 text-sm pr-3">Temporarily out of stock</span>
+        <span class="flex-none rounded-lg mt-5 py-3 px-5 bg-slate-400 text-white font-medium">Add to Cart</span>
+      <% end %>
     </div>
 
     <div class="pb-2 text-xl font-semibold">
