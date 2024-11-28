@@ -19,7 +19,7 @@ class ShopController < ApplicationController
   end
 
   def product
-    @product = Product.find(params[:id])
+    @product = Product.find_by!(uuid: params[:uuid])
     @breadcrums = @product.category.self_and_ancestors.reverse
   end
 
