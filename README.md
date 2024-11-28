@@ -234,7 +234,7 @@ Here you have a list of the entities identified:
 
 [Introduction]
 
-* Entity for different options of products: certain customizable parts are indeed options of the product. Polymorphic relationships
+* "Options" entity for different options of products: certain customizable parts are indeed options of the product. Polymorphic relationships for the price changes
 * Parts as a separate entity from Product.
 * Represent incompatibilities and calculate compatibility or the othe way around?
 
