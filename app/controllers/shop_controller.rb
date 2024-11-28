@@ -13,7 +13,7 @@ class ShopController < ApplicationController
       @breadcrums = category.self_and_ancestors.reverse
       @products = Product.where(category: category_ids)
     else
-      @breadcrums = [FactoryBot.build(:category, name: "All")]
+      @breadcrums = [ FactoryBot.build(:category, name: "All") ]
       @products = Product.all
     end
   end
