@@ -3,7 +3,7 @@ class ShopController < ApplicationController
 
   def homepage
     @breadcrums = []
-    @products = Product.order("RANDOM()").limit(8)
+    @products = Product.in_catalog.order("RANDOM()").limit(8)
   end
 
   def catalog
@@ -11,15 +11,15 @@ class ShopController < ApplicationController
       category = Category.find(params[:category])
       category_ids = category.self_and_descendants.map(&:id)
       @breadcrums = category.self_and_ancestors.reverse
-      @products = Product.where(category: category_ids)
+      @products = Product.in_catalog.where(category: category_ids)
     else
       @breadcrums = [ FactoryBot.build(:category, name: "All") ]
-      @products = Product.all
+      @products = Product.in_catalog
     end
   end
 
   def product
-    @product = Product.find_by!(uuid: params[:uuid])
+    @product = Product.in_catalog.find_by!(uuid: params[:uuid])
     @breadcrums = @product.category.self_and_ancestors.reverse
   end
 

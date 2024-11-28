@@ -9,6 +9,8 @@ class Product < ApplicationRecord
   has_many :incompatible_products_as_target, class_name: "Product", through: :banned_combinations_as_target, source: :source
   has_many :price_changes, foreign_key: :changed_product_id
 
+  scope :in_catalog, -> { where(enabled: true) }
+
   before_create :generate_uuid
 
   validates :brand, presence: true
