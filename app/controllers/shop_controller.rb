@@ -1,4 +1,6 @@
 class ShopController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_menu
 
   def homepage
@@ -11,10 +13,10 @@ class ShopController < ApplicationController
       category = Category.find(params[:category])
       category_ids = category.self_and_descendants.map(&:id)
       @breadcrums = category.self_and_ancestors.reverse
-      @products = Product.in_catalog.where(category: category_ids)
+      @pagy, @products = pagy(Product.in_catalog.where(category: category_ids))
     else
       @breadcrums = [ FactoryBot.build(:category, name: "All") ]
-      @products = Product.in_catalog
+      @pagy, @products = pagy(Product.in_catalog)
     end
   end
 

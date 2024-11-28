@@ -40,6 +40,12 @@ gem "tailwindcss-rails", "~> 3.0"
 # Faker to create random data
 gem "faker", "~> 3.5"
 
+# To treat categories as a tree
+gem "acts_as_tree", "~> 2.9"
+
+# Pagination
+gem "pagy", "~> 9.3"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -71,4 +77,3 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "acts_as_tree", "~> 2.9"

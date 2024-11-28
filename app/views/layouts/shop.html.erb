@@ -20,8 +20,15 @@
 
   <body class="bg-gray-100">
     <%= render partial: "header" %>
-    <nav class="container mx-auto my-4 px-5 text-slate-600">
+    <nav class="container mx-auto my-4 px-5 text-slate-600 flex">
       <%= render partial: "breadcrums" unless @breadcrums.empty? %>
+      <div class="grow"></div>
+      <div class="pl-5 pt-3 pr-12 text-sm">
+        <%== pagy_nav(@pagy) %>
+      </div>
+      <div class="pl-5 pt-3 text-sm">
+        <%== pagy_info(@pagy, item_name: 'product'.pluralize(@pagy.count)) %>
+      </div>
     </nav>
     <main class="container mx-auto mt-5 mb-12 px-5">
       <%= yield %>
