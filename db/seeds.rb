@@ -92,7 +92,7 @@ diamon = Product.create_with(description: random_description,
   stock_available: true,
   customizable: false,
   category: enduro_parts_cat).
-find_or_create_by!(brand: "Mosaicn", model: "Diamon", year: 2022)
+find_or_create_by!(brand: "Mosaic", model: "Diamon", year: 2022)
 
 step_through = Product.create_with(description: random_description,
   standalone_price: 2000,

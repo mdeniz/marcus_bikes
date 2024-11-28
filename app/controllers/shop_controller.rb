@@ -9,11 +9,11 @@ class ShopController < ApplicationController
   def catalog
     if params[:category].present?
       category = Category.find(params[:category])
-      @breadcrums = category.self_and_ancestors.reverse
       category_ids = category.self_and_descendants.map(&:id)
+      @breadcrums = category.self_and_ancestors.reverse
       @products = Product.where(category: category_ids)
     else
-      @breadcrums = []
+      @breadcrums = [FactoryBot.build(:category, name: "All")]
       @products = Product.all
     end
   end
