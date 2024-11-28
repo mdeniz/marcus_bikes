@@ -1,7 +1,7 @@
 <nav class="shadow-lg bg-slate-600 z-10 text-white ">
   <div class="flex w-full pl-5 py-2">
     <% @menu.each do |category| %>
-      <%= link_to category.name, category, class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
+      <%= link_to category.name, catalog_path(category:), class: "border-b-2 border-b-slate-600 hover:border-b-rose-600  px-5 inline-block font-medium" %>
     <% end %>
     <div class="grow"></div>
     <div class="">
