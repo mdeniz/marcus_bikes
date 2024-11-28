@@ -2,16 +2,16 @@ class ShopController < ApplicationController
   before_action :set_menu
 
   def homepage
-    @breadcrums = [ ]
+    @breadcrums = []
     @products = Product.order("RANDOM()").limit(4)
   end
 
   def catalog
-    @breadcrums = [ ]
+    @breadcrums = []
   end
 
   def product
-    @breadcrums = [ ]
+    @breadcrums = []
   end
 
   private
