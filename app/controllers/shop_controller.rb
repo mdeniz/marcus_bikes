@@ -7,17 +7,20 @@ class ShopController < ApplicationController
   end
 
   def catalog
-    @breadcrums = []
     if params[:category].present?
-      category_ids = Category.find(params[:category]).self_and_descendants.map(&:id)
+      category = Category.find(params[:category])
+      @breadcrums = category.self_and_ancestors.reverse
+      category_ids = category.self_and_descendants.map(&:id)
       @products = Product.where(category: category_ids)
     else
+      @breadcrums = []
       @products = Product.all
     end
   end
 
   def product
-    @breadcrums = []
+    @product = Product.find(params[:id])
+    @breadcrums = @product.category.self_and_ancestors.reverse
   end
 
   private
