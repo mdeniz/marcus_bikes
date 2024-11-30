@@ -21,7 +21,7 @@ class ShopController < ApplicationController
   end
 
   def product
-    @product = Product.in_catalog.find_by!(uuid: params[:uuid])
+    @product = Product.in_catalog.includes(:attibute_options).find_by!(uuid: params[:uuid])
     @breadcrums = @product.category.self_and_ancestors.reverse
   end
 
