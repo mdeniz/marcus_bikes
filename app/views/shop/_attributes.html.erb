@@ -1,0 +1,8 @@
+<div class="text-sm flex flex-col gap-3">
+<% @product.customizable_attributes.each do |attribute| %>
+  <div>
+    <div class="font-bold pb-2"><%= attribute.name %></div>
+    <%= render partial: "attribute_options", locals: { attribute_options: attribute.attibute_options } %>
+  </div>
+<% end %>
+</div>
