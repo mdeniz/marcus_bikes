@@ -21,7 +21,7 @@
 
     <div class="pb-10">
       <span class="p-2 bg-rose-600 font-bold text-white">
-        <%= @product.customizable? ? "Customizable" : "#{@product.base_price} €" %>
+        <%= @product.customizable? ? "Customizable" : "#{number_with_precision(@product.base_price, precision: 2)} €" %>
       </span>
     </div>
 
