@@ -1,0 +1,12 @@
+<div class="pb-2 text-xl font-semibold">
+  Customization
+</div>
+
+
+<div class="text-sm flex flex-col gap-3">
+<% @product.customizable_parts.each do |parts| %>
+  <div>
+    <div class="font-bold pb-2"><%= parts.name %></div>
+  </div>
+<% end %>
+</div>

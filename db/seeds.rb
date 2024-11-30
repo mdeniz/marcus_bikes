@@ -203,44 +203,44 @@ find_or_create_by!(brand: "KMC", model: "8-speed chain", year: 2022)
 
 # Full suspension frame options
 full_suspension_size = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Size", order: 1, product: full_suspension)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "S", price_change: 0, order: 1, customizable_attribute: full_suspension_size)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "M", price_change: 50, order: 2, customizable_attribute: full_suspension_size)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "L", price_change: 80, order: 3, customizable_attribute: full_suspension_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "S", price_change: 0, order: 1, stock_available: true, customizable_attribute: full_suspension_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "M", price_change: 50, order: 2, stock_available: true, customizable_attribute: full_suspension_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "L", price_change: 80, order: 3, stock_available: true, customizable_attribute: full_suspension_size)
 
 full_suspension_color = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Color", order: 1, product: full_suspension)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Orange", price_change: 20, order: 1, customizable_attribute: full_suspension_color)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Teal", price_change: 30, order: 2, customizable_attribute: full_suspension_color)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Orange", price_change: 20, order: 1, stock_available: true, customizable_attribute: full_suspension_color)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Teal", price_change: 30, order: 2, stock_available: true, customizable_attribute: full_suspension_color)
 
 # Full suspension frame options
 diamon_size = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Size", order: 1, product: diamon)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "M", price_change: 0, order: 1, customizable_attribute: diamon_size)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "L", price_change: 150, order: 2, customizable_attribute: diamon_size)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "XL", price_change: 180, order: 3, customizable_attribute: diamon_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "M", price_change: 0, order: 1, stock_available: true, customizable_attribute: diamon_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "L", price_change: 150, order: 2, stock_available: false, customizable_attribute: diamon_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "XL", price_change: 180, order: 3, stock_available: true, customizable_attribute: diamon_size)
 
 diamon_color = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Color", order: 1, product: diamon)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Deep black", price_change: 60, order: 1, customizable_attribute: diamon_color)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Electric Blue", price_change: 90, order: 2, customizable_attribute: diamon_color)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Deep black", price_change: 60, order: 1, stock_available: true, customizable_attribute: diamon_color)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Electric Blue", price_change: 90, order: 2, stock_available: true, customizable_attribute: diamon_color)
 
 # Road wheels options
 rim_color_road_wheels = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 1, product: road_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Red", price_change: 5.0, order: 1, customizable_attribute: rim_color_road_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Blue", price_change: 6.0, order: 2, customizable_attribute: rim_color_road_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, customizable_attribute: rim_color_road_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Red", price_change: 5.0, order: 1, stock_available: true, customizable_attribute: rim_color_road_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Blue", price_change: 6.0, order: 2, stock_available: true, customizable_attribute: rim_color_road_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, stock_available: true, customizable_attribute: rim_color_road_wheels)
 
 # Road wheels options
 rim_color_road_wheels = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 1, product: road_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Red", price_change: 5.0, order: 1, customizable_attribute: rim_color_road_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Blue", price_change: 6.0, order: 2, customizable_attribute: rim_color_road_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, customizable_attribute: rim_color_road_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Red", price_change: 5.0, order: 1, stock_available: true, customizable_attribute: rim_color_road_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Blue", price_change: 6.0, order: 2, stock_available: true, customizable_attribute: rim_color_road_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, stock_available: true, customizable_attribute: rim_color_road_wheels)
 
 # Mountain wheels options
 rim_color_mountain_wheels = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 1, product: mountain_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, customizable_attribute: rim_color_mountain_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, stock_available: true, customizable_attribute: rim_color_mountain_wheels)
 
 # Fat bike wheels options
 rim_color_fat_bike_wheels = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 1, product: fat_bike_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Blue", price_change: 16.0, order: 2, customizable_attribute: rim_color_fat_bike_wheels)
-AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, customizable_attribute: rim_color_fat_bike_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Blue", price_change: 16.0, order: 2, stock_available: true, customizable_attribute: rim_color_fat_bike_wheels)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, stock_available: true, customizable_attribute: rim_color_fat_bike_wheels)
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------

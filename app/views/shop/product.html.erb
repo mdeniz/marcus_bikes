@@ -1,6 +1,8 @@
 <div class="flex gap-3 bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
-  <div class="basis-1/2">
+  <div class="basis-1/2 flex flex-col ">
     <%= image_tag @product.image, class: "w-full pb-5 object-cover" %>
+    <div class="grow"></div>
+    <%= render partial: "customization" %>   
   </div>
   <div class="basis-1/2 flex flex-col ml-10">
     <div class="text-ellipsis text-xl pb-5">

@@ -6,6 +6,7 @@ class ShopController < ApplicationController
   def homepage
     @breadcrums = []
     @products = Product.in_catalog.order("RANDOM()").limit(8)
+    @customizable_product = Product.in_catalog.find_by!(customizable: true).uuid
   end
 
   def catalog
