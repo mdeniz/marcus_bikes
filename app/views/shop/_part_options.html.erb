@@ -1,0 +1,11 @@
+<div class="flex gap-3">
+  <% part_options.each do |part_option| %>
+    <%
+      related_product = part_option.product 
+      classes = related_product.stock_available? ? "border-slate-700 hover:border-rose-600 cursor-pointer text-slate-600" : "border-slate-200 text-slate-300"
+    %>
+    <div class="border-2 min-w-10 p-2 text-center <%= classes %>">
+      <%= related_product.model %>
+    </div>
+  <% end %>
+</div>
