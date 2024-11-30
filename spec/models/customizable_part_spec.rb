@@ -35,4 +35,16 @@ RSpec.describe CustomizablePart, type: :model do
 
     it { is_expected.to be_valid }
   end
+
+  context 'whit order not present' do
+    subject(:customizable_part) { build(:customizable_part, order: nil) }
+
+    it { is_expected.not_to be_valid }
+  end
+
+  context 'whit order not being a number' do
+    subject(:customizable_part) { build(:customizable_part, order: "NaN") }
+
+    it { is_expected.not_to be_valid }
+  end
 end

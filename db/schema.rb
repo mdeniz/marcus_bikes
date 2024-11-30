@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_183834) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_30_100051) do
+  create_table "attribute_options", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "order", default: 1
+    t.integer "customizable_attribute_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customizable_attribute_id"], name: "index_attribute_options_on_customizable_attribute_id"
+  end
+
   create_table "banned_combinations", force: :cascade do |t|
     t.integer "source_id", null: false
     t.integer "target_id", null: false
@@ -29,6 +39,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_183834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_categories_on_parent_id"
+  end
+
+  create_table "customizable_attributes", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "order", default: 1
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_customizable_attributes_on_product_id"
   end
 
   create_table "customizable_parts", force: :cascade do |t|
@@ -80,9 +100,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_183834) do
     t.index ["uuid"], name: "unique_uuid_on_products", unique: true
   end
 
+  add_foreign_key "attribute_options", "customizable_attributes"
   add_foreign_key "banned_combinations", "products", column: "source_id"
   add_foreign_key "banned_combinations", "products", column: "target_id"
   add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "customizable_attributes", "products"
   add_foreign_key "customizable_parts", "products"
   add_foreign_key "part_options", "customizable_parts"
   add_foreign_key "part_options", "products"

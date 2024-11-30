@@ -1,12 +1,23 @@
 class Product < ApplicationRecord
+  # Categories
   belongs_to :category
+
+  # Custom attributes
+  has_many :customizable_attributes, dependent: :destroy
+  has_many :attibute_options, through: :customizable_attributes
+
+  # Custom parts
   has_many :customizable_parts, dependent: :destroy
   has_many :selectable_products, class_name: "Product", through: :customizable_parts, source: :products
   has_many :part_options, dependent: :destroy
+
+  # Banned combinations
   has_many :banned_combinations_as_source, class_name: "BannedCombination", foreign_key: :source_id
   has_many :banned_combinations_as_target, class_name: "BannedCombination", foreign_key: :target_id
   has_many :incompatible_products_as_source, class_name: "Product", through: :banned_combinations_as_source, source: :target
   has_many :incompatible_products_as_target, class_name: "Product", through: :banned_combinations_as_target, source: :source
+
+  # Price changes
   has_many :price_changes, foreign_key: :changed_product_id
 
   scope :in_catalog, -> { where(enabled: true) }

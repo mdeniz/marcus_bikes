@@ -11,6 +11,12 @@ RSpec.describe PriceChange, type: :model do
     it { is_expected.not_to be_valid }
   end
 
+  context 'whit change not being a number' do
+    subject(:price_change) { build(:price_change, change: "NaN") }
+
+    it { is_expected.not_to be_valid }
+  end
+
   context 'whit the same changed product but different "on products"' do
     let!(:changed_product) { create(:product) }
     let!(:on_product) { create(:product) }
