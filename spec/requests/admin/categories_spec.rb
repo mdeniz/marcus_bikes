@@ -27,7 +27,7 @@ RSpec.describe "/categories", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Category.create! valid_attributes
-      get categories_url
+      get admin_categories_url
       expect(response).to be_successful
     end
   end
@@ -35,14 +35,14 @@ RSpec.describe "/categories", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       category = Category.create! valid_attributes
-      get category_url(category)
+      get admin_category_url(category)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_category_url
+      get new_admin_category_url
       expect(response).to be_successful
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe "/categories", type: :request do
   describe "GET /edit" do
     it "renders a successful response" do
       category = Category.create! valid_attributes
-      get edit_category_url(category)
+      get edit_admin_category_url(category)
       expect(response).to be_successful
     end
   end
@@ -59,25 +59,25 @@ RSpec.describe "/categories", type: :request do
     context "with valid parameters" do
       it "creates a new Category" do
         expect {
-          post categories_url, params: { category: valid_attributes }
+          post admin_categories_url, params: { category: valid_attributes }
         }.to change(Category, :count).by(1)
       end
 
       it "redirects to the created category" do
-        post categories_url, params: { category: valid_attributes }
-        expect(response).to redirect_to(category_url(Category.last))
+        post admin_categories_url, params: { category: valid_attributes }
+        expect(response).to redirect_to(admin_category_url(Category.last))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new Category" do
         expect {
-          post categories_url, params: { category: invalid_attributes }
+          post admin_categories_url, params: { category: invalid_attributes }
         }.to change(Category, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post categories_url, params: { category: invalid_attributes }
+        post admin_categories_url, params: { category: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -91,23 +91,23 @@ RSpec.describe "/categories", type: :request do
 
       it "updates the requested category" do
         category = Category.create! valid_attributes
-        patch category_url(category), params: { category: new_attributes }
+        patch admin_category_url(category), params: { category: new_attributes }
         category.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the category" do
         category = Category.create! valid_attributes
-        patch category_url(category), params: { category: new_attributes }
+        patch admin_category_url(category), params: { category: new_attributes }
         category.reload
-        expect(response).to redirect_to(category_url(category))
+        expect(response).to redirect_to(admin_category_url(category))
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         category = Category.create! valid_attributes
-        patch category_url(category), params: { category: invalid_attributes }
+        patch admin_category_url(category), params: { category: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -117,14 +117,14 @@ RSpec.describe "/categories", type: :request do
     it "destroys the requested category" do
       category = Category.create! valid_attributes
       expect {
-        delete category_url(category)
+        delete admin_category_url(category)
       }.to change(Category, :count).by(-1)
     end
 
     it "redirects to the categories list" do
       category = Category.create! valid_attributes
-      delete category_url(category)
-      expect(response).to redirect_to(categories_url)
+      delete admin_category_url(category)
+      expect(response).to redirect_to(admin_categories_url)
     end
   end
 end

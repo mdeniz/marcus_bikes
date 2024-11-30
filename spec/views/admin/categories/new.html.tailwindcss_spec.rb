@@ -1,23 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe "categories/edit", type: :view do
-  let(:category) {
-    Category.create!(
+RSpec.describe "admin/categories/new", type: :view do
+  before(:each) do
+    assign(:category, Category.new(
       name: "MyString",
       description: "MyString",
       order: 1,
       parent: nil
-    )
-  }
-
-  before(:each) do
-    assign(:category, category)
+    ))
   end
 
-  xit "renders the edit category form" do
+  xit "renders new category form" do
     render
 
-    assert_select "form[action=?][method=?]", category_path(category), "post" do
+    assert_select "form[action=?][method=?]", categories_path, "post" do
       assert_select "input[name=?]", "category[name]"
 
       assert_select "input[name=?]", "category[description]"

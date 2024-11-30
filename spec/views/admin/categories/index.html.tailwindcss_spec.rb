@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "categories/index", type: :view do
+RSpec.describe "admin/categories/index", type: :view do
   before(:each) do
     assign(:categories, [
       Category.create!(

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "products/new", type: :view do
+RSpec.describe "admin/products/new", type: :view do
   before(:each) do
     assign(:product, Product.new(
       uuid: "MyString",

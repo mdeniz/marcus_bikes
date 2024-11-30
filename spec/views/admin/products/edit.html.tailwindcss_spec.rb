@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "products/edit", type: :view do
+RSpec.describe "admin/products/edit", type: :view do
   let(:product) {
     Product.create!(
       uuid: "MyString",
