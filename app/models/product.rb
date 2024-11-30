@@ -8,8 +8,8 @@ class Product < ApplicationRecord
 
   # Custom parts
   has_many :customizable_parts, dependent: :destroy
+  has_many :part_options, through: :customizable_parts
   has_many :selectable_products, class_name: "Product", through: :customizable_parts, source: :products
-  has_many :part_options, dependent: :destroy
 
   # Banned combinations
   has_many :banned_combinations_as_source, class_name: "BannedCombination", foreign_key: :source_id
