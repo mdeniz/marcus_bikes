@@ -7,7 +7,7 @@ RSpec.describe "admin/products/edit", type: :view do
       brand: "MyString",
       model: "MyString",
       description: "MyString",
-      standalone_price: "9.99",
+      base_price: "9.99",
       image: "MyString",
       year: 1,
       enabled: false,
@@ -33,7 +33,7 @@ RSpec.describe "admin/products/edit", type: :view do
 
       assert_select "input[name=?]", "product[description]"
 
-      assert_select "input[name=?]", "product[standalone_price]"
+      assert_select "input[name=?]", "product[base_price]"
 
       assert_select "input[name=?]", "product[image]"
 

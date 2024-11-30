@@ -25,19 +25,19 @@ RSpec.describe Product, type: :model do
     end
 
     context 'whit standalone price not present' do
-      subject(:product) { build(:product, standalone_price: nil) }
+      subject(:product) { build(:product, base_price: nil) }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'whit negative standalone price' do
-      subject(:product) { build(:product, standalone_price: -1) }
+      subject(:product) { build(:product, base_price: -1) }
 
       it { is_expected.not_to be_valid }
     end
 
     context 'whit standalone price wrongly formatted' do
-      subject(:product) { build(:product, standalone_price: "bad number") }
+      subject(:product) { build(:product, base_price: "bad number") }
 
       it { is_expected.not_to be_valid }
     end
@@ -91,8 +91,8 @@ RSpec.describe Product, type: :model do
   end
 
   describe "#selection_price" do
-    let!(:product) { create(:product, standalone_price: 10) }
-    let!(:another_product) { create(:product, standalone_price: 5) }
+    let!(:product) { create(:product, base_price: 10) }
+    let!(:another_product) { create(:product, base_price: 5) }
     let(:selected_products_ids) { [ product.id, another_product.id ] }
     let(:another_product_selection_price) { another_product.selection_price(selected_products_ids) }
 
@@ -103,7 +103,7 @@ RSpec.describe Product, type: :model do
     end
 
     context "with price changes" do
-      let!(:product_not_in_selection) { create(:product, standalone_price: 1) }
+      let!(:product_not_in_selection) { create(:product, base_price: 1) }
       let!(:ignorable_price_change) { create(:price_change, changed_product: product, on_product: product_not_in_selection, change: 700) }
       let!(:price_change_in_selection) { create(:price_change, changed_product: product, on_product: another_product, change: 3) }
 

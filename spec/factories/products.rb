@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:brand) { |n| "Brand #{n}" }
     sequence(:model) { |n| "Model #{n}" }
     sequence(:description) { |n| "Description #{n}" }
-    standalone_price { 9.99 }
+    base_price { 9.99 }
     image { "http://example.com/image.jpg" }
     year { 2024 }
     enabled { true }

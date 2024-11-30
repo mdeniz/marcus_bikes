@@ -27,8 +27,9 @@ class Product < ApplicationRecord
   validates :brand, presence: true
   validates :model, presence: true
   validates :description, presence: true
-  validates :standalone_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :base_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
+  # Incompatibilities
   def incompatible_products
     (incompatible_products_as_source + incompatible_products_as_target).uniq
   end
@@ -37,10 +38,15 @@ class Product < ApplicationRecord
     (incompatible_products_as_source_ids + incompatible_products_as_target_ids).uniq
   end
 
+  # Pricing
+  def price(selected_options_ids = [])
+    base_price + AttributeOption.where(id: selected_options_ids).sum(:price_change)
+  end
+
   def selection_price(selected_products_ids = [])
     price_changes = PriceChange.where(changed_product_id: selected_products_ids)
 
-    result = Product.where(id: selected_products_ids).sum(:standalone_price)
+    result = Product.where(id: selected_products_ids).sum(:base_price)
     price_changes.each do |price_change|
       result += price_change.change if selected_products_ids.include?(price_change.on_product_id)
     end

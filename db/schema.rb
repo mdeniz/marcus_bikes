@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_100051) do
     t.string "name"
     t.string "description"
     t.integer "order", default: 1
+    t.decimal "price_change", precision: 10, scale: 2, default: "0.0"
     t.integer "customizable_attribute_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -87,7 +88,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_100051) do
     t.string "brand"
     t.string "model"
     t.string "description"
-    t.decimal "standalone_price", precision: 10, scale: 2
+    t.decimal "base_price", precision: 10, scale: 2
     t.string "image"
     t.integer "year"
     t.boolean "enabled", default: false

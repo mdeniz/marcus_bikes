@@ -7,7 +7,7 @@ RSpec.describe "admin/products/show", type: :view do
       brand: "Brand",
       model: "Model",
       description: "Description",
-      standalone_price: "9.99",
+      base_price: "9.99",
       image: "Image",
       year: 2,
       enabled: false,
