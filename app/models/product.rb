@@ -39,11 +39,15 @@ class Product < ApplicationRecord
   end
 
   # Pricing
-  def price(selected_options_ids = [])
+  def price(selected_options_ids: [], selected_products_ids: [])
+    selected_options_price(selected_options_ids) + selection_products_price(selected_products_ids)
+  end
+
+  def selected_options_price(selected_options_ids = [])
     base_price + AttributeOption.where(id: selected_options_ids).sum(:price_change)
   end
 
-  def selection_price(selected_products_ids = [])
+  def selection_products_price(selected_products_ids = [])
     price_changes = PriceChange.where(changed_product_id: selected_products_ids)
 
     result = Product.where(id: selected_products_ids).sum(:base_price)
