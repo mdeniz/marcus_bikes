@@ -3,6 +3,7 @@ FactoryBot.define do
     sequence(:name) { |n| "AttributeOption #{n}" }
     sequence(:description) { |n| "Description #{n}" }
     order { 1 }
+    stock_available { true }
     customizable_attribute
   end
 end

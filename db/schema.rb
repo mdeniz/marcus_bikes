@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_100051) do
     t.string "description"
     t.integer "order", default: 1
     t.decimal "price_change", precision: 10, scale: 2, default: "0.0"
+    t.boolean "stock_available", default: false
     t.integer "customizable_attribute_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
