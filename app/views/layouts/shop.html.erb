@@ -19,9 +19,9 @@
   </head>
 
   <body class="bg-gray-100">
-    <%= render partial: "header" %>
+    <%= render partial: "shop/shared/header" %>
     <nav class="container mx-auto my-4 px-5 text-slate-600 flex">
-      <%= render partial: "breadcrums" unless @breadcrums.empty? %>
+      <%= render partial: "shop/shared/breadcrums" unless @breadcrums.empty? %>
       <div class="grow"></div>
       <% if defined?(@pagy) %>
       <div class="pl-5 pt-3 text-sm">

@@ -4,7 +4,6 @@ class CartItem < ApplicationRecord
 
   serialize :customization, coder: JSON
 
-  validates :order, presence: true, numericality: true
   validates :quantity, presence: true, numericality: true
   validates :price, presence: true, numericality: true
 end

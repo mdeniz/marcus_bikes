@@ -6,7 +6,7 @@
 <% @product.customizable_parts.each do |part| %>
   <div>
     <div class="font-bold pb-2"><%= part.name %></div>
-    <%= render partial: "part_options", locals: { part_options: part.part_options } %>
+    <%= render partial: "shop/product/part_options", locals: { part_options: part.part_options } %>
   </div>
 <% end %>
 </div>

@@ -2,7 +2,7 @@
   <div class="basis-1/2 flex flex-col ">
     <%= image_tag @product.image, class: "w-full pb-5 object-cover" %>
     <div class="grow"></div>
-    <%= render partial: "customization" if @product.customizable? %>
+    <%= render partial: "shop/product/customization" if @product.customizable? %>
   </div>
   <div class="basis-1/2 flex flex-col ml-10">
     <div class="text-ellipsis text-xl pb-5">
@@ -27,7 +27,7 @@
       </span>
     </div>
 
-    <%= render partial: "attributes" %>
+    <%= render partial: "shop/product/attributes" %>
 
     <div class="text-right pb-8">
       <% if @product.stock_available? %>
@@ -37,6 +37,6 @@
         <span class="whitespace-nowrap flex-none rounded-lg mt-5 py-3 px-5 bg-slate-400 text-white font-medium"><del>Add to Cart</del></span>
       <% end %>
     </div>
-    <%= render partial: "services" %>   
+    <%= render partial: "shop/product/services" %>   
   </div>
 </div>
