@@ -1,11 +1,17 @@
 <section class="flex gap-3 bg-white shadow-lg rounded-md overflow-hidden text-slate-700">
   <div class="mx-auto p-8">
-    <div class="mx-auto max-w-2xl">
+    <div class="mx-auto">
       <header class="text-center">
         <h1 class="text-xl font-bold sm:text-3xl">Your Cart</h1>
       </header>
 
       <div class="mt-8">
+        <div class="flex items-center gap-5 text-center">
+          <div>Product</div>
+          <div class="grow"></div>
+          <div class="w-32">Price</div>
+          <div class="w-32">Quantity</div>
+        </div>
         <ul class="space-y-4">
           <% @cart.cart_items.each do |cart_item| %>
             <%= render partial: "shop/cart/item", locals: {cart_item: } %>
@@ -13,7 +19,7 @@
         </ul>
 
         <div class="mt-8 flex justify-end border-t border-slate-100 pt-8">
-          <div class="w-screen max-w-lg space-y-4">
+          <div class="w-screen max-w-sm space-y-4">
             <dl class="space-y-0.5 text-sm text-slate-700">
               <div class="flex justify-between">
                 <dt>Subtotal</dt>

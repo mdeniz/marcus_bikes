@@ -23,7 +23,7 @@
 
     <div class="pb-10">
       <span class="p-2 bg-rose-600 font-bold text-white">
-        <%= @product.customizable? ? "Customizable" : "#{number_to_euros(@product.base_price)}" %>
+        <%= @product.customizable? ? "Customizable" : number_to_euros(@product.base_price) %>
       </span>
     </div>
 

@@ -44,8 +44,8 @@ class ShopController < ApplicationController
     end
 
     def set_cart
-      session[:cart_id] ||= Cart.create.id
-      @cart = Cart.find(session[:cart_id])
+      # session[:cart_id] ||= Cart.create
+      @cart = Cart.first # Just to show a preloaded cart
     end
 
     def set_empty_breadcrumbs

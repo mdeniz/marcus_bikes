@@ -1,11 +1,11 @@
 <li class="flex items-center gap-5 pt-3 border-t border-slate-100 ">
   <%= image_tag cart_item.product.image, class: "size-24 rounded object-cover" %>
 
-  <div class="pr-5">
+  <div class="w-80 pr-5">
     <div class="font-bold text-sm">
       <%= cart_item.product.brand %>
     </div>
-    <h3 class=""><%= cart_item.product.model %></h3>
+    <h3 class=""><%= cart_item.product.model %> (<%= cart_item.product.year %>)</h3>
 
     <dl class="mt-0.5 space-y-px text-[10px] text-slate-600">
       <% cart_item.product.customizable_attributes.each do |attribute| %>
@@ -25,7 +25,11 @@
     </dl>
   </div>
 
-  <div class="flex flex-1 items-center justify-end gap-2">
+  <div class="text-center w-32 text-sm">
+    <%= number_to_euros(cart_item.product.base_price) %>
+  </div>
+
+  <div class="flex flex-1 items-center justify-center gap-2 w-32">
     <form>
       <label for="Line1Qty" class="sr-only"> Quantity </label>
 

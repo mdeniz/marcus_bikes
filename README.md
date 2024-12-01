@@ -49,6 +49,12 @@ Get all the gem dependencies needed by running bundler like this:
 ./bin/bundle install
 ```
 
+Create the database and set it up with some products with:
+
+```bash
+./bin/rails db:setup db:seed
+```
+
 To check that the app is working you can boot the webserver like this:
 
 ```bash

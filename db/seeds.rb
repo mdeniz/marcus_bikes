@@ -150,34 +150,6 @@ fat_bike_wheels = Product.create_with(description: random_description,
   category: enduro_parts_cat).
 find_or_create_by!(brand: "Vii", model: "Fat bike wheels", year: 2019)
 
-# # Parts for the Rim colors
-# red = Product.create_with(description: random_description,
-#   base_price: 20,
-#   image: "/assets/products/red.jpg",
-#   enabled: true,
-#   stock_available: true,
-#   customizable: false,
-#   category: enduro_parts_cat).
-# find_or_create_by!(brand: "The Wheeler", model: "Red", year: 2024)
-
-# black = Product.create_with(description: random_description,
-#   base_price: 10,
-#   image: "/assets/products/black.jpg",
-#   enabled: true,
-#   stock_available: true,
-#   customizable: false,
-#   category: enduro_parts_cat).
-# find_or_create_by!(brand: "The Wheeler", model: "Black", year: 2022)
-
-# blue = Product.create_with(description: random_description,
-#   base_price: 20,
-#   image: "/assets/products/blue.jpg",
-#   enabled: true,
-#   stock_available: true,
-#   customizable: false,
-#   category: enduro_parts_cat).
-# find_or_create_by!(brand: "Half Pipe Wheels", model: "Blue", year: 2019)
-
 # Parts for the Chains
 single_speed = Product.create_with(description: random_description,
   base_price: 43,
@@ -250,7 +222,6 @@ AttributeOption.create_with(description: random_description).find_or_create_by!(
 frame_type = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Frame type", order: 1, product: customizable_bike)
 frame_finish = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Frame finish", order: 2, product: customizable_bike)
 wheels = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Wheels", order: 3, product: customizable_bike)
-# rim_color = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Rim color", order: 4, product: customizable_bike)
 chain = CustomizablePart.create_with(description: random_description).find_or_create_by!(name: "Chain", order: 5, product: customizable_bike)
 
 #-------------------------------------------------------------------------------------------------------------------------------------
@@ -268,10 +239,6 @@ PartOption.find_or_create_by!(product: road_wheels, customizable_part: wheels)
 PartOption.find_or_create_by!(product: mountain_wheels, customizable_part: wheels)
 PartOption.find_or_create_by!(product: fat_bike_wheels, customizable_part: wheels)
 
-# PartOption.find_or_create_by!(product: red, customizable_part: rim_color)
-# PartOption.find_or_create_by!(product: black, customizable_part: rim_color)
-# PartOption.find_or_create_by!(product: blue, customizable_part: rim_color)
-
 PartOption.find_or_create_by!(product: single_speed, customizable_part: chain)
 PartOption.find_or_create_by!(product: eight_speed, customizable_part: chain)
 
@@ -281,10 +248,19 @@ PartOption.find_or_create_by!(product: eight_speed, customizable_part: chain)
 
 BannedCombination.find_or_create_by!(source: mountain_wheels, target: diamon)
 BannedCombination.find_or_create_by!(source: mountain_wheels, target: step_through)
-# BannedCombination.find_or_create_by!(source: fat_bike_wheels, target: red)
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 # Price changes for some customizable parts
 #-------------------------------------------------------------------------------------------------------------------------------------
 
 PriceChange.find_or_create_by!(changed_product: matte, on_product: full_suspension, change: 15)
+
+#-------------------------------------------------------------------------------------------------------------------------------------
+# Fake Cart get assign always
+#-------------------------------------------------------------------------------------------------------------------------------------
+
+cart = Cart.create
+first_product = Product.first
+cart.cart_items.create(product: first_product, order: 1, quantity: 1, price: first_product.base_price)
+cart.cart_items.create(product: customizable_bike, quantity: 1, price: customizable_bike.base_price)
+cart.cart_items.create(product: diamon, quantity: 1, price: diamon.base_price)
