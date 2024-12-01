@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_30_100051) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_01_001013) do
   create_table "attribute_options", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -31,6 +31,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_100051) do
     t.index ["source_id", "target_id"], name: "index_banned_combinations_on_source_id_and_target_id", unique: true
     t.index ["source_id"], name: "index_banned_combinations_on_source_id"
     t.index ["target_id"], name: "index_banned_combinations_on_target_id"
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.integer "product_id", null: false
+    t.integer "order", default: 1
+    t.integer "quantity", default: 1
+    t.decimal "price", precision: 10, scale: 2, default: "0.0"
+    t.text "customization"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["product_id"], name: "index_cart_items_on_product_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -105,6 +123,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_100051) do
   add_foreign_key "attribute_options", "customizable_attributes"
   add_foreign_key "banned_combinations", "products", column: "source_id"
   add_foreign_key "banned_combinations", "products", column: "target_id"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "products"
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "customizable_attributes", "products"
   add_foreign_key "customizable_parts", "products"
