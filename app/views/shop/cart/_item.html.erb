@@ -1,13 +1,24 @@
-<li class="flex items-center gap-5">
+<li class="flex items-center gap-5 pt-3 border-t border-slate-100 ">
   <%= image_tag cart_item.product.image, class: "size-24 rounded object-cover" %>
 
-  <div>
-    <h3 class="text-sm text-slate-900"><%= cart_item.product.model %></h3>
+  <div class="pr-5">
+    <div class="font-bold text-sm">
+      <%= cart_item.product.brand %>
+    </div>
+    <h3 class=""><%= cart_item.product.model %></h3>
 
     <dl class="mt-0.5 space-y-px text-[10px] text-slate-600">
       <% cart_item.product.customizable_attributes.each do |attribute| %>
         <div>
-          <dt class="inline">Size:</dt>
+          <dt class="inline"><%= attribute.name %>:</dt>
+          <dd class="inline">XXS</dd>
+        </div>
+      <% end %>
+    </dl>
+    <dl class="mt-0.5 space-y-px text-[10px] text-slate-600">
+      <% cart_item.product.customizable_parts.each do |part| %>
+        <div>
+          <dt class="inline"><%= part.name %>:</dt>
           <dd class="inline">XXS</dd>
         </div>
       <% end %>
