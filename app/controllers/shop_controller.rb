@@ -2,9 +2,9 @@ class ShopController < ApplicationController
   include Pagy::Backend
 
   before_action :set_menu, :set_cart
+  before_action :set_empty_breadcrumbs, only: [ :homepage, :show_cart ]
 
   def homepage
-    @breadcrums = []
     @products = Product.in_catalog.order("RANDOM()").limit(8)
     @customizable_product = Product.in_catalog.find_by!(customizable: true).uuid
   end
@@ -27,7 +27,6 @@ class ShopController < ApplicationController
   end
 
   def show_cart
-
   end
 
   private
@@ -40,5 +39,9 @@ class ShopController < ApplicationController
     def set_cart
       session[:cart_id] ||= Cart.create.id
       @cart = Cart.find(session[:cart_id])
+    end
+
+    def set_empty_breadcrumbs
+      @breadcrums = []
     end
 end
