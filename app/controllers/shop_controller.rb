@@ -1,7 +1,7 @@
 class ShopController < ApplicationController
   include Pagy::Backend
 
-  before_action :set_menu
+  before_action :set_menu, :set_cart
 
   def homepage
     @breadcrums = []
@@ -31,5 +31,9 @@ class ShopController < ApplicationController
     # Calculate the categories in the menu
     def set_menu
       @menu = Category.where(parent: nil).order(:order)
+    end
+
+    def set_cart
+      session[:cart_id] ||= Cart.create.id
     end
 end
