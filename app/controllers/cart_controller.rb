@@ -1,9 +1,6 @@
 class CartController < ApplicationController
   before_action :set_cart
 
-  def show
-  end
-
   def add_item
   end
 

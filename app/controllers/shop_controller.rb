@@ -26,6 +26,10 @@ class ShopController < ApplicationController
     @breadcrums = @product.category.self_and_ancestors.reverse
   end
 
+  def show_cart
+
+  end
+
   private
 
     # Calculate the categories in the menu
@@ -35,5 +39,6 @@ class ShopController < ApplicationController
 
     def set_cart
       session[:cart_id] ||= Cart.create.id
+      @cart = Cart.find(session[:cart_id])
     end
 end
