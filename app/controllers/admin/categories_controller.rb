@@ -4,7 +4,7 @@ module Admin
 
     # GET /categories or /categories.json
     def index
-      @categories = Category.all
+      @pagy, @categories = pagy(Category.all.order(:parent_id, :order))
     end
 
     # GET /categories/1 or /categories/1.json

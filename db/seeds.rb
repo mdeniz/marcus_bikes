@@ -25,17 +25,17 @@ enduro_parts_cat = Category.create_with(description: random_description).find_or
 
 # Ski types
 [ "Piste", "Alpine", "Racing", "Freestyle" ].each_with_index do |name, i|
-  Category.create_with(description: random_description).find_or_create_by!(name: name, order: i, parent: ski_cat)
+  Category.create_with(description: random_description).find_or_create_by!(name: name, order: i + 1, parent: ski_cat)
 end
 
 # Surf types
 [ "Fish", "Shortboard", "Hybrid", "Gun", "Funboard", "Hull", "Longboard" ].each_with_index do |name, i|
-  Category.create_with(description: random_description).find_or_create_by!(name: name, order: i, parent: surf_cat)
+  Category.create_with(description: random_description).find_or_create_by!(name: name, order: i + 1, parent: surf_cat)
 end
 
 # Skate types
 [ "Traditional", "Cruiser", "Longboard", "Freestyle", "Slalom", "Street" ].each_with_index do |name, i|
-  Category.create_with(description: random_description).find_or_create_by!(name: name, order: i, parent: skate_cat)
+  Category.create_with(description: random_description).find_or_create_by!(name: name, order: i + 1, parent: skate_cat)
 end
 
 #-------------------------------------------------------------------------------------------------------------------------------------
