@@ -1,5 +1,5 @@
 <div class="bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
-  <div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto w-full flex">
     <div class="mx-auto">
       <% if notice.present? %>
         <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
@@ -7,10 +7,20 @@
 
       <%= render @category %>
 
-      <%= link_to "Edit this category", edit_admin_category_path(@category), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to "Back to categories", admin_categories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <div class="overflow-x-auto">
+        <h3 class="py-3 font-bold">Subcategories</h3>
+        <%= render partial: "admin/categories/table", locals: { categories: @category.children } %>
+      </div>
+
+      <div class="overflow-x-auto">
+        <h3 class="py-3 font-bold">Products</h3>
+        <%= render partial: "admin/products/table", locals: { products: @category.products } %>
+      </div>
+
+      <%= link_to "Edit this category", edit_admin_category_path(@category), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block bg-slate-600 text-white hover:bg-rose-600 text-xs" %>
+      <%= link_to "Back to categories", admin_categories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block bg-slate-600 text-white hover:bg-rose-600 text-xs" %>
       <div class="inline-block ml-2">
-        <%= button_to "Destroy this category", [:admin, @category], method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <%= button_to "Destroy this category", [:admin, @category], method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 bg-slate-600 text-white hover:bg-rose-600 text-xs" %>
       </div>
     </div>
   </div>

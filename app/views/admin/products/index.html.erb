@@ -1,17 +1,15 @@
 <div class="bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
   <% content_for :title, "Products" %>
 
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center pb-10">
     <h1 class="font-bold text-2xl">Products</h1>
-    <%= link_to "New product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "New product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-slate-600 text-white block hover:bg-rose-600" %>
   </div>
 
-  <div id="products" class="min-w-full">
-    <% @products.each do |product| %>
-      <%= render product %>
-      <p>
-        <%= link_to "Show this product", [:admin, product], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+  <div class="overflow-x-auto">
+    <%= render partial: "table", locals: { products: @products } %>
   </div>
+</div>
+<div class="pt-5">
+  <%== pagy_info(@pagy, item_name: 'product'.pluralize(@pagy.count)) %>
 </div>

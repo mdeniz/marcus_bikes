@@ -1,5 +1,5 @@
 <div class="bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
-  <div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto w-full flex">
     <div class="mx-auto">
       <% if notice.present? %>
         <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
@@ -7,10 +7,10 @@
 
       <%= render @product %>
 
-      <%= link_to "Edit this product", edit_admin_product_path(@product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to "Back to products", admin_products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Edit this product", edit_admin_product_path(@product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block bg-slate-600 text-white hover:bg-rose-600 text-xs" %>
+      <%= link_to "Back to products", admin_products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block bg-slate-600 text-white hover:bg-rose-600 text-xs" %>
       <div class="inline-block ml-2">
-        <%= button_to "Destroy this product", [:admin, @product], method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <%= button_to "Destroy this product", [:admin, @product], method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 bg-slate-600 text-white hover:bg-rose-600 text-xs" %>
       </div>
     </div>
   </div>
