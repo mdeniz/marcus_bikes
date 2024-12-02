@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
   # Custom attributes
   has_many :customizable_attributes, dependent: :destroy
-  has_many :attibute_options, through: :customizable_attributes
+  has_many :attribute_options, through: :customizable_attributes
 
   # Custom parts
   has_many :customizable_parts, dependent: :destroy
@@ -28,6 +28,8 @@ class Product < ApplicationRecord
   validates :model, presence: true
   validates :description, presence: true
   validates :base_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  accepts_nested_attributes_for :customizable_attributes
 
   # Incompatibilities
   def incompatible_products

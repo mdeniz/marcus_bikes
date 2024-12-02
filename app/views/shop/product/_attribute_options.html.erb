@@ -1,8 +1,0 @@
-<div class="flex gap-3">
-  <% attribute_options.each do |option| %>
-    <% classes = option.stock_available? ? "border-slate-700 hover:border-rose-600 cursor-pointer text-slate-600" : "border-slate-200 text-slate-300" %>
-    <div class="border-2 min-w-10 p-2 text-center <%= classes %>">
-      <%= option.name %>
-    </div>
-  <% end %>
-</div>

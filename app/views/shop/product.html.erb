@@ -27,16 +27,32 @@
       </span>
     </div>
 
-    <%= render partial: "shop/product/attributes" %>
+    <%= form_with model: @product, url: cart_add_item_path, method: :post do |product_form| %>
+      <%= product_form.hidden_field :uuid, value: @product.uuid %>
+      <div class="text-sm flex flex-col gap-3">
+        <%= product_form.fields_for :customizable_attributes do |ca_form| %>
+          <%= ca_form.label ca_form.object.name, class: "font-bold pb-2" %>
+          <div class="flex gap-3">
+            <% ca_form.object.attribute_options.each do |attribute_option| %>
+              <%= ca_form.label "option_#{attribute_option.id}", attribute_option.name, class: "block cursor-pointer rounded-lg border border-slate-200 p-4 text-sm font-medium shadow-sm hover:border-slate-300 has-[:checked]:border-rose-600 has-[:checked]:ring-1 has-[:checked]:ring-rose-600" do %>
+                <%= attribute_option.name %>
+                <%= ca_form.radio_button :option, attribute_option.id, class: "sr-only", checked: ca_form.object.attribute_options.first == attribute_option %>
+              <% end %>
+            <% end %>
 
-    <div class="text-right pb-8">
-      <% if @product.stock_available? %>
-        <%= link_to "Add to Cart", "#", class: "whitespace-nowrap rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-700 text-white font-medium" %>
-      <% else %>
-        <span class="text-slate-600 text-sm pr-3">Temporarily out of stock</span>
-        <span class="whitespace-nowrap flex-none rounded-lg mt-5 py-3 px-5 bg-slate-400 text-white font-medium"><del>Add to Cart</del></span>
-      <% end %>
-    </div>
-    <%= render partial: "shop/product/services" %>   
+          </div>
+        <% end %>
+      </div>
+
+      <div class="text-right pb-8">
+        <% if @product.stock_available? %>
+          <%= product_form.submit "Add to Cart", class: "whitespace-nowrap rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-700 text-white font-medium cursor-pointer" %>
+        <% else %>
+          <span class="text-slate-600 text-sm pr-3">Temporarily out of stock</span>
+          <span class="whitespace-nowrap flex-none rounded-lg mt-5 py-3 px-5 bg-slate-400 text-white font-medium"><del>Add to Cart</del></span>
+        <% end %>
+      </div>
+      <%= render partial: "shop/product/services" %>   
+    <% end %>
   </div>
 </div>

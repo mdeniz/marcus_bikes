@@ -36,7 +36,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_01_001013) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id", null: false
     t.integer "product_id", null: false
-    t.integer "order", default: 1
     t.integer "quantity", default: 1
     t.decimal "price", precision: 10, scale: 2, default: "0.0"
     t.text "customization"

@@ -164,7 +164,7 @@ eight_speed = Product.create_with(description: random_description,
   base_price: 52,
   image: "/assets/products/eight_speed_chain.jpg",
   enabled: true,
-  stock_available: true,
+  stock_available: false,
   customizable: false,
   category: enduro_parts_cat).
 find_or_create_by!(brand: "KMC", model: "8-speed chain", year: 2022)
@@ -261,6 +261,6 @@ PriceChange.find_or_create_by!(changed_product: matte, on_product: full_suspensi
 
 cart = Cart.create
 first_product = Product.first
-cart.cart_items.create(product: first_product, order: 1, quantity: 1, price: first_product.base_price)
+cart.cart_items.create(product: first_product, quantity: 1, price: first_product.base_price)
 cart.cart_items.create(product: customizable_bike, quantity: 1, price: customizable_bike.base_price)
 cart.cart_items.create(product: diamon, quantity: 1, price: diamon.base_price)
