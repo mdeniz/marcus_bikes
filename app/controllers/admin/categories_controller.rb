@@ -26,7 +26,7 @@ module Admin
 
       respond_to do |format|
         if @category.save
-          format.html { redirect_to [:admin, @category], notice: "Category was successfully created." }
+          format.html { redirect_to [ :admin, @category ], notice: "Category was successfully created." }
           format.json { render :show, status: :created, location: @category }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ module Admin
     def update
       respond_to do |format|
         if @category.update(category_params)
-          format.html { redirect_to [:admin, @category], notice: "Category was successfully updated." }
+          format.html { redirect_to [ :admin, @category ], notice: "Category was successfully updated." }
           format.json { render :show, status: :ok, location: @category }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def category_params
-        params.require(:category).permit(:name, :description, :order, :category_id)
+        params.require(:category).permit(:name, :description, :order, :parent_id)
       end
   end
 end
