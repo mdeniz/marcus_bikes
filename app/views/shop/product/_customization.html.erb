@@ -3,10 +3,14 @@
 </div>
 
 <div class="text-sm flex flex-col gap-3">
-<% @product.customizable_parts.each do |part| %>
-  <div>
-    <div class="font-bold pb-2"><%= part.name %></div>
-    <%= render partial: "shop/product/part_options", locals: { part_options: part.part_options } %>
-  </div>
-<% end %>
+  <%= product_form.fields_for :customizable_parts do |cp_form| %>
+    <%= cp_form.object.inspect %>
+  <% end %>
+
+  <% @product.customizable_parts.each do |part| %>
+    <div>
+      <div class="font-bold pb-2"><%= part.name %></div>
+      <%= render partial: "shop/product/part_options", locals: { part_options: part.part_options } %>
+    </div>
+  <% end %>
 </div>

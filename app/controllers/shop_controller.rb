@@ -2,7 +2,7 @@ class ShopController < ApplicationController
   include Pagy::Backend
 
   before_action :set_menu, :set_cart
-  before_action :set_empty_breadcrumbs, only: [ :homepage, :cart ]
+  before_action :set_empty_breadcrumbs, only: :homepage
 
   def homepage
     @products = Product.in_catalog.order("RANDOM()").limit(8)
@@ -24,16 +24,6 @@ class ShopController < ApplicationController
   def product
     @product = Product.in_catalog.includes(:selectable_products, :attribute_options).find_by!(uuid: params[:uuid])
     @breadcrums = @product.category.self_and_ancestors.reverse
-  end
-
-  def cart
-    @cart_items = @cart.cart_items
-    @subtotal = @cart.cart_items.sum(:price)
-    @vat_percentage = 0.21
-    @vat = @subtotal * @vat_percentage
-    @discount_percentage = 0.1
-    @discount = - @subtotal * @discount_percentage
-    @total = @subtotal + @vat + @discount
   end
 
   private

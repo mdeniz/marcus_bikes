@@ -14,7 +14,7 @@
         </div>
         <ul class="space-y-4">
           <% @cart.cart_items.each do |cart_item| %>
-            <%= render partial: "shop/cart/item", locals: {cart_item: } %>
+            <%= render partial: "item", locals: {cart_item: } %>
           <% end %>
         </ul>
 

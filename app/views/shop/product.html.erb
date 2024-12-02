@@ -1,34 +1,35 @@
-<div class="flex gap-3 bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
-  <div class="basis-1/2 flex flex-col ">
-    <%= image_tag @product.image, class: "w-full pb-5 object-cover" %>
-    <div class="grow"></div>
-    <%= render partial: "shop/product/customization" if @product.customizable? %>
-  </div>
-  <div class="basis-1/2 flex flex-col ml-10">
-    <div class="text-ellipsis text-xl pb-5">
-      <%= @product.brand %>
-    </div>
+<%= form_with model: @product, url: cart_add_item_path, method: :post do |product_form| %>
+  <%= product_form.hidden_field :uuid, value: @product.uuid %>
 
-    <div class="text-2xl font-bold pb-4">
-      <%= @product.model %> (<%= @product.year %>)
+  <div class="flex gap-3 bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
+    <div class="basis-1/2 flex flex-col ">
+      <%= image_tag @product.image, class: "w-full pb-5 object-cover" %>
+      <div class="grow"></div>
+      <%= render partial: "shop/product/customization", locals: { product_form: } if @product.customizable? %>
     </div>
+    <div class="basis-1/2 flex flex-col ml-10">
+      <div class="text-ellipsis text-xl pb-5">
+        <%= @product.brand %>
+      </div>
 
-    <div class="text-xs pb-2">
-      Ref: <%= @product.uuid %>
-    </div>
+      <div class="text-2xl font-bold pb-4">
+        <%= @product.model %> (<%= @product.year %>)
+      </div>
 
-    <div class="text-md pb-5">
-      <%= @product.description %>
-    </div>
+      <div class="text-xs pb-2">
+        Ref: <%= @product.uuid %>
+      </div>
 
-    <div class="pb-10">
-      <span class="p-2 bg-rose-600 font-bold text-white">
-        <%= @product.customizable? ? "Customizable" : number_to_euros(@product.base_price) %>
-      </span>
-    </div>
+      <div class="text-md pb-5">
+        <%= @product.description %>
+      </div>
 
-    <%= form_with model: @product, url: cart_add_item_path, method: :post do |product_form| %>
-      <%= product_form.hidden_field :uuid, value: @product.uuid %>
+      <div class="pb-10">
+        <span class="p-2 bg-rose-600 font-bold text-white">
+          <%= @product.customizable? ? "Customizable" : number_to_euros(@product.base_price) %>
+        </span>
+      </div>
+
       <div class="text-sm flex flex-col gap-3">
         <%= product_form.fields_for :customizable_attributes do |ca_form| %>
           <%= ca_form.label ca_form.object.name, class: "font-bold pb-2" %>
@@ -44,6 +45,11 @@
         <% end %>
       </div>
 
+      <%= product_form.fields_for :customizable_parts do |cp_form| %>
+        <%= cp_form.inspect %>
+      <% end %>
+    
+
       <div class="text-right pb-8">
         <% if @product.stock_available? %>
           <%= product_form.submit "Add to Cart", class: "whitespace-nowrap rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-700 text-white font-medium cursor-pointer" %>
@@ -53,6 +59,6 @@
         <% end %>
       </div>
       <%= render partial: "shop/product/services" %>   
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>

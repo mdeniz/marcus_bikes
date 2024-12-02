@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "catalog/product/:uuid" => "shop#product", as: :catalog_product
 
   # Cart
-  get "cart" => "shop#cart", as: :cart
+  get "cart" => "cart#show", as: :cart
   post "cart/items/new" => "cart#add_item", as: :cart_add_item
 
   # Defines the root path route ("/")
