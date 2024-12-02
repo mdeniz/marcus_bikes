@@ -1,12 +1,13 @@
 class CartController < ApplicationController
   layout "shop", only: :show
 
-  before_action :set_menu, :set_cart
+  before_action :set_menu, :set_cart, only: [ :show, :add_item ]
+  before_action :set_cart_item, only: [ :delete_item, :update_item ]
   before_action :set_empty_breadcrumbs, only: :show
 
   def show
     @cart_items = @cart.cart_items
-    @subtotal = @cart.cart_items.sum(:price)
+    @subtotal = @cart.cart_items.sum { |item| item.quantity * item.price }
     @vat_percentage = 0.21
     @vat = @subtotal * @vat_percentage
     @discount_percentage = 0.1
@@ -36,9 +37,13 @@ class CartController < ApplicationController
   end
 
   def update_item
+    @cart_item.update(quantity: params[:cart_item][:quantity])
+    redirect_to cart_path
   end
 
   def delete_item
+    @cart_item.destroy
+    redirect_to cart_path
   end
 
   private
@@ -51,6 +56,11 @@ class CartController < ApplicationController
     def set_cart
       # session[:cart_id] ||= Cart.create
       @cart = Cart.first # Just to show a preloaded cart
+    end
+
+    def set_cart_item
+      params.permit(:authenticity_token, :id, :_method, :cart_item)
+      @cart_item = CartItem.find(params[:id])
     end
 
     def set_empty_breadcrumbs

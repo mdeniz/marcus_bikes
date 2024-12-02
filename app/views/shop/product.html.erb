@@ -45,11 +45,6 @@
         <% end %>
       </div>
 
-      <%= product_form.fields_for :customizable_parts do |cp_form| %>
-        <%= cp_form.inspect %>
-      <% end %>
-    
-
       <div class="text-right pb-8">
         <% if @product.stock_available? %>
           <%= product_form.submit "Add to Cart", class: "whitespace-nowrap rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-700 text-white font-medium cursor-pointer" %>

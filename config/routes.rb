@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   # Cart
   get "cart" => "cart#show", as: :cart
   post "cart/items/new" => "cart#add_item", as: :cart_add_item
+  patch "cart/item/:id" => "cart#update_item", as: :cart_update_item
+  delete "cart/item/:id" => "cart#delete_item", as: :cart_delete_item
 
   # Defines the root path route ("/")
   root "shop#homepage"
