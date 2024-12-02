@@ -2,13 +2,23 @@ class CartController < ApplicationController
   before_action :set_cart
 
   def add_item
-    pp product_params.to_h
     product = Product.find_by!(uuid: product_params[:uuid])
+
+    customizable_attributes = []
+    product_params[:customizable_attributes_attributes].each_pair do |_, ca|
+      customizable_attributes << {customizable_attributes_id: ca[:id], attribute_option_id: ca[:option]}
+    end
+
+    customizable_parts = []
+    customization = {
+      customizable_attributes: customizable_attributes,
+      customizable_parts: customizable_parts
+    }
+
     price = product.base_price
-    # params[:customizable_attributes_attributes].each do ||
-    # end
-    @cart.cart_items.create(product:, quantity: 1, price: )
-    flash[:notice] = "Product added to your Cart"
+
+    @cart.cart_items.create(product:, quantity: 1, price:, customization:)
+    #flash[:notice] = "Product added to your Cart"
     redirect_to cart_path
   end
 

@@ -11,7 +11,7 @@
       <% cart_item.product.customizable_attributes.each do |attribute| %>
         <div>
           <dt class="inline"><%= attribute.name %>:</dt>
-          <dd class="inline">XXS</dd>
+          <dd class="inline"><%= find_attribute_option_name_in_customization(attribute.id, cart_item.customization) %></dd>
         </div>
       <% end %>
     </dl>
