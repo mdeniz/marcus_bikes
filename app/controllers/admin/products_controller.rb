@@ -1,5 +1,5 @@
 module Admin
-  class ProductsController < ApplicationController
+  class ProductsController < AdminController
     before_action :set_product, only: %i[ show edit update destroy ]
 
     # GET /products or /products.json

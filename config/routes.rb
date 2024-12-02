@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Admin
+  get "admin" => "admin#homepage", as: :admin
   namespace :admin do
     resources :categories
     resources :products
