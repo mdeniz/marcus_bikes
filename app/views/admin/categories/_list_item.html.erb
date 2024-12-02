@@ -1,8 +1,10 @@
 <tr>
   <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><%= category.name %></td>
-  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= truncate(category.description, length: 150) %></td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= truncate(category.description, length: 140) %></td>
   <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= category.order %></td>
-  <td class="whitespace-nowrap px-4 py-2">
+  <td class="whitespace-nowrap px-4 py-2 flex">
     <%= link_to "View", [:admin, category], class: "ml-2 rounded-lg py-3 px-5 bg-slate-600 text-white inline-block hover:bg-rose-600 text-xs" %>
+    <%= link_to "Edit", edit_admin_category_path(category), class: "ml-2 rounded-lg py-3 px-5 bg-slate-600 text-white inline-block hover:bg-rose-600 text-xs" %>
+    <%= button_to "Destroy", [:admin, @category], method: :delete, class: "ml-2 rounded-lg py-3 px-5 bg-slate-600 text-white inline-block hover:bg-rose-600 text-xs" %>
   </td>
 </tr>
