@@ -26,7 +26,7 @@ module Admin
 
       respond_to do |format|
         if @product.save
-          format.html { redirect_to @product, notice: "Product was successfully created." }
+          format.html { redirect_to [:admin, @product], notice: "Product was successfully created." }
           format.json { render :show, status: :created, location: @product }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ module Admin
     def update
       respond_to do |format|
         if @product.update(product_params)
-          format.html { redirect_to @product, notice: "Product was successfully updated." }
+          format.html { redirect_to [:admin, @product], notice: "Product was successfully updated." }
           format.json { render :show, status: :ok, location: @product }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ module Admin
       @product.destroy!
 
       respond_to do |format|
-        format.html { redirect_to products_path, status: :see_other, notice: "Product was successfully destroyed." }
+        format.html { redirect_to admin_products_path, status: :see_other, notice: "Product was successfully destroyed." }
         format.json { head :no_content }
       end
     end
@@ -66,7 +66,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def product_params
-        params.require(:product).permit(:uuid, :brand, :model, :description, :price, :image, :year, :enabled, :stock_available, :customizable, :category_id)
+        params.require(:product).permit(:brand, :model, :description, :price, :image, :year, :enabled, :stock_available, :customizable, :category_id)
       end
   end
 end

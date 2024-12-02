@@ -28,7 +28,7 @@
 
   <div class="my-5">
     <%= form.label :parent_id %>
-    <%= form.text_field :parent_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :parent_id, Category.order(:name), :id, :name, {}, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
