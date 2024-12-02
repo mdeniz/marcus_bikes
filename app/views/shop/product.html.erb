@@ -3,7 +3,7 @@
 
   <div class="flex gap-3 bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
     <div class="basis-1/2 flex flex-col ">
-      <%= image_tag @product.image, class: "w-full pb-5 object-cover" %>
+      <%= image_tag image_or_placeholder(@product.image), class: "w-full pb-5 object-cover" %>
       <div class="grow"></div>
       <%= render partial: "shop/product/customization", locals: { product_form: } if @product.customizable? %>
     </div>

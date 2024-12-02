@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="my-5">
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.order(:name), :id, :name, {}, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :brand %>
     <%= form.text_field :brand, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
@@ -28,7 +33,7 @@
 
   <div class="my-5">
     <%= form.label :base_price %>
-    <%= form.text_field :base_price, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :base_price, min: 0, step: 0.01, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -38,7 +43,7 @@
 
   <div class="my-5">
     <%= form.label :year %>
-    <%= form.number_field :year, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :year, min: 2000, max: Time.now.year + 1, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -54,11 +59,6 @@
   <div class="my-5">
     <%= form.label :customizable %>
     <%= form.check_box :customizable, class: "block mt-2 h-5 w-5" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.order(:name), :id, :name, {}, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

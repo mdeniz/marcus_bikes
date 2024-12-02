@@ -2,11 +2,10 @@
   <td class="whitespace-nowrap px-4 py-2 text-slate-900"><%= product.category.name %></td>
   <td class="whitespace-nowrap px-4 py-2 text-slate-900"><%= product.brand %></td>
   <td class="whitespace-nowrap px-4 py-2 text-slate-700"><%= product.model %></td>
-  <td class="whitespace-nowrap px-4 py-2 text-slate-700"><%= truncate(product.description, length: 50) %></td>
   <td class="whitespace-nowrap px-4 py-2 text-slate-700 text-center"><%= number_to_euros(product.base_price) %></td>
   <td class="whitespace-nowrap px-4 py-2 flex">
     <%= link_to "View", [:admin, product], class: "ml-2 rounded-lg py-3 px-5 bg-slate-600 text-white inline-block hover:bg-rose-600 text-xs" %>
     <%= link_to "Edit", edit_admin_product_path(product), class: "ml-2 rounded-lg py-3 px-5 bg-slate-600 text-white inline-block hover:bg-rose-600 text-xs" %>
-    <%= button_to "Destroy", [:admin, @product], method: :delete, class: "ml-2 rounded-lg py-3 px-5 bg-slate-600 text-white inline-block hover:bg-rose-600 text-xs" %>
+    <%= button_to "Destroy", [:admin, product], method: :delete, class: "ml-2 rounded-lg py-3 px-5 bg-slate-600 text-white inline-block hover:bg-rose-600 text-xs" %>
   </td>
 </tr>

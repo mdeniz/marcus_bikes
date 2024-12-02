@@ -66,7 +66,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def product_params
-        params.require(:product).permit(:brand, :model, :description, :price, :image, :year, :enabled, :stock_available, :customizable, :category_id)
+        params.require(:product).permit(:brand, :model, :description, :base_price, :image, :year, :enabled, :stock_available, :customizable, :category_id)
       end
   end
 end
