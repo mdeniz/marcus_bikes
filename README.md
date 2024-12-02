@@ -96,7 +96,7 @@ After carefuly reading the specifications provided I wrote down a list of requir
 4. Any part selected can avoid other parts to be selected too, no matter if they belong to different customizable parts. So, some **banned combinations** of parts exist.
 5. Parts can be marked as "temporarily out of stock" to avoid receiving orders of products with those parts on it.
 6. Price of products are either standalone or calculated based on their parts if they are customized.
-7. The price of parts can be different if they are combined with other parts in a product customization. So, the **price can be standalone or change** depending on other parts if they are selected.
+7. The price of parts can be different if they are combined with other parts in a product customization. So, the **price changes** can exist depending on other parts if they are selected.
 
 ### Questions about the requirements
 
@@ -133,7 +133,7 @@ More concrete, I used [RSpec](https://rspec.info/) as testing framework, [Tailwi
 
 We can identify two different domains for this project, the **Product Catalog** domain and the **Cart** domain.
 
-[Diagram for the two domains]
+![ER Diagram](doc/assets/ER_diagram.png)
 
 #### Product Catalog domain
 
