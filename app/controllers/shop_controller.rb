@@ -13,17 +13,17 @@ class ShopController < ApplicationController
     if params[:category].present?
       category = Category.find(params[:category])
       category_ids = category.self_and_descendants.map(&:id)
-      @breadcrums = category.self_and_ancestors.reverse
+      @breadcrumbs = category.self_and_ancestors.reverse
       @pagy, @products = pagy(Product.in_catalog.where(category: category_ids))
     else
-      @breadcrums = [ FactoryBot.build(:category, name: "All") ]
+      @breadcrumbs = [ FactoryBot.build(:category, name: "All") ]
       @pagy, @products = pagy(Product.in_catalog)
     end
   end
 
   def product
     @product = Product.in_catalog.includes(:selectable_products, :attribute_options).find_by!(uuid: params[:uuid])
-    @breadcrums = @product.category.self_and_ancestors.reverse
+    @breadcrumbs = @product.category.self_and_ancestors.reverse
   end
 
   private
@@ -39,6 +39,6 @@ class ShopController < ApplicationController
     end
 
     def set_empty_breadcrumbs
-      @breadcrums = []
+      @breadcrumbs = []
     end
 end

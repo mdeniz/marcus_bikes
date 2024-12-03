@@ -64,7 +64,7 @@ class CartController < ApplicationController
     end
 
     def set_empty_breadcrumbs
-      @breadcrums = []
+      @breadcrumbs = []
     end
 
     def product_params

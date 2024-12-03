@@ -20,8 +20,6 @@ Here you have an index of the sections of this README document:
   - [Main user actions on the shop](#main-user-actions-on-the-shop)
     - [The homepage](#the-homepage)
     - [Browse the catalog](#browse-the-catalog)
-      - [All the products](#all-the-products)
-      - [By Category](#by-category)
     - [Search for products (not implemented)](#search-for-products-not-implemented)
     - [See a product](#see-a-product)
     - [Add a product to the cart](#add-a-product-to-the-cart)
@@ -588,8 +586,19 @@ The content section is comformed of a banner at the top and a grid of 4x2 produc
 In the banner for this example I just placed an advertisement about a customizable product.
 
 #### Browse the catalog
-##### All the products
-##### By Category
+
+The catalog is shown whenever the customer browses to a category or to the root of the catalog. It shows a grid of 4x3 product sections with no specific order (mainly the creation one). And it looks like this:
+
+![Catalog](doc/assets/catalog.png)
+
+And is laid out like this:
+
+![Catalog Layout](doc/assets/catalog_layout.png)
+
+In case the customer reached out the catalog using a category link it will show all the products in that category and any of its descendant categories. Also will show the proper breadcrumbs. See an example:
+
+![Catalog by Category](doc/assets/catalog_by_category.png)
+
 #### Search for products (not implemented)
 #### See a product
 #### Add a product to the cart
@@ -611,5 +620,6 @@ After implementing this project I realized about certain improvements that we co
 * Multicurrency and multilanguage support.
 * Bag of data attributes for each product in a structured way. Add more info to each product that could be shown in the product page automatically. Info that doesn't need to be customized, like dimensions of a certain frame, number of pins for a chain, etc.
 * Be able to use categories as the products set a CustomizablePart can select options from instead of having to specify product by product as options.
-* Filtering on the catalog to narrow down the list of products to be shown.
+* Filtering on the catalog to narrow down the list of products to be shown, by brand, by price range, etc.
+* Catalog ordering, using different columns, like price, category, brand, etc
 * API??
