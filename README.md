@@ -23,7 +23,7 @@ Here you have an index of the sections of this README document:
     - [Search for products](#search-for-products)
     - [See a product](#see-a-product)
     - [Add a product to the cart](#add-a-product-to-the-cart)
-    - [Cart review](#cart-review)
+    - [Cart page](#cart-page)
     - [Adjust quantity on cart item](#adjust-quantity-on-cart-item)
     - [Remove cart item](#remove-cart-item)
   - [Administrative workflows](#administrative-workflows)
@@ -635,7 +635,69 @@ For the Parts Customization area it will be show as follows. This area is also i
 * How to calculate the price
 
 #### Add a product to the cart
-#### Cart review
+
+In the product page the customer can customize either attributes or parts or both and then add the product with that selection to the cart using the button "Add to Cart".
+
+* What happens when the customer clicks the button?
+
+  The browser will perform a post request to the server with the data collected from the form. The data sent is similar to this:
+
+  ```json
+  {
+    "authenticity_token": "jlpyhQnerC8HEw_jHag1GaqUbgGMAGuCnCF_mw-1Z5gMKeNHpgtI-4FKAd-NqH7yxht5WiwSOQl6gMZCk6fikw",
+    "product[uuid]": "01938957-1ba6-7f2d-9c90-e943233095d2",
+    "product[customizable_attributes_attributes][0][id]": "1",
+    "product[customizable_attributes_attributes][0][option]": "2",
+    "product[customizable_attributes_attributes][1][id]": "2",
+    "product[customizable_attributes_attributes][1][option]": "5",
+    "product[customizable_parts_attributes][0][id]": "23",
+    "product[customizable_parts_attributes][0][option]": "15",
+    "product[customizable_parts_attributes][0][customization]": "{\"customizable_attributes\"=> [{\"customizable_attributes_id\"=>\"10\",\"attribute_option_id\"=>\"8\"}]}",
+    "product[customizable_parts_attributes][1][id]": "22",
+    "product[customizable_parts_attributes][1][option]": "6",
+    "product[customizable_parts_attributes][1][customization]": "",
+    "commit": "Add+to+Cart"
+  }
+  ```
+
+  It will be received by the **CartController** and the **add_item** action is run (see the [code](app/controllers/cart_controller.rb) line 18). This will create in the database the **CartItem** instance and it will be associated to the current cart. After succesfully saving the new record the browser will be asked to redirect to the "Cart page".
+
+* What is persisted in the database?
+
+  The **CartItem** instance created wil be inserted in the table as a record. It will have the *product_id* reference to the product selected, a *quantity* of 1, the calculated *price* and the *customization* JSON structure serialized. The customization JSON looks like this:
+
+  ```json
+    {
+      "customizable_attributes"=> [
+        {
+          "customizable_attributes_id"=>"1",
+          "attribute_option_id"=>"2"
+        }, 
+        {
+          "customizable_attributes_id"=>"2",
+          "attribute_option_id"=>"5"
+        }
+      ], 
+      "customizable_parts"=>[
+        {
+          "customizable_parts_id"=>"23",
+          "part_option_id"=>"15",
+          "customizable_attributes"=> [
+            {
+              "customizable_attributes_id"=>"10",
+              "attribute_option_id"=>"8"
+            }
+          ]
+        }, 
+        {
+          "customizable_parts_id"=>"22",
+          "part_option_id"=>"6"
+        }
+      ]
+    }
+  ```
+
+#### Cart page
 #### Adjust quantity on cart item
 #### Remove cart item
 
