@@ -91,12 +91,12 @@ Given the specifications sent to me via email (see the [PDF](doc/code_challenge_
 After carefuly reading the specifications provided I wrote down a list of requirements the app needs to fulfill:
 
 1. The shop's catalog not only have bikes on it. Many other types of **products** can be sold. Eg: surfboards, skis, roller skates.
-2. Products can be customized. Each product can have several **customizable parts**. Eg: a bike can have frame type, frame finish, wheels and wheels rim color as customizable parts.
-3. User have to choose the final parts for their customization. For each customizable part the user needs to choose from the available **part options**.
-4. Any part selected can avoid other parts to be selected too, no matter if they belong to different customizable parts. So, some **banned combinations** of parts exist.
-5. Parts can be marked as "temporarily out of stock" to avoid receiving orders of products with those parts on it.
-6. Price of products are either standalone or calculated based on their parts if they are customized.
-7. The price of parts can be different if they are combined with other parts in a product customization. So, the **price changes** can exist depending on other parts if they are selected.
+2. Products can be customized. Each product can have several **customizable parts** and **customizable attributes**. Eg: a bike can have frame type, frame finish, wheels, chain as customizable parts and size, rim color as customizable attributes.
+3. User have to choose the final parts and attributes for their customization. For each customizable part the user needs to choose from the available **part options** and for each customizable attribute from the available **attribute options**.
+4. Any part selected can avoid other parts to be selected too, no matter if they belong to different customizable parts. So, some **banned combinations** of parts exist. Attributes belongs to each product, that way we will only represent the "good combinations".
+5. Parts and attribute options can be marked as "temporarily out of stock" to avoid receiving orders of products with those parts or attributes on it.
+6. Price of products are either standalone or calculated based on their parts and attributes if they are customized.
+7. The price of parts can be different if they are combined with other parts in a product customization. So, the **price changes** can exist depending on other parts if they are selected. Also the attributes may imply price changes.
 
 ### Questions about the requirements
 
@@ -104,8 +104,9 @@ With the specifications and the requirements more clear some questions may appea
 
 1. *Are parts also products we can sell in isolation in the shop?* They could be, but we may not want to sell certain parts in isolation.
 2. *All the products must be customizable?* No, certain products can be sold as they are provided.
-3. *All the customizable parts are the same for all the products?* No, each product could have different customizable parts. Eg: "Customizable Bike" can have: frame type, frame finish, wheels, chain. Whereas "Ski set" can have: ski, bindings, poles
-4. *Can a part's price depend on more than one part that are selected too?* Yes, it may happen that a price changes for many other parts selected. Eg: frame color depends on frame type and frame finish. 
+3. *All the customizable parts are the same for all the products?* No, each product could have different customizable parts. Eg: "Customizable Bike" can have: frame type, frame finish, wheels and chain. Whereas "Ski set" can have: ski, bindings and poles.
+4. *All the customizable attributes are the same for all the products?* No, each product could have different customizable attributes. Eg: "Bike 1" can have "size" and "color". Whereas "Skiset 1" can have just "color".
+5. *Can a part's price depend on more than one part that are selected too?* Yes, it may happen that a price changes for many other parts selected. Eg: frame color depends on frame type and frame finish. 
 
 ### Assumptions
 
@@ -115,7 +116,8 @@ Given the questions we can assume certain things that will shape even more our s
 2. Not all the products have to be customizable. We need to mark the products as customizable. 
 3. In order to simplify this exercise, no customizable product can be a part option for another customizable product as this would require a hierarchy of customization that would make the UI much more complex.
 4. Customizable parts can differ from one product to another. This means that the possible options for the parts have to be provided while setting up each product.
-5. In order to permit multiple price changes we need to store those changes as increments for the standalone price. That way we can sum all the changes for the combinations of parts.
+5. Customizable attributes can differ from one product to another. This means that the possible options for the attributes have to be provided while setting up each product.
+6. In order to permit multiple price changes we need to store those changes as increments for the base price. That way we can sum all the changes for the combinations of parts and attributes.
 
 ## Solution
 
@@ -131,23 +133,56 @@ More concrete, I used [RSpec](https://rspec.info/) as testing framework, [Tailwi
 
 ### Data model
 
-We can identify two different domains for this project, the **Product Catalog** domain and the **Cart** domain.
+We can identify two main domains for this project, the **Product Catalog** domain and the **Shopping Cart** domain. 
 
 ![ER Diagram](doc/assets/ER_diagram.png)
 
 #### Product Catalog domain
 
-[Description]
+This domain comprises all the concepts related to the definition of the catalog. Categories, products and their customization are the main entities we can find here:
 
-This is the diagram for this domain:
+The core of this domain are the categories and products:
 
-[Diagram]
+![Core Catalog ER Diagram](doc/assets/catalog_core.png)
 
-Here you have a list of the entities identified:
+Here you have a specification of the core entities for the catalog:
+
+* **Category**
+
+  A category is a way of grouping products. Categories are part of a tree-like structure that help clustering the products.
+
+  *Table definition* ([source code](db/migrate/20241126103347_create_categories.rb)):
+
+  ```ruby
+  create_table :categories do |t|
+    # Name of the category
+    t.string :name
+
+    # Short description of the category
+    t.string :description
+
+    # Order among sibiling categories
+    t.integer :order
+
+    # Reference to the parent Category
+    t.belongs_to :parent, null: true, foreign_key: { to_table: 'categories' }
+    
+    # created_at and updated_at fields
+    t.timestamps
+  end
+  ```
+
+  *Relationships* ([source code](app/models/category.rb)):
+
+  ```ruby
+  belongs_to :category, foreign_key: :parent_id
+  has_many :products
+  ```
+
 
 * **Product** (app/models/product)
 
-  [Description]
+  The main entity for this project. Products are the things we seel in our store. A product can be in one category only.
 
   This is the table definition for the entity:
 
@@ -191,30 +226,6 @@ Here you have a list of the entities identified:
   end
   ```
 
-* **Category**
-
-  A category is a group of products. Categories are part of a hierarchical structure that help clustering the products.
-
-  This is the table definition for the entity:
-
-  ```ruby
-  create_table :categories do |t|
-    # Name of the category
-    t.string :name
-
-    # Short description of the category
-    t.string :description
-
-    # Order among sibiling categories
-    t.integer :order
-
-    # Reference to the parent Category
-    t.belongs_to :parent, null: true, foreign_key: { to_table: 'categories' }
-    
-    # created_at and updated_at fields
-    t.timestamps
-  end
-  ```
 
 #### Cart domain
 
