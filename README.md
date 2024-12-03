@@ -27,6 +27,8 @@ Here you have an index of the sections of this README document:
     - [Adjust quantity on cart item](#adjust-quantity-on-cart-item)
     - [Remove cart item](#remove-cart-item)
   - [Administrative workflows](#administrative-workflows)
+    - [Categories](#categories)
+    - [Products](#products)
     - [New product creation](#new-product-creation)
       - [Non customizable product](#non-customizable-product)
       - [Customizable product](#customizable-product)
@@ -629,11 +631,18 @@ For the Attributes Customization area it will be show as follows. This area is i
 
 For the Parts Customization area it will be show as follows. This area is also interactive, whenever the customer clicks on a different part options selector it will show a modal with the products available as selection, attributes for those products can be selected there. Whenever the selection takes place the modal closes and the price is recalculated again.
 
+  [PENDING]
+IMAGE
 ![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
 
 * How to calculate the options available?
+
+  [PENDING]
+
 * How to calculate the price
 
+  [PENDING]
+  
 #### Add a product to the cart
 
 In the product page the customer can customize either attributes or parts or both and then add the product with that selection to the cart using the button "Add to Cart".
@@ -698,15 +707,76 @@ In the product page the customer can customize either attributes or parts or bot
   ```
 
 #### Cart page
+
+The cart page is accessible from the top of the header icon in the shape of a cart. This page is like this:
+
+![Cart with Item](doc/assets/cart_with_items.png)
+
+There is no special layout rather than a table of items and the summary of totals, VAT and discounts at the bottom.
+
 #### Adjust quantity on cart item
+
+Each item in the list have a quantity input that can be changed and saved to the database, this will make the cart to recalculate takin into account the new values.
+
 #### Remove cart item
 
+There is an icon of a bin close the quantity input that serves as a button to remove the product item from the cart. This will reload the cart after removing the item and recalculate everything once again.
+
 ### Administrative workflows
+
+The administrative side of the store can be reached in this code exercise just clicking on the icon in the shape of a greek palace on the right most part of the header.
+
+The styles have been tweaked in order to allow Marcus be aware of were in the shop is he currently. The navigation menu becomes redish and it will only show Categories and Products links. It will look like this:
+
+![Admin homepage](doc/assets/admin_site.png)
+
+If Marcus needs to switch back to the shop site he only needs to click on the icon on the shape of shop in the right most part of the header.
+
+#### Categories
+
+If Marcus clicks on the "Categories" link of the navigation menu, the browser will land in the index of categories to be administrated. There you can show a category info, edit it or even destroy it. This page will look like this:
+
+![Categories Admin index](doc/assets/admin_categories_index.png)
+
+If Marcus edits a Category the form will look like this:
+
+![Categories Admin edit](doc/assets/admin_categories_edit.png)
+
+And if he wants to add a new one it will look empty like this:
+
+![Categories Admin new](doc/assets/admin_categories_new.png)
+
+#### Products
+
 #### New product creation
+
+* What information is required to create a new product? 
+
+  [PENDING]
+
+* How does the database change?
+
+  [PENDING]
+
 ##### Non customizable product
 ##### Customizable product
 #### Adding a new part choice
+
+How can Marcus introduce a new rim color? Describe the UI and how the database changes.
+
+  [PENDING]
+
+
 #### Setting prices
+
+How can Marcus change the price of a specific part or specify particular pricing for combinations of choices? 
+
+  [PENDING]
+
+How does the UI and database handle this?
+
+  [PENDING]
+
 
 ## Improvements
 
