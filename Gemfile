@@ -69,6 +69,9 @@ group :development do
 
   # To run multi processess from one command line
   gem "foreman"
+
+  # To annotate the models with the table structure
+  gem "annotate", "~> 3.2"
 end
 
 group :test do
