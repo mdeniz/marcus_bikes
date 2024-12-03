@@ -18,8 +18,16 @@ Here you have an index of the sections of this README document:
     - [Cart domain](#cart-domain)
     - [Trade-offs](#trade-offs)
   - [Main user actions on the shop](#main-user-actions-on-the-shop)
-  - [Product page](#product-page)
-  - [Add to cart action](#add-to-cart-action)
+    - [The homepage](#the-homepage)
+    - [Browse the catalog](#browse-the-catalog)
+      - [All the products](#all-the-products)
+      - [By Category](#by-category)
+    - [Search for products (not implemented)](#search-for-products-not-implemented)
+    - [See a product](#see-a-product)
+    - [Add a product to the cart](#add-a-product-to-the-cart)
+    - [Cart review](#cart-review)
+    - [Adjust quantity on cart item](#adjust-quantity-on-cart-item)
+    - [Remove cart item](#remove-cart-item)
   - [Administrative workflows](#administrative-workflows)
     - [New product creation](#new-product-creation)
       - [Non customizable product](#non-customizable-product)
@@ -553,10 +561,42 @@ While designing this data model for the current solution I made some decisions t
   
 * **Price changes are expressed in increments or decrements of the *base price***: as any combination of parts could change the final price I implemented it by just storing the changes in the **PriceChange** class. This decision implies that Marcus have to introduce a base price for the customizable product and then express changes (only the difference) on combinations of products (parts). The UI could let Marcus express the final price and store it properly, but for the sake of this example I didn't implement it.
 
-
 ### Main user actions on the shop
-### Product page
-### Add to cart action
+
+The shop is structured with the following layout:
+
+![Shop Layout](doc/assets/shop_layout.png)
+
+The header is divided into two parts, on the bottom is the menu, and on the top from left to right it have the logo, the search form and the action icons (cart, help, account and switch to admin pages).
+
+The menu is dynamic, whenever the customer hovers any of the main category links it will show the submenu with links to all the subcategories.
+
+![Header](doc/assets/header.png)
+
+#### The homepage
+
+The first page a customer sees when reaches our shop is the homepage. This looks like this:
+
+![Homepage](doc/assets/homepage.png)
+
+And is laid out like this:
+
+![Homepage Layout](doc/assets/homepage_layout.png)
+
+The content section is comformed of a banner at the top and a grid of 4x2 product sections that are taken randomly from the catalog.
+
+In the banner for this example I just placed an advertisement about a customizable product.
+
+#### Browse the catalog
+##### All the products
+##### By Category
+#### Search for products (not implemented)
+#### See a product
+#### Add a product to the cart
+#### Cart review
+#### Adjust quantity on cart item
+#### Remove cart item
+
 ### Administrative workflows
 #### New product creation
 ##### Non customizable product
@@ -566,11 +606,10 @@ While designing this data model for the current solution I made some decisions t
 
 ## Improvements
 
-After implementing this project I realized about certain improvements that we could introduce.
+After implementing this project I realized about certain improvements that we could introduce:
 
-* Multicurrency
-* Multilanguage
-* Variations for products?
-* Bag of properties in each product
-* Be able to use categories as the products set a CustomizablePart can select options from instead of having to specify product by product as options
-* 
+* Multicurrency and multilanguage support.
+* Bag of data attributes for each product in a structured way. Add more info to each product that could be shown in the product page automatically. Info that doesn't need to be customized, like dimensions of a certain frame, number of pins for a chain, etc.
+* Be able to use categories as the products set a CustomizablePart can select options from instead of having to specify product by product as options.
+* Filtering on the catalog to narrow down the list of products to be shown.
+* API??
