@@ -258,7 +258,7 @@ Here you have a specification of the core entities for the catalog:
 
 * **Customizable Attribute**
 
-  A customizable attribute is the definition of the attribute that the client will select options from. Eg: "Size" can be a customizable attribute.
+  A customizable attribute is the definition of the attribute that the customer will select options from. Eg: "Size" can be a customizable attribute.
 
   *Table definition* ([source code](db/migrate/20241130095940_create_customizable_attributes.rb)):
 
@@ -330,7 +330,7 @@ Here you have a specification of the core entities for the catalog:
 
 * **Customizable Part**
 
-  A customizable part is the definition of the part that the client will select options from. Eg: "Frame type" can be a customizable part.
+  A customizable part is the definition of the part that the customer will select options from. Eg: "Frame type" can be a customizable part.
 
   *Table definition* ([source code](db/migrate/20241126163737_create_customizable_parts.rb)):
 
@@ -408,7 +408,7 @@ Here you have a specification of the entities for combinations and pricing of th
 
 * **Banned Combinations**
 
-  A customizable attribute is the definition of the attribute that the client will select options from. Eg: "Full-suspension" can't be combined with "Fat bike wheels".
+  A customizable attribute is the definition of the attribute that the customer will select options from. Eg: "Full-suspension" can't be combined with "Fat bike wheels".
 
   *Table definition* ([source code](db/migrate/20241130095940_create_customizable_attributes.rb)):
 
@@ -440,7 +440,7 @@ Here you have a specification of the entities for combinations and pricing of th
 
 * **Price Change**
 
-  A price changes holds the increments (or decrements) in price that a combination of products may generate if they are selected by the client. Eg. "Shiny finish" may have an increased price by 10€ if it is applied to a "Full-suspension" frame.
+  A price changes holds the increments (or decrements) in price that a combination of products may generate if they are selected by the customer. Eg. "Shiny finish" may have an increased price by 10€ if it is applied to a "Full-suspension" frame.
 
   *Table definition* ([source code](db/migrate/20241130100051_create_attribute_options.rb)):
 
@@ -483,13 +483,13 @@ Here you have a specification of the entities for shopping cart:
 
 * **Cart**
 
-  A cart represents the bag of products a client have selected (and maybe customized) to later order from our store. A cart may be associated to a well known client or to an anonymous one (not implemented). Having the carts in the database enables us to identify abandoned ones and take action after a certain time. Storing them also may able us to recover it in another session if the client is a well known one.
+  A cart represents the bag of products a customer have selected (and maybe customized) to later order from our store. A cart may be associated to a well known customer or to an anonymous one (not implemented). Having the carts in the database enables us to identify abandoned ones and take action after a certain time. Storing them also may able us to recover it in another session if the customer is a well known one.
 
   *Table definition* ([source code](db/migrate/20241201000639_create_carts.rb)):
 
   ```ruby
   create_table :carts do |t|
-    # The current implementation doesn't add any attribute to this entity, but it could have a reference to the client
+    # The current implementation doesn't add any attribute to this entity, but it could have a reference to the customer
     # if it's well known
   end
   ```
@@ -543,12 +543,15 @@ Here you have a specification of the entities for shopping cart:
 
 While designing this data model for the current solution I made some decisions that came with trade-offs. I'll explain them in detail here:
 
-* As the first assumption says: "parts are products too", but this wasn't the case at first sight. Parts could just be a separate entity that aren't products, but this schema would introduce a lot of duplication and much more complexity (polymorphic relationships and so on). If parts are just products, then we can leverage of selling them in the store independently too.
+* **As the first assumption says, *"parts are products too"***: but this wasn't the case at first sight. Parts could just be a separate entity that aren't products. I decided to simplify the schema representing parts as products, the same entity, mainly because there is no behaviour or attributes that are different for this project execrcise. I used the same class to avoid complexity, other way of using its own class would have required polymorphic relationships, or single table inheritance, etc.
 
-* First I started without having **customizable attributes** on products. That was a good enough first approach, but this implied Marcus had to create products to represent things like the rim color for a certain wheel product. That wouldn't make much more sense as I think the rim color is only related to that wheel product and it's delivered by the provider to the store as the brand creates it. On the other hand, things like applying a finish to another product (a frame for instance) may be represented as an attribute or even as another product (it makes sense if that finish is applied by Marcus using a product that represents the actual liquid to be applied on the frame). So, given those posibilities I decide to introduce the concept of customizable attribute similar to the customizable part.
+* **First I started without having *customizable attributes* for products**: That was a good enough first approach, but this implied Marcus had to create products to represent things like the rim color for a certain wheel product. That wouldn't make much more sense as I think the rim color is only related to that wheel product and it's delivered by the provider to the store as the brand creates it. On the other hand, things like applying a finish to another product (a frame for instance) may be represented as an attribute or even as another product (it makes sense if that finish is applied by Marcus using a product that he buys independently and then paint the frame). So, given those posibilities I decide to introduce the concept of customizable attribute similar to the customizable part. 
 
-* Representing prohibited combinations can and calculate compatibility or the othe way around?
+* **Customization stored as JSON in a column of cart items**: Yes, I structured the customization as a serialized attribute on the **CartItem** class. This ables me to hold a deep structure of products customized in it's attributes that are parts in a outer cutomized product. For the sake of simplicity of the UI I didn't allow customizable products becoming options for customizable parts of customizable products, but the JSON column could hold that. Having the relationship in a JSON field makes difficult to know the relationship of the cart item with the subproducts, but I think that's not that relevant in this point of the process (maybe in the Order side of the process we need to hold a relationship to subproducts).
 
+* **Prohibited combinations are only among products or an attribute and its product**: in the text it says that a banned combination can happen among any pair of options. But my common sense said that an attribute option that does not exist is already a banned combination among the attribute option and the product. And in general does not makes much more sense to me that an attribute option can be banning another product as a part. So, I decided to create the BannedCombination class that only represent banned combinations among products, and attributes that does not have a concrete option could be thought as a banned combination too. If in the future we would want to have banned combinations among products and attributes of another products we may change the relationship on BannedCombinations to allow relate AttributeOption instances by using a polymorphic relationship (as *bannable*).
+  
+* **Price changes are expressed in increments or decrements of the *base price***: as any combination of parts could change the final price I implemented it by just storing the changes in the **PriceChange** class. This decision implies that Marcus have to introduce a base price for the customizable product and then express changes (only the difference) on combinations of products (parts). The UI could let Marcus express the final price and store it properly, but for the sake of this example I didn't implement it.
 
 
 ### Main user actions on the shop
