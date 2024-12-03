@@ -611,7 +611,28 @@ The search could be performed using full text search on the products data for in
 
 #### See a product
 
+From the catalog or the homepage in every product section there is a "See product" button that drives you into the product page. The customer will land in a page that shows the product,see an example of a basic product that have neither customizable attribute nor customizable parts:
 
+![Non Customizable Product](doc/assets/non_customizable_product.png)
+
+This page, in general, is laid out like this:
+
+![Product page Layout](doc/assets/product_page_layout.png)
+
+In the Product Info area is displayed the common data from the product: Brand, Model, Reference (UUID), Description and Price.
+
+The image shown is either coming from the url stored in the database or a placeholder will replace it in case is not provided.
+
+For the Attributes Customization area it will be show as follows. This area is interactive, whenever the customer clicks on a different attribute option it will be selected and the price will change if a price change is associated to that attribute option.
+
+![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
+
+For the Parts Customization area it will be show as follows. This area is also interactive, whenever the customer clicks on a different part options selector it will show a modal with the products available as selection, attributes for those products can be selected there. Whenever the selection takes place the modal closes and the price is recalculated again.
+
+![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
+
+* How to calculate the options available?
+* How to calculate the price
 
 #### Add a product to the cart
 #### Cart review
@@ -634,4 +655,5 @@ After implementing this project I realized about certain improvements that we co
 * Be able to use categories as the products set a CustomizablePart can select options from instead of having to specify product by product as options.
 * Filtering on the catalog to narrow down the list of products to be shown, by brand, by price range, etc.
 * Catalog ordering, using different columns, like price, category, brand, etc
+* Store many images per product. Eg. use them based on customizable attributes to show a different one if a different color of the product is selected
 * API??
