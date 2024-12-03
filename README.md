@@ -20,7 +20,7 @@ Here you have an index of the sections of this README document:
   - [Main user actions on the shop](#main-user-actions-on-the-shop)
     - [The homepage](#the-homepage)
     - [Browse the catalog](#browse-the-catalog)
-    - [Search for products (not implemented)](#search-for-products-not-implemented)
+    - [Search for products](#search-for-products)
     - [See a product](#see-a-product)
     - [Add a product to the cart](#add-a-product-to-the-cart)
     - [Cart review](#cart-review)
@@ -585,6 +585,8 @@ The content section is comformed of a banner at the top and a grid of 4x2 produc
 
 In the banner for this example I just placed an advertisement about a customizable product.
 
+![Banner](doc/assets/banner.png)
+
 #### Browse the catalog
 
 The catalog is shown whenever the customer browses to a category or to the root of the catalog. It shows a grid of 4x3 product sections with no specific order (mainly the creation one). And it looks like this:
@@ -599,8 +601,18 @@ In case the customer reached out the catalog using a category link it will show 
 
 ![Catalog by Category](doc/assets/catalog_by_category.png)
 
-#### Search for products (not implemented)
+#### Search for products
+
+A search on the products catalog can be performed by the customer (I didn't implement this feature in this exercise). They introduce the terms of search in the search form and then the catalog filters out to show the results accordingly:
+
+![Catalog by Category](doc/assets/search_results.png)
+
+The search could be performed using full text search on the products data for instance. Or use an [ElasticSearch](https://www.elastic.co) system to retrieve those result out of an index.
+
 #### See a product
+
+
+
 #### Add a product to the cart
 #### Cart review
 #### Adjust quantity on cart item
