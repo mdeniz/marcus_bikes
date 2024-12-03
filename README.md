@@ -649,15 +649,15 @@ This page, in general, is laid out like this:
 
 ![Product page Layout](doc/assets/product_page_layout.png)
 
-In the Product Info area the common data from the product is displayed: Brand, Model, Reference (UUID), Description and Price.
+In the *Product Info* area the common data from the product is displayed: Brand, Model, Reference (UUID), Description and Price.
 
-The image shown is either coming from the url stored in the database or a placeholder will replace it in case is not provided.
+The *Image* shown is either coming from the url stored in the database or a placeholder will replace it in case it's not provided.
 
-For the Attributes Customization area it will be show as follows. This area is interactive, whenever the customer clicks on a different attribute option it will be selected and the price will change accordingly if a price change is associated to that attribute option.
+For the *Attributes Customization* area it will be show as follows. This area is interactive, whenever the customer clicks on a different attribute option it will be selected and the price will change accordingly if a price change is associated to that attribute option.
 
 ![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
 
-For the Parts Customization area it will be show as follows. This area is also interactive, whenever the customer clicks on a different part options selector it will show a modal with the products available as selection, attributes for those products can be selected there too if are defined in those products. Whenever the selection takes place the modal closes and the price is recalculated again.
+For the *Parts Customizatio*n area it will be show as follows. This area is also interactive, whenever the customer clicks on a different part options selector it will show a modal with the products available as selection, attributes for those products can be selected there too if are defined in those products. Whenever the selection takes place the modal closes and the price is recalculated again.
 
   [PENDING]
 IMAGE
@@ -709,28 +709,28 @@ In the product page the customer can customize either attributes or parts or bot
     {
       "customizable_attributes"=> [
         {
-          "customizable_attributes_id"=>"1",
-          "attribute_option_id"=>"2"
+          "customizable_attributes_id" => "1",
+          "attribute_option_id" => "2"
         }, 
         {
-          "customizable_attributes_id"=>"2",
-          "attribute_option_id"=>"5"
+          "customizable_attributes_id" => "2",
+          "attribute_option_id" => "5"
         }
       ], 
       "customizable_parts"=>[
         {
-          "customizable_parts_id"=>"23",
-          "part_option_id"=>"15",
-          "customizable_attributes"=> [
+          "customizable_parts_id" => "23",
+          "part_option_id" => "15",
+          "customizable_attributes" => [
             {
-              "customizable_attributes_id"=>"10",
-              "attribute_option_id"=>"8"
+              "customizable_attributes_id" => "10",
+              "attribute_option_id" => "8"
             }
           ]
         }, 
         {
-          "customizable_parts_id"=>"22",
-          "part_option_id"=>"6"
+          "customizable_parts_id" => "22",
+          "part_option_id" => "6"
         }
       ]
     }
@@ -841,3 +841,4 @@ A more technical list of changes to the current codebase:
 * Create a JSON API to expose the same capabilities of the current codebase.
 * Move the logic out of the actions to service objects in order to be reused in other parts like the API.
 * Of course, move this app to a Backend only system that communicates via that JSON API with different frontends like a mobile app or a web app.
+* Add more specs to cover all the models, controllers and actions. I just added a few of them.
