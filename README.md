@@ -656,4 +656,7 @@ After implementing this project I realized about certain improvements that we co
 * Filtering on the catalog to narrow down the list of products to be shown, by brand, by price range, etc.
 * Catalog ordering, using different columns, like price, category, brand, etc
 * Store many images per product. Eg. use them based on customizable attributes to show a different one if a different color of the product is selected
+
+![Multiple images](doc/assets/multiple_images.png)
+
 * API??
