@@ -26,6 +26,10 @@ class ShopController < ApplicationController
     @breadcrumbs = @product.category.self_and_ancestors.reverse
   end
 
+  def compatible_customizable_parts
+    
+  end
+
   private
 
     # Calculate the categories in the menu
