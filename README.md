@@ -768,6 +768,10 @@ If Marcus clicks on the "Categories" link of the navigation menu, the browser wi
 
 ![Categories Admin index](doc/assets/admin_categories_index.png)
 
+If Marcus shows a Category details page it will look like this, also shows the related categories and products if any:
+
+![Categories Admin show](doc/assets/admin_categories_show.png)
+
 If Marcus edits a Category the form will look like this:
 
 ![Categories Admin edit](doc/assets/admin_categories_edit.png)
