@@ -704,10 +704,10 @@ For the *Parts Customization* area it will be shown as follows. This area is als
 
 * How to calculate the price
 
-  [PENDING]
+  The calculation of the selection is done at the model level in the Product model. Here you can see the code involved, it needs to be feeded with the ids of the attribute options (including the ones in the customization for the parts selected) and the part options:
 
   ```ruby
-  def price(selected_attribute_option_ids: , selected_part_option_ids: )
+  def price(selected_attribute_option_ids:, selected_part_option_ids:)
     base_price +
       selected_attribute_options_price(selected_attribute_option_ids) +
       selected_part_options_price(selected_part_option_ids)
@@ -729,6 +729,11 @@ For the *Parts Customization* area it will be shown as follows. This area is als
       result
     end
   ```
+
+  This calculation would be exposed in an endpoint in the **ShopController** for simplicity, I didn't implemented it in this code exercise. This means that we would need one request for every change in the form which is far from ideal.
+  
+  If I would build a Frontend app instead of the current server side UI, we would have to retrieve the same information beforehand and run a similar algorithm: the base price of the product, price changes on the possible options for the attributes and the base price on the products that can be parts and price changes on combinations of those products that can be parts.
+
   
 #### Add a product to the cart
 
