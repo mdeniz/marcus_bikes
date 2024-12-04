@@ -69,25 +69,27 @@ class Product < ApplicationRecord
   end
 
   # Pricing
-  def price(selected_options_ids: [], selected_products_ids: [])
-    selected_options_price(selected_options_ids) + selected_products_price(selected_products_ids)
-  end
-
-  def selected_options_price(selected_options_ids = [])
-    base_price + AttributeOption.where(id: selected_options_ids).sum(:price_change)
-  end
-
-  def selected_products_price(selected_products_ids = [])
-    price_changes = PriceChange.where(changed_product_id: selected_products_ids)
-
-    result = Product.where(id: selected_products_ids).sum(:base_price)
-    price_changes.each do |price_change|
-      result += price_change.change if selected_products_ids.include?(price_change.on_product_id)
-    end
-    result
+  def price(selected_attribute_option_ids:, selected_part_option_ids:)
+    base_price +
+      selected_attribute_options_price(selected_attribute_option_ids) +
+      selected_part_options_price(selected_part_option_ids)
   end
 
   private
+
+    def selected_attribute_options_price(selected_attribute_option_ids)
+      AttributeOption.where(id: selected_attribute_option_ids).sum(:price_change)
+    end
+
+    def selected_part_options_price(selected_part_option_ids)
+      price_changes = PriceChange.where(changed_product_id: selected_part_option_ids)
+
+      result = Product.where(id: selected_part_option_ids).sum(:base_price)
+      price_changes.each do |price_change|
+        result += price_change.change if selected_part_option_ids.include?(price_change.on_product_id)
+      end
+      result
+    end
 
     def generate_uuid
       self.uuid ||= SecureRandom.uuid_v7

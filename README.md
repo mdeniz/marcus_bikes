@@ -30,8 +30,6 @@ Here you have an index of the sections of this README document:
     - [Categories](#categories)
     - [Products](#products)
     - [New product creation](#new-product-creation)
-      - [Non customizable product](#non-customizable-product)
-      - [Customizable product](#customizable-product)
     - [Adding a new part choice](#adding-a-new-part-choice)
     - [Setting prices](#setting-prices)
 - [Improvements](#improvements)
@@ -136,7 +134,7 @@ As this is only a coding exercise I decided to use [SQLite](https://www.sqlite.o
 
 This code repository is [git](https://git-scm.com/) based and you can find it in [github.com/mdeniz/marcus_bikes](https://github.com/mdeniz/marcus_bikes).
 
-More concrete, I used [RSpec](https://rspec.info/) as testing framework, [TailwindCSS](https://tailwindcss.com/) as CSS styles framework and [StimulusJS](https://stimulus.hotwired.dev/) for javascript interactions.
+More concrete, I used [RSpec](https://rspec.info/) as testing framework, [TailwindCSS](https://tailwindcss.com/) as CSS styles framework and Hotwire for the interactivity (using [Turbo Frames, Turbo Streams](https://turbo.hotwired.dev) and [StimulusJS](https://stimulus.hotwired.dev/) for javascript interactions.
 
 ### Data model
 
@@ -702,11 +700,35 @@ For the *Parts Customization* area it will be shown as follows. This area is als
     end
   ```
   
-  If I would have implemented this as a frontend only app I would need all the banned combinations locally in the client app to perform the same data check. With the selected other products and the filtered possible products for the selected customizable part and all the banned combinations I would check if they collide and remove then from the possible options to pick from.
+  If I would have implemented this as a frontend only app I would need all the related banned combinations locally in the frontend app to perform the same data check. With the selected products parts and the filtered possible products for the selected customizable part and the banned combinations I would check if they collide and remove then from the possible options to pick from.
 
 * How to calculate the price
 
   [PENDING]
+
+  ```ruby
+  def price(selected_attribute_option_ids: , selected_part_option_ids: )
+    base_price +
+      selected_attribute_options_price(selected_attribute_option_ids) +
+      selected_part_options_price(selected_part_option_ids)
+  end
+
+  private
+
+    def selected_attribute_options_price(selected_attribute_option_ids)
+      AttributeOption.where(id: selected_attribute_option_ids).sum(:price_change)
+    end
+
+    def selected_part_options_price(selected_part_option_ids)
+      price_changes = PriceChange.where(changed_product_id: selected_part_option_ids)
+
+      result = Product.where(id: selected_part_option_ids).sum(:base_price)
+      price_changes.each do |price_change|
+        result += price_change.change if selected_part_option_ids.include?(price_change.on_product_id)
+      end
+      result
+    end
+  ```
   
 #### Add a product to the cart
 
@@ -746,27 +768,27 @@ In the product page the customer can customize either attributes or parts or bot
     {
       "customizable_attributes"=> [
         {
-          "customizable_attributes_id" => "1",
+          "customizable_attribute_id" => "1",
           "attribute_option_id" => "2"
         }, 
         {
-          "customizable_attributes_id" => "2",
+          "customizable_attribute_id" => "2",
           "attribute_option_id" => "5"
         }
       ], 
       "customizable_parts"=>[
         {
-          "customizable_parts_id" => "23",
+          "customizable_part_id" => "23",
           "part_option_id" => "15",
           "customizable_attributes" => [
             {
-              "customizable_attributes_id" => "10",
+              "customizable_attribute_id" => "10",
               "attribute_option_id" => "8"
             }
           ]
         }, 
         {
-          "customizable_parts_id" => "22",
+          "customizable_part_id" => "22",
           "part_option_id" => "6"
         }
       ]
@@ -829,8 +851,6 @@ And if he wants to add a new one it will look empty like this:
 
   [PENDING]
 
-##### Non customizable product
-##### Customizable product
 #### Adding a new part choice
 
 How can Marcus introduce a new rim color? Describe the UI and how the database changes.

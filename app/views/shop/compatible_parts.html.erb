@@ -6,7 +6,7 @@
     <% if @products.empty? %>
       No compatible products are available. Please contact with the administrator.
     <% else %>
-      <div class="grow grid grid-cols-<%= [@products.size, 4].min %> gap-3 overflow-y-scroll">
+      <div class="grow grid grid-cols-4 gap-3 overflow-y-scroll">
         <% @products.each do |product| %>
           <%= render partial: "shop/customizable_part_selector/product_item", locals: { product: } %>
         <% end %>

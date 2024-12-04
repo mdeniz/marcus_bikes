@@ -18,18 +18,45 @@ class CartController < ApplicationController
   def add_item
     product = Product.find_by!(uuid: product_params[:uuid])
 
+    selected_attribute_option_ids = []
+    selected_part_option_ids = []
+
     customizable_attributes = []
     product_params[:customizable_attributes_attributes]&.each_pair do |_, ca|
-      customizable_attributes << { customizable_attributes_id: ca[:id], attribute_option_id: ca[:option] }
+      customizable_attributes << {
+        customizable_attribute_id: ca[:id],
+        attribute_option_id: ca[:option]
+      }
+
+      # Attributes options in the customization of the main product
+      selected_attribute_option_ids << ca[:option]
     end
 
     customizable_parts = []
+    product_params[:customizable_parts_attributes]&.each_pair do |_, cp|
+      customization_str = cp[:customization].empty? ? "[]" : cp[:customization]
+      customization = JSON.parse(customization_str)
+
+      customizable_parts << {
+        customizable_part_id: cp[:id],
+        attribute_option_id: cp[:option],
+        customizable_attributes: customization
+      }
+      # Part options in the customization of the main product
+      selected_part_option_ids << cp[:option]
+
+      # Attributes options in the customization of the parts
+      customization&.each do |ca|
+        selected_attribute_option_ids << ca[:option]
+      end
+    end
 
     customization = {
       customizable_attributes: customizable_attributes,
       customizable_parts: customizable_parts
     }
-    price = product.base_price
+
+    price = product.price(selected_attribute_option_ids:, selected_part_option_ids:)
 
     @cart.cart_items.create(product:, quantity: 1, price:, customization:)
     # flash[:notice] = "Product added to your Cart"
@@ -68,6 +95,6 @@ class CartController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:authenticity_token, :uuid, customizable_attributes_attributes: [ [ :option, :id ] ], customizable_parts_attributes: [ [ :product, :id, :customization ] ])
+      params.require(:product).permit(:authenticity_token, :uuid, customizable_attributes_attributes: [ [ :option, :id ] ], customizable_parts_attributes: [ [ :option, :id, :customization ] ])
     end
 end
