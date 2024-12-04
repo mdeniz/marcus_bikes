@@ -666,13 +666,43 @@ For the *Parts Customization* area it will be shown as follows. This area is als
 
 ![Fully Customizable Product](doc/assets/customizable_product.png)
 
-[PENDING] Modal
+![Fully Customizable Product 3](doc/assets/customizable_product_2.png)
 
 ![Fully Customizable Product 3](doc/assets/customizable_product_3.png)
 
 * How to calculate the options available?
 
-  [PENDING]
+  As I implemented it on the backend only, this is the following code that calculates the options that are available:
+
+  ```ruby
+  # Get the actual customizable part
+  @customizable_part = CustomizablePart.find(params[:customizable_part_id])
+
+  # Get the other selected products for the other customizable parts
+  selected_products_ids = params[:selected_products].map(&:to_i)
+
+  # Calculate what are the products for the current customizable part and are visible in the catalog
+  # then just select the ones that have any incompatibility in the selected products
+  @products = @customizable_part.products.in_catalog.select do |product|
+    (product.incompatible_products_ids & selected_products_ids).empty?
+  end
+  ```
+
+  The **incompatible_products_ids** method I implemented it at model Product level. *ActiveRecord* provides a way to get the ids from the relationships, I leveraged from that for the two relationships that calculate incompatibilities:
+
+  ```ruby
+    # Banned combinations
+    has_many :banned_combinations_as_source, class_name: "BannedCombination", foreign_key: :source_id
+    has_many :banned_combinations_as_target, class_name: "BannedCombination", foreign_key: :target_id
+    has_many :incompatible_products_as_source, class_name: "Product", through: :banned_combinations_as_source, source: :target
+    has_many :incompatible_products_as_target, class_name: "Product", through: :banned_combinations_as_target, source: :source
+
+    def incompatible_products_ids
+      (incompatible_products_as_source_ids + incompatible_products_as_target_ids).uniq
+    end
+  ```
+  
+  If I would have implemented this as a frontend only app I would need all the banned combinations locally in the client app to perform the same data check. With the selected other products and the filtered possible products for the selected customizable part and all the banned combinations I would check if they collide and remove then from the possible options to pick from.
 
 * How to calculate the price
 

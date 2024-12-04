@@ -28,7 +28,11 @@ class ShopController < ApplicationController
 
   def compatible_parts
     @customizable_part = CustomizablePart.find(params[:customizable_part_id])
-    @products = @customizable_part.products.in_catalog
+    selected_products_ids = params[:selected_products].map(&:to_i)
+    @products = @customizable_part.products.in_catalog.select do |product|
+      (product.incompatible_products_ids & selected_products_ids).empty?
+    end
+
     respond_to do |format|
       format.html { render layout: false }
       format.turbo_stream
