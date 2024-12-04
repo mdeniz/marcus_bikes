@@ -27,7 +27,8 @@ class ShopController < ApplicationController
   end
 
   def compatible_parts
-    @products = Product.in_catalog
+    @customizable_part = CustomizablePart.find(params[:customizable_part_id])
+    @products = @customizable_part.products.in_catalog
     respond_to do |format|
       format.html { render layout: false }
       format.turbo_stream

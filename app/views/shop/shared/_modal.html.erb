@@ -1,5 +1,5 @@
 <dialog data-modal-target="dialog" class="p-5 rounded-lg backdrop:bg-black/80">
-  <div class="flex flex-col gap-3 w-[60rem] h-[80rem]">
+  <div class="flex flex-col gap-3">
     <%= turbo_frame_tag "modal", class: "text-center grow" do %>
         <svg class="inline animate-spin -ml-1 mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -8,7 +8,7 @@
         Loading suitable products...
     <% end %>
     <div class="text-center pt-5">
-      <button data-action="modal#close" class="py-3 px-5 bg-slate-600 text-white rounded ring-0 outline-none hover:bg-rose-600">Close</button>
+      <button data-action="modal#close" class="py-3 px-5 bg-slate-700 text-white rounded-md ring-0 outline-none hover:bg-rose-600">Close</button>
     </div>
   </div>
 </dialog>

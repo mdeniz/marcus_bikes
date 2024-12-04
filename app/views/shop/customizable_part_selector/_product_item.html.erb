@@ -1,26 +1,41 @@
-<div class="flex flex-col gap-3 h-96">
-  <div class="basis-1/2">
+<div class="flex flex-col gap-3 rounded-md overflow-hidden border p-3 h-full">
+  <div>
     <%= image_tag image_or_placeholder(product.image), class: "w-full h-48 pb-5 object-cover" %>
   </div>
-  <div class="basis-1/2 flex flex-col gap-3">
-    <div>
-      <span class="p-2 bg-rose-600 font-bold text-white">
-        <%= product.customizable? ? "Customizable" : number_to_euros(product.base_price) %>
-      </span>
-    </div>
+  
+  <div>
+    <span class="p-2 bg-rose-600 font-bold text-white">
+      <%= product.customizable? ? "Customizable" : number_to_euros(product.base_price) %>
+    </span>
+  </div>
 
-    <div class="font-bold">
-      <%= product.brand %>
-    </div>
+  <div class="font-bold">
+    <%= product.brand %>
+  </div>
 
-    <div class="text-sm max-h-12">
-      <%= product.model %> (<%= product.year %>)
-    </div>
+  <div class="text-sm max-h-12">
+    <%= product.model %> (<%= product.year %>)
+  </div>
 
-    <div class="grow"></div>
+  <div class="text-sm flex flex-col gap-3">
+    <%= form_with model: product, url: "#" do |product_form| %>
+      <%= product_form.fields_for :customizable_attributes do |ca_form| %>
+        <%= ca_form.label ca_form.object.name, class: "font-bold pb-2" %>
+        <div class="flex gap-3">
+          <% ca_form.object.attribute_options.each do |attribute_option| %>
+            <%= ca_form.label "option_#{attribute_option.id}", attribute_option.name, class: "block cursor-pointer rounded-lg border border-slate-200 p-4 text-sm font-medium shadow-sm hover:border-slate-300 has-[:checked]:border-rose-600 has-[:checked]:ring-1 has-[:checked]:ring-rose-600" do %>
+              <%= attribute_option.name %>
+              <%= ca_form.radio_button :option, attribute_option.id, class: "sr-only", checked: ca_form.object.attribute_options.first == attribute_option %>
+            <% end %>
+          <% end %>
 
-    <div class="pb-5 text-right">
-      <%= link_to "See product", catalog_product_path(product.uuid), class: "rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-700 text-white font-medium" %>
-    </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="grow"></div>
+
+  <div class="pb-5 text-center">
+    <%= link_to "Select", catalog_product_path(product.uuid), class: "rounded-lg mt-5 py-3 px-5 hover:bg-rose-600 bg-slate-700 text-white font-medium" %>
   </div>
 </div>
