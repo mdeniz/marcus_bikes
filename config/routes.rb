@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # Catalog
   get "catalog(/:category)" => "shop#catalog", as: :catalog
   get "catalog/product/:uuid" => "shop#product", as: :catalog_product
-  post "compatible_customizable_parts/:customizable_part_id" => "shop#compatible_customizable_parts", as: :compatible_customizable_parts
+  post "catalog/compatible_parts/:customizable_part_id" => "shop#compatible_parts", as: :compatible_parts
 
   # Cart
   get "cart" => "cart#show", as: :cart

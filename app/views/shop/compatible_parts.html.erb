@@ -1,0 +1,12 @@
+<%= turbo_stream.update "modal" do %>
+  <div class="flex flex-col">
+    <h3 class="text-2xl font-bold pb-4">
+      Compatible Parts
+    </h3>
+    <div class="grow grid grid-cols-4 gap-3">
+      <% @products.each do |product| %>
+        <%= render partial: "shop/customizable_part_selector/product_item", locals: { product: } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

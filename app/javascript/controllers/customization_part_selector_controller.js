@@ -11,7 +11,7 @@ export default class extends Controller {
     let customizable_parts_selected = Array.from(document.querySelectorAll("[name^='product[customizable_parts_attributes]'][name$='[option]']")).map(e => e.value).filter(Boolean);
     console.log(customizable_parts_selected)
     const csrfToken = document.querySelector("[name='csrf-token']").content
-    fetch(`/compatible_customizable_parts/${id}`, {
+    fetch(`/catalog/compatible_parts/${id}`, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, ➤only-if-cached

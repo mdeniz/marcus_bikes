@@ -26,8 +26,12 @@ class ShopController < ApplicationController
     @breadcrumbs = @product.category.self_and_ancestors.reverse
   end
 
-  def compatible_customizable_parts
-    
+  def compatible_parts
+    @products = Product.in_catalog
+    respond_to do |format|
+      format.html { render layout: false }
+      format.turbo_stream
+    end
   end
 
   private
