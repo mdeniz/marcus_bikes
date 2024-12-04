@@ -214,6 +214,15 @@ rim_color_fat_bike_wheels = CustomizableAttribute.create_with(description: rando
 AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Blue", price_change: 16.0, order: 2, stock_available: true, customizable_attribute: rim_color_fat_bike_wheels)
 AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Black", price_change: 0, order: 3, stock_available: true, customizable_attribute: rim_color_fat_bike_wheels)
 
+# Customizable bike attributes options
+customizable_bike_size = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Size", order: 1, product: customizable_bike)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "M", price_change: 0, order: 1, stock_available: true, customizable_attribute: customizable_bike_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "L", price_change: 150, order: 2, stock_available: true, customizable_attribute: customizable_bike_size)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "XL", price_change: 280, order: 3, stock_available: true, customizable_attribute: customizable_bike_size)
+
+customizable_bike_color = CustomizableAttribute.create_with(description: random_description).find_or_create_by!(name: "Color", order: 1, product: customizable_bike)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Yellow", price_change: 0, order: 1, stock_available: true, customizable_attribute: customizable_bike_color)
+AttributeOption.create_with(description: random_description).find_or_create_by!(name: "Granite", price_change: 30, order: 2, stock_available: true, customizable_attribute: customizable_bike_color)
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 # Customizable parts for the customizable bike

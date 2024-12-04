@@ -645,6 +645,10 @@ From the catalog or the homepage in every product section there is a "See produc
 
 ![Non Customizable Product](doc/assets/non_customizable_product.png)
 
+Here we have an example of a product fully customizable both on attributes and parts:
+
+![Fully Customizable Product](doc/assets/customizable_product.png)
+
 This page, in general, is laid out like this:
 
 ![Product page Layout](doc/assets/product_page_layout.png)
@@ -657,7 +661,7 @@ For the *Attributes Customization* area it will be show as follows. This area is
 
 ![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
 
-For the *Parts Customization* area it will be shown as follows. This area is also interactive, whenever the customer clicks on a different part options selector it will show a modal with the products available as selection, attributes for those products can be selected there too if are defined in those products. Whenever the selection takes place the modal closes and the price is recalculated again.
+For the *Parts Customization* area it will be shown as follows. This area is also interactive, whenever the customer clicks on a different customizable part selector it will show a modal with the products available as selection, attributes for those products can be selected there too if are defined in those products as customizable. Whenever the selection takes place the modal closes and the price is recalculated again.
 
   [PENDING]
 IMAGE
