@@ -68,6 +68,6 @@ class CartController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:authenticity_token, :uuid, customizable_attributes_attributes: [ [ :option, :id ] ])
+      params.require(:product).permit(:authenticity_token, :uuid, customizable_attributes_attributes: [ [ :option, :id ] ], customizable_parts_attributes: [ [ :product, :id, :customization ] ])
     end
 end

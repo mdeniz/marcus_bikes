@@ -657,7 +657,7 @@ For the *Attributes Customization* area it will be show as follows. This area is
 
 ![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
 
-For the *Parts Customizatio*n area it will be show as follows. This area is also interactive, whenever the customer clicks on a different part options selector it will show a modal with the products available as selection, attributes for those products can be selected there too if are defined in those products. Whenever the selection takes place the modal closes and the price is recalculated again.
+For the *Parts Customization* area it will be shown as follows. This area is also interactive, whenever the customer clicks on a different part options selector it will show a modal with the products available as selection, attributes for those products can be selected there too if are defined in those products. Whenever the selection takes place the modal closes and the price is recalculated again.
 
   [PENDING]
 IMAGE
@@ -750,7 +750,7 @@ Each item in the list have a quantity input that can be changed and saved to the
 
 #### Remove cart item
 
-There is an icon of a bin close to the quantity input that serves as a button to remove the product item from the cart. This will reload the cart after removing the item and recalculate everything once again.
+There is an icon of a trash can close to the quantity input that serves as a button to remove the product item from the cart. This will reload the cart after removing the item and recalculate everything once again.
 
 ### Administrative workflows
 
