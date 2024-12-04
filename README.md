@@ -660,12 +660,15 @@ The *Image* shown is either coming from the url stored in the database or a plac
 For the *Attributes Customization* area it will be show as follows. This area is interactive, whenever the customer clicks on a different attribute option it will be selected and the price will change accordingly if a price change is associated to that attribute option.
 
 ![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
+![Customizable Attributes Product 2](doc/assets/product_with_customizable_attributes_2.png)
 
 For the *Parts Customization* area it will be shown as follows. This area is also interactive, whenever the customer clicks on a different customizable part selector it will show a modal with the products available as selection, attributes for those products can be selected there too if are defined in those products as customizable. Whenever the selection takes place the modal closes and the price is recalculated again.
 
-  [PENDING]
-IMAGE
-![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
+![Fully Customizable Product](doc/assets/customizable_product.png)
+
+[PENDING] Modal
+
+![Fully Customizable Product 3](doc/assets/customizable_product_3.png)
 
 * How to calculate the options available?
 
