@@ -35,7 +35,9 @@ Here you have an index of the sections of this README document:
     - [See product details](#see-product-details)
     - [Edit a product](#edit-a-product)
     - [Create a product](#create-a-product)
-    - [Adding a new part choice](#adding-a-new-part-choice)
+    - [Adding a new attribute and editing its options](#adding-a-new-attribute-and-editing-its-options)
+    - [Adding a new customizable part and editing its options](#adding-a-new-customizable-part-and-editing-its-options)
+    - [Adding a new banned combination](#adding-a-new-banned-combination)
     - [Setting prices](#setting-prices)
 - [Improvements](#improvements)
 
@@ -916,10 +918,75 @@ And if he wants to add a new one it will look like this:
   When we create a product it only will save a record on the table for the products. No related entity can be created at the same time. So, after sending the data for a new product a new record will be inserted in the database like this:
 
   ```sql
-  INSERT INTO "products" ("uuid", "brand", "model", "description", "base_price", "image", "year", "enabled", "stock_available", "customizable", "category_id", "created_at", "updated_at") VALUES ("019396bd-466d-7287-b3ea-148f780069ec", "My Brand", "My model", "My description", 200, "", 2024, false, false, false, 13, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
+  INSERT INTO "products" ("uuid", "brand", "model", "description", "base_price", "image", "year", "enabled", "stock_available", "customizable", "category_id", "created_at", "updated_at") 
+  VALUES ("019396bd-466d-7287-b3ea-148f780069ec", "My Brand", "My model", "My description", 200, "", 2024, false, false, false, 13, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
   ```
 
-#### Adding a new part choice
+#### Adding a new attribute and editing its options
+
+If Marcus needs to define a new attribute on a product he only will need to go the edit the product, then in the lower part of the page open the **Attributes** tab and there click on the top right button with a plus inside:
+
+![Product Admin edit attributes](doc/assets/admin_product_edit_attributes_tab.png)
+
+Clickin on the button will open a form inside a modal that lets Marcus to introduce the basic info of an attribute definition: name, description, and order.
+
+![Product Admin new attribute](doc/assets/admin_new_attribute.png)
+
+If what Marcus needs is to define a new option for an existing attribute,  he only needs to edit the attribute by clicking on the link with the shape of a pencil writing in the list of attributes for the one attribute he wants to modify. This will open a modal with a table of attribute options.
+
+![Product Admin list attribute options](doc/assets/admin_attributes_options_index.png)
+
+There Marcus can either edit an existing option or just create a new one.
+
+* How can Marcus introduce a new size?
+
+If Marcus clicks on the plus button a modal will show the new attribute option form:
+
+![Product Admin list attribute options](doc/assets/admin_attributes_options_new.png)
+
+* How the database changes?
+
+If Marcus creates that attribute option it will be saved in the database inserting just a record on the table for attribute options like this:
+
+  ```sql
+  INSERT INTO "attribute_options" ("name", "description", "order", "price_change", "stock_available", "customizable_attribute_id", "created_at", "updated_at")
+  VALUES ("XS", "100x35", 1, 0, false, 10, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
+  ```
+
+#### Adding a new customizable part and editing its options
+
+If Marcus needs to define a new customizable part on a product he only will need to go the edit the product, then in the lower part of the page open the **Customizable Parts** tab and there click on the top right button with a plus inside:
+
+![Product Admin edit parts](doc/assets/admin_product_edit_parts_tab.png)
+
+Clickin on the button will open a form inside a modal that lets Marcus to introduce the basic info of an customizable part definition: name, description, and order.
+
+![Product Admin new part](doc/assets/admin_new_part.png)
+
+If what Marcus needs is to define a new option for an existing customizable part,  he only needs to edit the customizable part by clicking on the link with the shape of a pencil writing in the list of customizable parts for the one customizable part he wants to modify. This will open a modal with a table of customizable part options which are products.
+
+![Product Admin list attribute options](doc/assets/admin_part_options_index.png)
+
+There Marcus can either edit an existing option or just create a new one.
+
+* How can Marcus introduce a new frame for the frame type?
+
+If Marcus clicks on the plus button a modal will show the selection list for part options:
+
+![Product Admin list attribute options](doc/assets/admin_part_options_selection.png)
+
+He will just click on the check icon of the product he wants to select and will be done.
+
+* How the database changes?
+
+If Marcus creates that new customizable part option it will be saved in the database inserting just a record on the table for customizable part options like this:
+
+  ```sql
+  INSERT INTO "part_options" ("product_id", "customizable_part_id", "created_at", "updated_at")
+  VALUES (18, 32, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
+  ```
+
+#### Adding a new banned combination
 
 How can Marcus introduce a new rim color? Describe the UI and how the database changes.
 
@@ -934,7 +1001,6 @@ How can Marcus change the price of a specific part or specify particular pricing
 How does the UI and database handle this?
 
   [PENDING]
-
 
 ## Improvements
 
