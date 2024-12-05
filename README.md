@@ -867,6 +867,14 @@ If Marcus shows a Product details page it will look like this, also shows the re
 
 ![Product Admin show](doc/assets/admin_product_show.png)
 
+Customizable parts tab example:
+
+![Product Admin show Customizable Parts](doc/assets/admin_product_show_parts_tab.png)
+
+Banned combinations tab example:
+
+![Product Admin show Banne Combinations](doc/assets/admin_product_show_banned_combinations_tab.png)
+
 #### Edit a product
 
 If Marcus edits a Product the form will look like this:
