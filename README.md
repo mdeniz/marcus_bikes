@@ -780,7 +780,7 @@ In the product page, the customer can customize either attributes or parts or bo
 
   ```json
     {
-      "customizable_attributes"=> [
+      "customizable_attributes" => [
         {
           "customizable_attribute_id" => "1",
           "attribute_option_id" => "2"
@@ -790,7 +790,7 @@ In the product page, the customer can customize either attributes or parts or bo
           "attribute_option_id" => "5"
         }
       ], 
-      "customizable_parts"=>[
+      "customizable_parts" =>[
         {
           "customizable_part_id" => "23",
           "part_option_id" => "15",
