@@ -24,21 +24,21 @@ Here you have an index of the sections of this README document:
     - [See a product](#see-a-product)
     - [Add a product to the cart](#add-a-product-to-the-cart)
     - [Cart page](#cart-page)
-    - [Adjust quantity on cart item](#adjust-quantity-on-cart-item)
-    - [Remove cart item](#remove-cart-item)
+    - [Adjust quantity of a cart item](#adjust-quantity-of-a-cart-item)
+    - [Remove a cart item](#remove-a-cart-item)
   - [Administrative workflows](#administrative-workflows)
     - [Categories](#categories)
-    - [See category details](#see-category-details)
-    - [Edit a category](#edit-a-category)
-    - [Create a category](#create-a-category)
+      - [See category details](#see-category-details)
+      - [Edit a category](#edit-a-category)
+      - [Create a category](#create-a-category)
     - [Products](#products)
-    - [See product details](#see-product-details)
-    - [Edit a product](#edit-a-product)
-    - [Create a product](#create-a-product)
-    - [Adding a new attribute and editing its options](#adding-a-new-attribute-and-editing-its-options)
-    - [Adding a new customizable part and editing its options](#adding-a-new-customizable-part-and-editing-its-options)
-    - [Adding a new banned combination](#adding-a-new-banned-combination)
-    - [Setting prices](#setting-prices)
+      - [See product details](#see-product-details)
+      - [Edit a product](#edit-a-product)
+      - [Create a product](#create-a-product)
+      - [Adding a new attribute and editing its options](#adding-a-new-attribute-and-editing-its-options)
+      - [Adding a new customizable part and editing its options](#adding-a-new-customizable-part-and-editing-its-options)
+      - [Adding a new banned combination](#adding-a-new-banned-combination)
+      - [Setting prices](#setting-prices)
 - [Improvements](#improvements)
 
 ## Instructions
@@ -815,11 +815,11 @@ The cart page is accessible from the top of the header icon in the shape of a ca
 
 There is no special layout rather than a table of items and the summary of totals, VAT and discounts at the bottom.
 
-#### Adjust quantity on cart item
+#### Adjust quantity of a cart item
 
 Each item in the list have a quantity input that can be changed and saved to the database, this will make the cart to recalculate taking into account the new values.
 
-#### Remove cart item
+#### Remove a cart item
 
 There is an icon of a trash can close to the quantity input that serves as a button to remove the product item from the cart. This will reload the cart after removing the item and recalculate everything once again.
 
@@ -839,19 +839,19 @@ If Marcus clicks on the "Categories" link of the navigation menu, the browser wi
 
 ![Categories Admin index](doc/assets/admin_categories_index.png)
 
-#### See category details
+##### See category details
 
 If Marcus shows a Category details page it will look like this, also shows the related categories and products if any inside tabs:
 
 ![Categories Admin show](doc/assets/admin_categories_show.png)
 
-#### Edit a category
+##### Edit a category
 
 If Marcus edits a Category the form will look like this:
 
 ![Categories Admin edit](doc/assets/admin_categories_edit.png)
 
-#### Create a category
+##### Create a category
 
 And if he wants to add a new one it will look empty like this:
 
@@ -863,7 +863,7 @@ If Marcus clicks on the "Products" link of the navigation menu, the browser will
 
 ![Products Admin index](doc/assets/admin_products_index.png)
 
-#### See product details
+##### See product details
 
 If Marcus shows a Product details page it will look like this, also shows the related information fort its customization, attributes, banned combinations and price changes if any inside tabs:
 
@@ -881,13 +881,13 @@ Price changes tab example:
 
 ![Product Admin show Price Changes](doc/assets/admin_product_show_price_changes_tab.png)
 
-#### Edit a product
+##### Edit a product
 
 If Marcus edits a Product the form will look like this:
 
 ![Product Admin edit](doc/assets/admin_product_edit.png)
 
-#### Create a product
+##### Create a product
 
 And if he wants to add a new one it will look like this:
 
@@ -922,7 +922,7 @@ And if he wants to add a new one it will look like this:
   VALUES ("019396bd-466d-7287-b3ea-148f780069ec", "My Brand", "My model", "My description", 200, "", 2024, false, false, false, 13, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
   ```
 
-#### Adding a new attribute and editing its options
+##### Adding a new attribute and editing its options
 
 If Marcus needs to define a new attribute on a product he only will need to go the edit the product, then in the lower part of the page open the **Attributes** tab and there click on the top right button with a plus inside:
 
@@ -953,13 +953,13 @@ If Marcus creates that attribute option it will be saved in the database inserti
   VALUES ("XS", "100x35", 1, 0, false, 10, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
   ```
 
-#### Adding a new customizable part and editing its options
+##### Adding a new customizable part and editing its options
 
 If Marcus needs to define a new customizable part on a product he only will need to go the edit the product, then in the lower part of the page open the **Customizable Parts** tab and there click on the top right button with a plus inside:
 
 ![Product Admin edit parts](doc/assets/admin_product_edit_parts_tab.png)
 
-Clickin on the button will open a form inside a modal that lets Marcus to introduce the basic info of an customizable part definition: name, description, and order.
+Clickin on the button will open a form inside a modal that lets Marcus to introduce the basic info of a customizable part definition: name, description, and order.
 
 ![Product Admin new part](doc/assets/admin_new_part.png)
 
@@ -979,20 +979,35 @@ He will just click on the check icon of the product he wants to select and will 
 
 * How the database changes?
 
-If Marcus creates that new customizable part option it will be saved in the database inserting just a record on the table for customizable part options like this:
+If Marcus creates that new customizable part option, by selecting the product, it will be saved in the database inserting just a record on the table for customizable part options like this:
 
   ```sql
   INSERT INTO "part_options" ("product_id", "customizable_part_id", "created_at", "updated_at")
   VALUES (18, 32, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
   ```
 
-#### Adding a new banned combination
+##### Adding a new banned combination
 
-How can Marcus introduce a new rim color? Describe the UI and how the database changes.
+If Marcus needs to define a banned combination of products he only will need to go the edit the product, then in the lower part of the page open the **Banned Combinations** tab and there click on the top right button with a plus inside:
 
-  [PENDING]
+![Product Admin edit parts](doc/assets/admin_product_edit_banned_combinations_tab.png)
 
-#### Setting prices
+If Marcus clicks on the plus button a modal will show the selection list for the product he wants to ban in combination with the current product:
+
+![Product Admin list attribute options](doc/assets/admin_part_options_selection.png)
+
+He will just click on the check icon of the product he wants to select and will be done.
+
+* How the database changes?
+
+If Marcus creates that new banned commbination, by selecting the product, it will be saved in the database inserting just a record on the table for banned combinations like this:
+
+  ```sql
+  INSERT INTO "banned_combinations" ("source_id", "target_id", "created_at", "updated_at")
+  VALUES (3, 24, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
+  ```
+
+##### Setting prices
 
 How can Marcus change the price of a specific part or specify particular pricing for combinations of choices? 
 
