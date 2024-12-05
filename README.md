@@ -875,6 +875,10 @@ Banned combinations tab example:
 
 ![Product Admin show Banne Combinations](doc/assets/admin_product_show_banned_combinations_tab.png)
 
+Price changes tab example:
+
+![Product Admin show Price Changes](doc/assets/admin_product_show_price_changes_tab.png)
+
 #### Edit a product
 
 If Marcus edits a Product the form will look like this:

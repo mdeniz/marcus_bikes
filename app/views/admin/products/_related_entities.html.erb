@@ -34,6 +34,7 @@
 
   <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
     <div class="overflow-x-auto">
+      <%= render partial: "admin/products/price_changes/table", locals: { price_changes: product.price_changes } %>
     </div>
   </div>
 </div>
