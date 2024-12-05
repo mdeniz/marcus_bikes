@@ -909,10 +909,15 @@ And if he wants to add a new one it will look like this:
   * An image url
   * The year of creation
 
+  I decided to only allow create the base info of the product first and then later all the related entities will be added to the product created. This will help simplify the UI as we are going to deal with less dynamic master-detail forms.
+
 * How does the database change?
 
-  [PENDING]
+  When we create a product it only will save a record on the table for the products. No related entity can be created at the same time. So, after sending the data for a new product a new record will be inserted in the database like this:
 
+  ```sql
+  INSERT INTO "products" ("uuid", "brand", "model", "description", "base_price", "image", "year", "enabled", "stock_available", "customizable", "category_id", "created_at", "updated_at") VALUES ("019396bd-466d-7287-b3ea-148f780069ec", "My Brand", "My model", "My description", 200, "", 2024, false, false, false, 13, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
+  ```
 
 #### Adding a new part choice
 

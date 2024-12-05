@@ -16,25 +16,47 @@
 
   <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
     <div class="overflow-x-auto">
-      <%= render partial: "admin/products/attributes/table", locals: { attributes: product.customizable_attributes } %>
+      <div class="text-right">
+      <%= link_to new_admin_product_path, class: "inline-block rounded-lg py-1 px-2 bg-slate-600 text-white block hover:bg-rose-600" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      <% end if show_actions %>
+      </div>
+      <%= render partial: "admin/products/attributes/table", locals: { attributes: product.customizable_attributes, show_actions: } %>
     </div>
   </div>
 
   <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
     <div class="overflow-x-auto">
-      <%= render partial: "admin/products/customizable_parts/table", locals: { parts: product.customizable_parts } %>
+      <%= link_to new_admin_product_path, class: "inline-block rounded-lg py-1 px-2 bg-slate-600 text-white block hover:bg-rose-600" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      <% end if show_actions %>
+      <%= render partial: "admin/products/customizable_parts/table", locals: { parts: product.customizable_parts, show_actions: } %>
     </div>
   </div>
 
   <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
     <div class="overflow-x-auto">
-      <%= render partial: "admin/products/banned_combinations/table", locals: { products: product.incompatible_products_as_source } %>
+      <%= link_to new_admin_product_path, class: "inline-block rounded-lg py-1 px-2 bg-slate-600 text-white block hover:bg-rose-600" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      <% end if show_actions %>
+      <%= render partial: "admin/products/banned_combinations/table", locals: { products: product.incompatible_products_as_source, show_actions: } %>
     </div>
   </div>
 
   <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
     <div class="overflow-x-auto">
-      <%= render partial: "admin/products/price_changes/table", locals: { price_changes: product.price_changes } %>
+      <%= link_to new_admin_product_path, class: "inline-block rounded-lg py-1 px-2 bg-slate-600 text-white block hover:bg-rose-600" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      <% end if show_actions %>
+      <%= render partial: "admin/products/price_changes/table", locals: { price_changes: product.price_changes, show_actions: } %>
     </div>
   </div>
 </div>

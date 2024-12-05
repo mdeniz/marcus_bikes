@@ -16,7 +16,7 @@
 
     <tbody class="divide-y divide-gray-200">
       <% products.each do |product| %>
-        <%= render partial: "admin/products/list_item", locals: { product: } %>
+        <%= render partial: "admin/products/list_item", locals: { product:, show_actions: } %>
       <% end %>
     </tbody>
   </table>

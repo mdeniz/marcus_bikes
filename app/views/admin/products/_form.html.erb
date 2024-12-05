@@ -61,6 +61,8 @@
     <%= form.check_box :customizable, class: "block mt-2 h-5 w-5" %>
   </div>
 
+  <%= render partial: "admin/products/related_entities", locals: { product: @product, show_actions: true } unless @product.new_record? %>
+
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block bg-slate-600 text-white hover:bg-rose-600 text-xs cursor-pointer" %>
   </div>
