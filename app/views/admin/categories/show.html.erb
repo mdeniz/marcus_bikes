@@ -1,16 +1,31 @@
 <div class="bg-white shadow-lg rounded-md overflow-hidden p-10 text-slate-800">
   <div class="mx-auto w-full flex">
     <div class="mx-auto">
+      <h1 class="font-bold text-2xl">Category Details</h1>
+
       <%= render @category %>
 
-      <div class="overflow-x-auto">
-        <h3 class="py-3 font-bold">Subcategories</h3>
-        <%= render partial: "admin/categories/table", locals: { categories: @category.children } %>
-      </div>
+      <div data-controller="tabs" data-tabs-active-tab-class="-mb-px border-l border-t border-r rounded-t" class="pb-5">
+        <ul class="list-reset flex border-b">
+          <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change:prevent">
+            <a class="bg-white inline-block py-2 px-4 text-slate-600 hover:text-rose-700 font-semibold no-underline" href="#">Subcategories</a>
+          </li>
+          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change:prevent">
+            <a class="bg-white inline-block py-2 px-4 text-slate-600 hover:text-rose-700 font-semibold no-underline" href="#">Products</a>
+          </li>
+        </ul>
 
-      <div class="overflow-x-auto">
-        <h3 class="py-3 font-bold">Products</h3>
-        <%= render partial: "admin/products/table", locals: { products: @category.products } %>
+        <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
+          <div class="overflow-x-auto">
+            <%= render partial: "admin/categories/table", locals: { categories: @category.children } %>
+          </div>
+        </div>
+
+        <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
+          <div class="overflow-x-auto">
+            <%= render partial: "admin/products/table", locals: { products: @category.products } %>
+          </div>
+        </div>
       </div>
 
       <%= link_to "Edit this category", edit_admin_category_path(@category), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block bg-slate-600 text-white hover:bg-rose-600 text-xs" %>

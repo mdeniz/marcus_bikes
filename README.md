@@ -28,8 +28,13 @@ Here you have an index of the sections of this README document:
     - [Remove cart item](#remove-cart-item)
   - [Administrative workflows](#administrative-workflows)
     - [Categories](#categories)
+    - [See category details](#see-category-details)
+    - [Edit a category](#edit-a-category)
+    - [Create a category](#create-a-category)
     - [Products](#products)
-    - [New product creation](#new-product-creation)
+    - [See product details](#see-product-details)
+    - [Edit a product](#edit-a-product)
+    - [Create a product](#create-a-product)
     - [Adding a new part choice](#adding-a-new-part-choice)
     - [Setting prices](#setting-prices)
 - [Improvements](#improvements)
@@ -832,13 +837,19 @@ If Marcus clicks on the "Categories" link of the navigation menu, the browser wi
 
 ![Categories Admin index](doc/assets/admin_categories_index.png)
 
-If Marcus shows a Category details page it will look like this, also shows the related categories and products if any:
+#### See category details
+
+If Marcus shows a Category details page it will look like this, also shows the related categories and products if any inside tabs:
 
 ![Categories Admin show](doc/assets/admin_categories_show.png)
+
+#### Edit a category
 
 If Marcus edits a Category the form will look like this:
 
 ![Categories Admin edit](doc/assets/admin_categories_edit.png)
+
+#### Create a category
 
 And if he wants to add a new one it will look empty like this:
 
@@ -846,15 +857,50 @@ And if he wants to add a new one it will look empty like this:
 
 #### Products
 
-#### New product creation
+If Marcus clicks on the "Products" link of the navigation menu, the browser will land in the index of the products to be administrated. There Marcus can see a product info in full detail, edit it or even destroy it. This page will look like this:
+
+![Products Admin index](doc/assets/admin_products_index.png)
+
+#### See product details
+
+If Marcus shows a Product details page it will look like this, also shows the related information fort its customization, attributes, banned combinations and price changes if any inside tabs:
+
+![Product Admin show](doc/assets/admin_product_show.png)
+
+#### Edit a product
+
+If Marcus edits a Product the form will look like this:
+
+![Product Admin edit](doc/assets/admin_product_edit.png)
+
+#### Create a product
+
+And if he wants to add a new one it will look like this:
+
+![Product Admin new](doc/assets/admin_product_new.png)]
 
 * What information is required to create a new product? 
 
-  [PENDING]
+  A new product only requires their basic information:
+
+  * A category where it will be placed
+  * A brand name
+  * A model name
+  * A description
+  * A base price
+  * Enable the product in the catalog or not
+  * Inform if there is stock available
+  * Inform if it's considered customizable
+
+  Marcus could also fill in more information like:
+
+  * An image url
+  * The year of creation
 
 * How does the database change?
 
   [PENDING]
+
 
 #### Adding a new part choice
 
