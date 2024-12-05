@@ -1009,13 +1009,30 @@ If Marcus creates that new banned commbination, by selecting the product, it wil
 
 ##### Setting prices
 
-How can Marcus change the price of a specific part or specify particular pricing for combinations of choices? 
+The schema for the pricing on the shop is based on three pieces. The base price of the products, the price changes caused by the attributes and price changes caused by the combination of products in a customization.
 
-  [PENDING]
+If Marcus needs to change the price for a specific part, he only have to go to the product page and edit that product chaging the base price accordingly.
 
-How does the UI and database handle this?
+On the other hand if he wants to change the increment an attribute causes on the product if its selected then he have to edit that attribute option introducing the increment/decrement in the field Price Change of that one attribute option.
 
-  [PENDING]
+And in the last case, a price change based on combinations of parts, Marcus have to go to the product page that wants to be changed in price on presence of the other product and go to the last tab, the **Price Changes** one:
+
+![Product Admin list price changes](doc/assets/admin_product_edit_price_changes_tab.png)
+
+If Marcus clicks on the plus button a modal will show a form to introduce the new  combination with the current product and the price change:
+
+![Product Admin new price change](doc/assets/admin_new_price_change.png)
+
+He will just fill in the price, select the product and click on the **Create Price Change**.
+
+* How the database changes?
+
+If Marcus creates that new price change, it will be saved in the database inserting just a record on the table for price changes like this:
+
+  ```sql
+  INSERT INTO "price_changes" ("changed_product_id", "on_product_id", "change", "created_at", "updated_at")
+  VALUES (7, 5, 15.00, "2024-12-05 12:13:27.020975", "2024-12-05 12:13:27.020975")
+  ```
 
 ## Improvements
 
