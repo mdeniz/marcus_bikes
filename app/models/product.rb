@@ -84,7 +84,7 @@ class Product < ApplicationRecord
     def selected_part_options_price(selected_part_option_ids)
       price_changes = PriceChange.where(changed_product_id: selected_part_option_ids)
 
-      result = Product.where(id: selected_part_option_ids).sum(:base_price)
+      result = Product.where(id: selected_part_option_ids - [ id ]).sum(:base_price)
       price_changes.each do |price_change|
         result += price_change.change if selected_part_option_ids.include?(price_change.on_product_id)
       end

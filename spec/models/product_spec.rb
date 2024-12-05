@@ -118,48 +118,50 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  # describe "#selected_options_price" do
-  #   let!(:product) { create(:product, base_price: 10) }
-  #   let!(:customizable_attribute) { create(:customizable_attribute) }
-  #   let!(:attribute_option) { create(:attribute_option, price_change: 0, customizable_attribute:) }
+  describe "#price" do
+    let!(:product) { create(:product, base_price: 10) }
 
-  #   let(:selected_options_ids) { [ attribute_option.id ] }
+    subject(:product_selection_price) { product.price(selected_attribute_option_ids:, selected_part_option_ids:) }
 
-  #   subject(:product_selection_price) { product.selected_options_price(selected_options_ids) }
+    context "only attributes selected" do
+      let!(:customizable_attribute) { create(:customizable_attribute) }
+      let!(:attribute_option) { create(:attribute_option, price_change: 0, customizable_attribute:) }
+      let!(:ignorable_attribute_option) { create(:attribute_option, price_change: 3) }
 
-  #   context "without price changes" do
-  #     it { is_expected.to eq(10) }
-  #   end
+      let(:selected_attribute_option_ids) { [ attribute_option.id ] }
+      let(:selected_part_option_ids) { [] }
 
-  #   context "with price changes" do
-  #     let!(:another_attribute_option) { create(:attribute_option, price_change: 5, customizable_attribute:) }
-  #     let!(:ignorable_attribute_option) { create(:attribute_option, price_change: 3) }
+      context "without price changes" do
+        it { is_expected.to eq(10) }
+      end
 
-  #     let(:selected_options_ids) { [ attribute_option.id, another_attribute_option.id ] }
+      context "with price changes" do
+        let!(:another_attribute_option) { create(:attribute_option, price_change: 5, customizable_attribute:) }
+        let(:selected_attribute_option_ids) { [ attribute_option.id, another_attribute_option.id ] }
 
-  #     it { is_expected.to eq(15) }
-  #   end
-  # end
+        it { is_expected.to eq(15) }
+      end
+    end
 
-  # describe "#selected_products_price" do
-  #   let!(:product) { create(:product, base_price: 10) }
-  #   let!(:another_product) { create(:product, base_price: 5) }
-  #   let(:selected_products_ids) { [ product.id, another_product.id ] }
+    context "only parts selected" do
+      let!(:another_product) { create(:product, base_price: 5) }
+      let!(:product_not_in_selection) { create(:product, base_price: 1) }
+      let!(:ignorable_price_change) { create(:price_change, changed_product: product, on_product: product_not_in_selection, change: 700) }
 
-  #   subject(:product_selection_price) { product.selected_products_price(selected_products_ids) }
+      let(:selected_attribute_option_ids) { [] }
+      let(:selected_part_option_ids) { [ product.id, another_product.id ] }
 
-  #   context "without price changes" do
-  #     it { is_expected.to eq(15) }
-  #   end
+      context "without price changes" do
+        it { debugger; is_expected.to eq(15) }
+      end
 
-  #   context "with price changes" do
-  #     let!(:product_not_in_selection) { create(:product, base_price: 1) }
-  #     let!(:ignorable_price_change) { create(:price_change, changed_product: product, on_product: product_not_in_selection, change: 700) }
-  #     let!(:price_change_in_selection) { create(:price_change, changed_product: product, on_product: another_product, change: 3) }
-  #     let(:another_product_selection_price) { another_product.selected_products_price(selected_products_ids) }
+      context "with price changes" do
+        let!(:price_change_in_selection) { create(:price_change, changed_product: product, on_product: another_product, change: 3) }
+        let(:another_product_selection_price) { another_product.price(selected_part_option_ids:, selected_attribute_option_ids:) }
 
-  #     it { is_expected.to eq(18) }
-  #     it { expect(another_product_selection_price).to eq(18) }
-  #   end
-  # end
+        it { is_expected.to eq(18) }
+        it { expect(another_product_selection_price).to eq(18) }
+      end
+    end
+  end
 end
