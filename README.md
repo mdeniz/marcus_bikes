@@ -24,7 +24,7 @@ Here you have an index of the sections of this README document:
     - [See a product](#see-a-product)
     - [Add a product to the cart](#add-a-product-to-the-cart)
     - [Cart page](#cart-page)
-    - [Adjust quantity of a cart item](#adjust-quantity-of-a-cart-item)
+    - [Adjust the quantity of a cart item](#adjust-the-quantity-of-a-cart-item)
     - [Remove a cart item](#remove-a-cart-item)
   - [Administrative workflows](#administrative-workflows)
     - [Categories](#categories)
@@ -76,13 +76,13 @@ You should see an output similar to this:
 
 ![Dev Server](doc/assets/dev_server.png)
 
-And then browse to the listening url (by default is http://127.0.0.1:3000/). If you see something like this the app is successfully setup:
+And then browse to the listening URL (by default is http://127.0.0.1:3000/). If you see something like this the app is successfully setup:
 
 ![Server Up](doc/assets/server_up.png)
 
 ### Tests
 
-The project uses [RSpec](https://rspec.info/) as testing framework. You can run the specs suite like this:
+The project uses [RSpec](https://rspec.info/) as the testing framework. You can run the specs suite like this:
 
 ```bash
 ./bin/rails spec
@@ -96,29 +96,29 @@ Running the specs should output something similar to this:
 
 ## Specifications
 
-Given the specifications sent to me via email (see the [PDF](doc/code_challenge_specifications.pdf) version) we can extract the requirements for this project, ask ourserlves questions, answer them and make some assumptions in order to create the proper solution.
+Given the specifications sent to me via email (see the [PDF](doc/code_challenge_specifications.pdf) version) we can extract the requirements for this project, ask ourselves questions, answer them, and make some assumptions in order to create the proper solution.
 
 ### Requirements
 
-After carefuly reading the specifications provided I wrote down a list of requirements the app needs to fulfill:
+After carefully reading the specifications provided I wrote down a list of requirements the app needs to fulfill:
 
-1. The shop's catalog not only have bikes on it. Many other types of **products** can be sold. Eg: surfboards, skis, roller skates.
-2. Products can be customized. Each product can have several **customizable parts** and **customizable attributes**. Eg: a bike can have frame type, frame finish, wheels and chain as customizable parts, also size and rim color as customizable attributes.
-3. Customers have to choose the final parts and attributes for their customization. For each customizable part the customer needs to choose from the available **part options** and for each customizable attribute from the available **attribute options**.
-4. Any part selected can avoid other parts to be selected too, no matter if they belong to different customizable parts. So, some **banned combinations** of parts exist. Attributes belongs to each product, that way we will only represent the "good combinations".
-5. Parts and attribute options can be marked as "temporarily out of stock" to avoid receiving orders of products with those parts or attributes on it.
-6. Price of products are either standalone or calculated based on their parts and attributes if they are customized.
-7. The price of parts can be different if they are combined with other parts in a product customization. So, the **price changes** can exist depending on other parts if they are selected. Also the attributes may imply price changes.
+1. The shop's catalog not only has bikes on it. Many other types of **products** can be sold. Eg: surfboards, skis, roller skates.
+2. Products can be customized. Each product can have several **customizable parts** and **customizable attributes**. Eg: a bike can have frame type, frame finish, wheels, and chain as customizable parts, as well as size and rim color as customizable attributes.
+3. Customers have to choose the final parts and attributes for their customization. For each customizable part, the customer needs to choose from the available **part options** and for each customizable attribute from the available **attribute options**.
+4. Any part selected can prevent other parts from being selected too, no matter if they belong to different customizable parts. So, some **banned combinations** of parts exist. Attributes belong to each product, that way we will only represent the "good combinations".
+5. Parts and attribute options can be marked as "temporarily out of stock" to avoid receiving orders of products with those parts or attributes on them.
+6. The price of products are either standalone or calculated based on their parts and attributes if they are customized.
+7. The price of parts can be different if they are combined with other parts in a product customization. So, **price changes** can exist depending on other parts if they are selected. Also, the attributes may imply price changes.
 
 ### Questions about the requirements
 
-With the specifications and the requirements more clear some questions may appear. Here is a list with their answers: 
+With the specifications and the requirements more clear some questions may appear. Here is a list of the questions and their answers: 
 
-1. *Are parts also products we can sell in isolation in the shop?* They could be, but we may not want to sell certain parts in isolation.
+1. *Are parts also products we can sell in the shop alone?* They could be, but we may not want to sell certain parts in isolation.
 2. *All the products must be customizable?* No, certain products can be sold as they are provided.
-3. *All the customizable parts are the same for all the products?* No, each product could have different customizable parts. Eg: "Customizable Bike" can have: frame type, frame finish, wheels and chain. Whereas "Ski set" can have: ski, bindings and poles.
-4. *All the customizable attributes are the same for all the products?* No, each product could have different customizable attributes. Eg: "Bike 1" can have "size" and "color". Whereas "Skiset 1" can have just "color".
-5. *Can a part's price depend on more than one part that are selected too?* Yes, it may happen that a price changes for many other parts selected. Eg: frame color depends on frame type and frame finish. 
+3. *Are all the customizable parts the same for all the products?* No, each product could have different customizable parts. Eg: a "Customizable Bike" can have: a frame type, frame finish, wheels, and chain. Whereas a "Ski set" can have: a ski, bindings, and poles.
+4. *Are all the customizable attributes the same for all the products?* No, each product could have different customizable attributes. Eg: "Bike 1" can have "size" and "color". Whereas "Skiset 1" can have just "color".
+5. *Can a part's price depend on more than one other part that is selected too?* Yes, it may happen that a price changes for many other parts selected. Eg: frame color depends on frame type and frame finish. 
 
 ### Assumptions
 
@@ -133,15 +133,17 @@ Given the questions and the answers, we can assume certain things that will shap
 
 ## Solution
 
+I created the app for the coding exercise, but bear in mind that not all the features are implemented fully. The store is pretty functional but you will find that some parts just don't work :D.
+
 ### Stack
 
-The first choice I made was to select [Ruby](https://www.ruby-lang.org) language and leverage of the [Ruby on Rails](https://rubyonrails.org/) framework as I have more experience with to build this project.
+The first choice I made was to select [Ruby](https://www.ruby-lang.org) language and leverage the [Ruby on Rails](https://rubyonrails.org/) framework as I have more experience with building this kind of projects.
 
-As this is only a coding exercise I decided to use [SQLite](https://www.sqlite.org) as SQL database. In a more real example I would choose PostgreSQL.
+As this is only a coding exercise I decided to use [SQLite](https://www.sqlite.org) as the SQL database. In a more real example, I would choose PostgreSQL most probably.
 
 This code repository is [git](https://git-scm.com/) based and you can find it in [github.com/mdeniz/marcus_bikes](https://github.com/mdeniz/marcus_bikes).
 
-More concrete, I used [RSpec](https://rspec.info/) as testing framework, [TailwindCSS](https://tailwindcss.com/) as CSS styles framework and Hotwire for the interactivity (using [Turbo Frames, Turbo Streams](https://turbo.hotwired.dev) and [StimulusJS](https://stimulus.hotwired.dev/) for javascript interactions.
+More concretely, I used [RSpec](https://rspec.info/) as the testing framework, [TailwindCSS](https://tailwindcss.com/) as the CSS styles framework and Hotwire for the interactivity (using [Turbo Frames, Turbo Streams](https://turbo.hotwired.dev) and, [StimulusJS](https://stimulus.hotwired.dev/) for javascript interactions.
 
 ### Data model
 
@@ -151,7 +153,7 @@ We can identify two main domains for this project, the **Product Catalog** domai
 
 #### Product Catalog domain
 
-This domain comprises all the concepts related to the definition of the catalog. Categories, products and their customization are the main entities we can find here.
+This domain comprises all the concepts related to the definition of the catalog. Categories, products ,and their customization are the main entities we can find here.
 
 The core entities of this domain are **Category** and **Product**:
 
@@ -161,7 +163,7 @@ Here you have a specification of those entities:
 
 * **Category**
 
-  A category is a way of grouping products. Categories are part of a tree-like structure that help clustering the products. Eg. "Bikes" or "Mountain bikes" can be a category and "Mountain bikes" can be a children of the "Bikes" category.
+  A category is a way of grouping products. Categories are part of a tree-like structure that helps cluster the products. Eg. "Bikes" or "Mountain bikes" can be a category and "Mountain bikes" can be children of the "Bikes" category.
 
   *Table definition* ([source code](db/migrate/20241126103347_create_categories.rb)):
 
@@ -223,7 +225,7 @@ Here you have a specification of those entities:
     # Year of creation
     t.integer :year
 
-    # Is this product in the catalog? disabled product aren't visible on the catalog's UI
+    # Is this product in the catalog? Disabled products aren't visible on the catalog's UI
     t.boolean :enabled, default: false 
 
     # To temporarily disable the product
@@ -263,7 +265,7 @@ Here you have a specification of those entities:
 
 --- 
 
-The entities in charge of representing the customization are **Customizable Part**, **Customizable Attribute**, **Part Option** and **Attribute Option**
+The entities in charge of representing the customization are **Customizable Part**, **Customizable Attribute**, **Part Option**, and **Attribute Option**
 
 ![Customization Catalog ER Diagram](doc/assets/catalog_customization.png)
 
@@ -413,7 +415,7 @@ Here you have a specification of those entities:
 
 ---  
 
-The entities in charge of representing the combinations of products and pricing are **Banned Combinations** and **Price Change**
+The entities in charge of representing the combinations of products and pricing are **Banned Combinations** and **Price Change**.
 
 ![Customization Catalog ER Diagram](doc/assets/catalog_combinations_pricing.png)
 
@@ -421,7 +423,7 @@ Here you have a specification of those entities:
 
 * **Banned Combinations**
 
-  A banned combination is the definition of a combination of products that can't happen while selecting part options. Eg. "mountain wheels" and "diamon" frame can't be selected at the same time.
+  A banned combination is the definition of a combination of products that can't happen while selecting part options. Eg. "mountain wheels" and "diamond" frame can't be selected at the same time.
 
   *Table definition* ([source code](db/migrate/20241130095940_create_customizable_attributes.rb)):
 
@@ -436,7 +438,7 @@ Here you have a specification of those entities:
     # created_at and updated_at fields
     t.timestamps
 
-    # An unique index to avoid repetitions of source and target
+    # A unique index to avoid repetitions of source and target
     t.index [ :source_id, :target_id ], unique: true
   end
   ```
@@ -459,10 +461,10 @@ Here you have a specification of those entities:
 
   ```ruby
   create_table :price_changes do |t|
-    # The product that will see it's price changed
+    # The product that will see its price changed
     t.belongs_to :changed_product, null: false, foreign_key: { to_table: 'products' }
 
-    # The product that cause the price change
+    # The product that causes the price change
     t.belongs_to :on_product, null: false, foreign_key: { to_table: 'products' }
 
     # The price increment (or decrement can be negative) to apply to the product
@@ -471,7 +473,7 @@ Here you have a specification of those entities:
     # created_at and updated_at fields
     t.timestamps
 
-    # An unique index to avoid repetitions of changed product and the product it casued the change
+    # A unique index to avoid repetitions of changed product and the products it casues the change
     t.index [ :changed_product_id, :on_product_id ], unique: true
   end
   ```
@@ -479,10 +481,10 @@ Here you have a specification of those entities:
   *Relationships* ([source code](app/models/attribute_option.rb)):
 
   ```ruby
-  # The product that will see it's price changed
+  # The product that will see its price changed
   belongs_to :changed_product, class_name: "Product"
 
-  # The product that cause the price change
+  # The product that causes the price change
   belongs_to :on_product, class_name: "Product"
   ```
 
@@ -496,7 +498,7 @@ Here you have a specification of the entities for the shopping cart domain:
 
 * **Cart**
 
-  A cart represents the bag of products a customer have selected (and maybe customized) to later order from our store. A cart may be associated to a well known customer or to an anonymous one (not implemented). Having the carts in the database enables us to identify abandoned ones and take action after a certain time. Storing them also may able us to recover it in another session if the customer is a well known one.
+  A cart represents the bag of products a customer has selected (and maybe customized) to later order from our store. A cart may be associated with a well-known customer or with an anonymous one (not implemented). Having the carts in the database enables us to identify abandoned ones and take action after a certain time. Storing them also may enable us to recover it in another session if the customer is a well-known one.
 
   *Table definition* ([source code](db/migrate/20241201000639_create_carts.rb)):
 
@@ -516,7 +518,7 @@ Here you have a specification of the entities for the shopping cart domain:
 
 * **Cart Items**
 
-  A cart item represent each product selected (and maybe customized) in a cart.
+  A cart item represents each product selected (and maybe customized) in a cart.
 
   *Table definition* ([source code](db/migrate/20241201001013_create_cart_items.rb)):
 
@@ -528,7 +530,7 @@ Here you have a specification of the entities for the shopping cart domain:
     # The product related to this cart item
     t.belongs_to :product, null: false, foreign_key: true
 
-    # The amount of units of the same exact product (and customization)
+    # The number of units of the same exact product (and customization)
     t.integer :quantity, default: 1
 
     # The calculated price for the product (base + attributes + parts)
@@ -556,11 +558,11 @@ Here you have a specification of the entities for the shopping cart domain:
 
 While designing this data model for the current solution I made some decisions that came with trade-offs. I'll explain them in detail here:
 
-* **As the first assumption says, *"parts are products too"***: 
+* **As the first assumption says, *"Parts are products too"***: 
   
-  This wasn't the case in my first approach. Parts could just be a separate entity that aren't products. 
+  This wasn't the case in my first approach. Parts could just be separate entities that aren't products. 
   
-  I decided to simplify the schema representing parts as products, the same entity, mainly because there is no behaviour or attributes that are different for this project exercise. I used the same class to avoid complexity, other way of using its own class would have required polymorphic relationships, or single table inheritance.
+  I decided to simplify the schema representing parts as products, the same entity, mainly because there is no behavior or attributes that are different for this project exercise. I used the same class to avoid complexity, other way of using its own class would have required polymorphic relationships or single table inheritance.
 
 * **First I started without having *customizable attributes* for products**: 
   
@@ -568,31 +570,31 @@ While designing this data model for the current solution I made some decisions t
   
   On the other hand, things like applying a finish to another product (a frame for instance) may be represented as an attribute or even as another product (it makes sense if that finish is applied by Marcus using a product that he buys independently and then paint the frame). 
   
-  So, given those posibilities I decide to introduce the concept of customizable attribute similar to the customizable part. 
+  So, given those posibilities, I decide to introduce the concept of a customizable attribute similar to the customizable part. 
 
 * **Customization stored as JSON in a column of cart items**: 
   
   Yes, I structured the customization as a serialized attribute on the **CartItem** class. 
   
-  This ables me to hold a deep structure of products customized and it's attributes that are parts in a outer cutomized product. 
+  This enables me to hold a deep structure of products customized and its attributes that are parts in an outer customized product. 
   
-  For the sake of simplicity of the UI I didn't allow customizable products becoming options for customizable parts of customizable products, but the JSON column could hold that. 
+  For the sake of simplicity of the UI, I didn't allow customizable products to become options for customizable parts of customizable products, but the JSON column could hold that. 
   
-  Having the relationship in a JSON field makes difficult to know the relationship of the cart item with the subproducts, but I think that's not that relevant in this point of the process (maybe in the Order side of the process we need to hold a relationship to subproducts).
+  Having the relationship in a JSON field makes it difficult to know the relationship of the cart item with the subproducts, but I think that's not that relevant in this point of the process (maybe in the Order side of the process we need to hold a relationship to subproducts).
 
 * **Prohibited combinations are only among products or an attribute and its product**: 
   
-  In the text it says that a banned combination can happen among any pair of options. But my common sense said that an attribute option that does not exist is already a banned combination among the attribute option and the product. And in general does not makes much more sense to me that an attribute option can be banning another product as a part. 
+  In the text, it says that a banned combination can happen among any pair of options. But my common sense said that an attribute option that does not exist is already a banned combination among the attribute option and the product. And in general, does not make much more sense to me that an attribute option can be banning another product as a part. 
   
-  So, I decided to create the **BannedCombination** class that only represent banned combinations among products, and attributes that does not have a concrete option could be thought as a banned combination too. If in the future we would want to have banned combinations among products and attributes of another products we may change the relationship on **BannedCombinations** to allow relate **AttributeOption** instances by using a polymorphic relationship (as *bannable*).
+  So, I decided to create the **BannedCombination** class that only represents banned combinations among products, and attributes that do not have a concrete option could be thought of as a banned combination too. If in the future we want to have banned combinations among products and attributes of another product we may change the relationship on **BannedCombinations** to allow related **AttributeOption** instances by using a polymorphic relationship (as *bannable*).
   
 * **Price changes are expressed in increments or decrements of the *base price***: 
   
-  As any combination of parts could change the final price, this would mean that two combinations changes the price of the same part. I can't represent that just storing the new price for each change as this would overwrite each other.
+  As any combination of parts could change the final price, this would mean that two combinations change the price of the same part. I can't represent that just storing the new price for each change as this would overwrite each other.
   
-  I implemented it by just storing the changes in the **PriceChange** class. This decision implies that Marcus have to introduce a base price for the customizable product and then express changes (only the difference) in combinations of products (parts). 
+  I implemented it by just storing the changes in the **PriceChange** class. This decision implies that Marcus has to introduce a base price for the customizable product and then express changes (only the difference) in combinations of products (parts). 
   
-  The UI could let Marcus express the final price and store it properly, but for the sake of this example I didn't implement it.
+  The UI could let Marcus express the final price and store it properly, but for the sake of this example, I didn't implement it.
 
 ### The shop: main pages and actions
 
@@ -600,9 +602,9 @@ The shop site is structured visually with the following layout:
 
 ![Shop Layout](doc/assets/shop_layout.png)
 
-The header is divided into two parts, at the bottom there is a menu, and at the top: from left to right it have the logo, the search form and the action icons (cart, help, account and switch to admin pages).
+The header is divided into two parts, at the bottom there is a menu, and at the top: from left to right it has the logo, the search form, and the action icons (cart, help, account and switch to admin pages).
 
-There is a submenu that shows dynamically whenever the customer hovers any of the main category links. It will show the submenu with links to all the subcategories. Here you have a snapshot of the header with the submenu open:
+There is a submenu that shows dynamically whenever the customer hovers over any of the main category links. It will show the submenu with links to all the subcategories. Here you have a snapshot of the header with the submenu open:
 
 ![Header](doc/assets/header.png)
 
@@ -616,9 +618,9 @@ And is laid out like this:
 
 ![Homepage Layout](doc/assets/homepage_layout.png)
 
-The content section is comformed of a banner at the top and a grid of 4x2 product sections that are taken randomly from the catalog.
+The content section is compossed of a banner at the top and a grid of 4x2 product sections that are taken randomly from the catalog.
 
-In the banner for this example I just placed an advertisement about a customizable product.
+In the banner for this example, I just placed an advertisement about a customizable product.
 
 ![Banner](doc/assets/banner.png)
 
@@ -632,21 +634,21 @@ And is laid out like this:
 
 ![Catalog Layout](doc/assets/catalog_layout.png)
 
-In case the customer reached out the catalog using a category link it will show all the products in that category and any of its descendant categories. Also will show the proper breadcrumbs. See an example:
+In case the customer reaches out to the catalog using a category link it will show all the products in that category and any of its descendant categories. Also will show the proper breadcrumbs. See an example:
 
 ![Catalog by Category](doc/assets/catalog_by_category.png)
 
 #### Search for products
 
-A search on the products catalog can be performed by the customer (I didn't implement this feature in this exercise). They introduce the terms of search in the search form and then the catalog filters out to show the results accordingly:
+A search on the product's catalog can be performed by the customer (I didn't implement this feature in this exercise). They introduce the terms of search in the search form and then the catalog filters out to show the results accordingly:
 
 ![Catalog by Category](doc/assets/search_results.png)
 
-The search could be performed using full text search on the products data for instance. Or use an [ElasticSearch](https://www.elastic.co) system to retrieve those result out of an index.
+The search could be performed using full-text search on the product's data for instance. Or use an [ElasticSearch](https://www.elastic.co) system to retrieve those results out of an index.
 
 #### See a product
 
-From the catalog or the homepage in every product section there is a "See product" button that sends the customer to the product page. The customer will land in a page that shows the product, see an example of the most basic product that have neither customizable attributes nor customizable parts:
+From the catalog or the homepage in every product section, there is a "See product" button that sends the customer to the product page. The customer will land on a page that shows the product, see an example of the most basic product that has neither customizable attributes nor customizable parts:
 
 ![Non Customizable Product](doc/assets/non_customizable_product.png)
 
@@ -658,11 +660,11 @@ This page, in general, is laid out like this:
 
 ![Product page Layout](doc/assets/product_page_layout.png)
 
-In the *Product Info* area the common data from the product is displayed: Brand, Model, Reference (UUID), Description and Price.
+In the *Product Info* area, the common data from the product is displayed: Brand, Model, Reference (UUID), Description, and Price.
 
-The *Image* shown is either coming from the url stored in the database or a placeholder will replace it in case it's not provided.
+The *Image* shown is either coming from the URL stored in the database or a placeholder will replace it in case it's not provided.
 
-For the *Attributes Customization* area it will be show as follows. This area is interactive, whenever the customer clicks on a different attribute option it will be selected and the price will change accordingly if a price change is associated to that attribute option.
+For the *Attributes Customization* area, it will be show as follows. This area is interactive, whenever the customer clicks on a different attribute option it will be selected and the price will change accordingly if a price change is associated to that attribute option.
 
 ![Customizable Attributes Product](doc/assets/product_with_customizable_attributes.png)
 ![Customizable Attributes Product 2](doc/assets/product_with_customizable_attributes_2.png)
@@ -687,13 +689,13 @@ For the *Parts Customization* area it will be shown as follows. This area is als
   selected_products_ids = params[:selected_products].map(&:to_i)
 
   # Calculate what are the products for the current customizable part and are visible in the catalog
-  # then just select the ones that have any incompatibility in the selected products
+  # Then just select the ones that have any incompatibility in the selected products
   @products = @customizable_part.products.in_catalog.select do |product|
     (product.incompatible_products_ids & selected_products_ids).empty?
   end
   ```
 
-  The **incompatible_products_ids** method I implemented it at model Product level. *ActiveRecord* provides a way to get the ids from the relationships, I leveraged from that for the two relationships that calculate incompatibilities:
+  The **incompatible_products_ids** method I implemented it at the model Product level. *ActiveRecord* provides a way to get the IDs from the relationships, I leveraged from that for the two relationships that calculate incompatibilities:
 
   ```ruby
     # Banned combinations
@@ -707,11 +709,11 @@ For the *Parts Customization* area it will be shown as follows. This area is als
     end
   ```
   
-  If I would have implemented this as a frontend only app I would need all the related banned combinations locally in the frontend app to perform the same data check. With the selected products parts and the filtered possible products for the selected customizable part and the banned combinations I would check if they collide and remove then from the possible options to pick from.
+  If I had implemented this as a frontend-only app I would have needed all the related banned combinations locally in the frontend app to perform the same data check. With the selected product parts and the filtered possible products for the selected customizable part and the banned combinations, I would check if they collide and remove them from the possible options to pick from.
 
 * How to calculate the price
 
-  The calculation of the selection is done at the model level in the Product model. Here you can see the code involved, it needs to be feeded with the ids of the attribute options (including the ones in the customization for the parts selected) and the part options:
+  The calculation of the selection is done at the model level in the Product model. Here you can see the code involved, it needs to be fed with the IDs of the attribute options (including the ones in the customization for the parts selected) and the part options:
 
   ```ruby
   def price(selected_attribute_option_ids:, selected_part_option_ids:)
@@ -737,14 +739,14 @@ For the *Parts Customization* area it will be shown as follows. This area is als
     end
   ```
 
-  This calculation would be exposed in an endpoint in the **ShopController** for simplicity, I didn't implemented it in this code exercise. This means that we would need one request for every change in the form which is far from ideal.
+  This calculation would be exposed in an endpoint in the **ShopController** for simplicity, I didn't implement it in this code exercise. This means that we would need one request for every change in the form which is far from ideal.
   
-  If I would build a Frontend app instead of the current server side UI, we would have to retrieve the same information beforehand and run a similar algorithm: the base price of the product, price changes on the possible options for the attributes and the base price on the products that can be parts and price changes on combinations of those products that can be parts.
+  If I build a Frontend app instead of the current server-side UI rendering, we would have to retrieve the same information beforehand and run a similar algorithm: the base price of the product, price changes on the possible options for the attributes, and the base price on the products that can be parts and price changes on combinations of those products that can be parts.
 
   
 #### Add a product to the cart
 
-In the product page the customer can customize either attributes or parts or both and then add the product with that selection to the cart using the "Add to Cart" button.
+In the product page, the customer can customize either attributes or parts or both and then add the product with that selection to the cart using the "Add to Cart" button.
 
 * What happens when the customer clicks the button?
 
@@ -768,13 +770,13 @@ In the product page the customer can customize either attributes or parts or bot
   }
   ```
 
-  Ideally if this page is from a Frontend app this data collected will travel as a JSON payload to an API endpoint.
+  Ideally, if this page is from a Frontend app this data collected will travel as a JSON payload to an API endpoint.
 
-  It will be received by the **CartController** and the **add_item** action is run (see the [code](app/controllers/cart_controller.rb) line 18). This will create in the database the **CartItem** instance and it will be associated to the current cart. After succesfully saving the new record the browser will be asked to redirect to the "Cart page".
+  It will be received by the **CartController** and the **add_item** action is run (see the [code](app/controllers/cart_controller.rb) line 18). This will create in the database the **CartItem** instance and it will be associated with the current cart. After successfully saving the new record the browser will be asked to redirect to the "Cart page".
 
 * What is persisted in the database?
 
-  The **CartItem** instance created wil be inserted in the table as a record in the **cart_items** table. It will have the *product_id* reference to the product selected, a *quantity* of 1, the calculated *price* and the *customization* JSON structure serialized. The customization JSON looks like this:
+  The **CartItem** instance created will be inserted in the table as a record in the **cart_items** table. It will have the *product_id* reference to the product selected, a *quantity* of 1, the calculated *price*, and the *customization* JSON structure serialized. The customization JSON looks like this:
 
   ```json
     {
@@ -813,11 +815,11 @@ The cart page is accessible from the top of the header icon in the shape of a ca
 
 ![Cart with Item](doc/assets/cart_with_items.png)
 
-There is no special layout rather than a table of items and the summary of totals, VAT and discounts at the bottom.
+There is no special layout other than a table of items and the summary of totals, VAT, and discounts at the bottom.
 
-#### Adjust quantity of a cart item
+#### Adjust the quantity of a cart item
 
-Each item in the list have a quantity input that can be changed and saved to the database, this will make the cart to recalculate taking into account the new values.
+Each item in the list has a quantity input that can be changed and saved to the database, this will make the cart recalculate taking into account the new values.
 
 #### Remove a cart item
 
@@ -825,17 +827,17 @@ There is an icon of a trash can close to the quantity input that serves as a but
 
 ### Administrative workflows
 
-The administrative side of the store can be reached in this code exercise just by clicking on the icon in the shape of a greek palace on the right most part of the header.
+The administrative side of the store can be reached in this code exercise just by clicking on the icon in the shape of a Greek palace on the rightmost part of the header.
 
-The styles have been tweaked in order to allow Marcus be aware visually of were in the shop is he currently working. The navigation menu turns into a redish color and it will only show Categories and Products links. It will look like this:
+The styles have been tweaked in order to allow Marcus to be aware visually of where in the shop is he currently working. The navigation menu turns into a redish color and it will only show Categories and Products links. It will look like this:
 
 ![Admin homepage](doc/assets/admin_site.png)
 
-If Marcus needs to switch back to the shop site he only needs to click on the icon on the shape of a shop in the right most part of the header.
+If Marcus needs to switch back to the shop site he only needs to click on the icon in the shape of a shop in the rightmost part of the header.
 
 #### Categories
 
-If Marcus clicks on the "Categories" link of the navigation menu, the browser will land in the index of the categories to be administrated. There Marcus can see a category info in full detail, edit it or even destroy it. This page will look like this:
+If Marcus clicks on the "Categories" link of the navigation menu, the browser will land in the index of the categories to be administrated. There Marcus can see a category info in full detail, edit it, or even destroy it. This page will look like this:
 
 ![Categories Admin index](doc/assets/admin_categories_index.png)
 
@@ -859,13 +861,13 @@ And if he wants to add a new one it will look empty like this:
 
 #### Products
 
-If Marcus clicks on the "Products" link of the navigation menu, the browser will land in the index of the products to be administrated. There Marcus can see a product info in full detail, edit it or even destroy it. This page will look like this:
+If Marcus clicks on the "Products" link of the navigation menu, the browser will land in the index of the products to be administrated. There Marcus can see the product's info in full detail, edit it, or even destroy it. This page will look like this:
 
 ![Products Admin index](doc/assets/admin_products_index.png)
 
 ##### See product details
 
-If Marcus shows a Product details page it will look like this, also shows the related information fort its customization, attributes, banned combinations and price changes if any inside tabs:
+If Marcus shows a Product details page it will look like this, also shows the related information for its customization, attributes, banned combinations, and price changes if any inside tabs:
 
 ![Product Admin show](doc/assets/admin_product_show.png)
 
@@ -891,11 +893,11 @@ If Marcus edits a Product the form will look like this:
 
 And if he wants to add a new one it will look like this:
 
-![Product Admin new](doc/assets/admin_product_new.png)]
+![Product Admin new](doc/assets/admin_product_new.png)
 
 * What information is required to create a new product? 
 
-  A new product only requires their basic information:
+  A new product only requires its basic information:
 
   * A category where it will be placed
   * A brand name
@@ -908,7 +910,7 @@ And if he wants to add a new one it will look like this:
 
   Marcus could also fill in more information like:
 
-  * An image url
+  * An image URL
   * The year of creation
 
   I decided to only allow create the base info of the product first and then later all the related entities will be added to the product created. This will help simplify the UI as we are going to deal with less dynamic master-detail forms.
@@ -928,7 +930,7 @@ If Marcus needs to define a new attribute on a product he only will need to go t
 
 ![Product Admin edit attributes](doc/assets/admin_product_edit_attributes_tab.png)
 
-Clickin on the button will open a form inside a modal that lets Marcus to introduce the basic info of an attribute definition: name, description, and order.
+Clicking on the button will open a form inside a modal that lets Marcus introduce the basic info of an attribute definition: name, description, and order.
 
 ![Product Admin new attribute](doc/assets/admin_new_attribute.png)
 
@@ -944,7 +946,7 @@ If Marcus clicks on the plus button a modal will show the new attribute option f
 
 ![Product Admin list attribute options](doc/assets/admin_attributes_options_new.png)
 
-* How the database changes?
+* How does the database change?
 
 If Marcus creates that attribute option it will be saved in the database inserting just a record on the table for attribute options like this:
 
@@ -955,11 +957,11 @@ If Marcus creates that attribute option it will be saved in the database inserti
 
 ##### Adding a new customizable part and editing its options
 
-If Marcus needs to define a new customizable part on a product he only will need to go the edit the product, then in the lower part of the page open the **Customizable Parts** tab and there click on the top right button with a plus inside:
+If Marcus needs to define a new customizable part on a product he only will need to go the edit the product, then in the lower part of the page open the **Customizable Parts** tab and click on the top right button with a plus inside:
 
 ![Product Admin edit parts](doc/assets/admin_product_edit_parts_tab.png)
 
-Clickin on the button will open a form inside a modal that lets Marcus to introduce the basic info of a customizable part definition: name, description, and order.
+Clicking on the button will open a form inside a modal that lets Marcus introduce the basic info of a customizable part definition: name, description, and order.
 
 ![Product Admin new part](doc/assets/admin_new_part.png)
 
@@ -977,7 +979,7 @@ If Marcus clicks on the plus button a modal will show the selection list for par
 
 He will just click on the check icon of the product he wants to select and will be done.
 
-* How the database changes?
+* How does the database change?
 
 If Marcus creates that new customizable part option, by selecting the product, it will be saved in the database inserting just a record on the table for customizable part options like this:
 
@@ -988,7 +990,7 @@ If Marcus creates that new customizable part option, by selecting the product, i
 
 ##### Adding a new banned combination
 
-If Marcus needs to define a banned combination of products he only will need to go the edit the product, then in the lower part of the page open the **Banned Combinations** tab and there click on the top right button with a plus inside:
+If Marcus needs to define a banned combination of products he only will need to go the edit the product, then in the lower part of the page open the **Banned Combinations** tab and click on the top right button with a plus inside:
 
 ![Product Admin edit parts](doc/assets/admin_product_edit_banned_combinations_tab.png)
 
@@ -998,9 +1000,9 @@ If Marcus clicks on the plus button a modal will show the selection list for the
 
 He will just click on the check icon of the product he wants to select and will be done.
 
-* How the database changes?
+* How does the database change?
 
-If Marcus creates that new banned commbination, by selecting the product, it will be saved in the database inserting just a record on the table for banned combinations like this:
+If Marcus creates that new banned combination, by selecting the product, it will be saved in the database inserting just a record on the table for banned combinations like this:
 
   ```sql
   INSERT INTO "banned_combinations" ("source_id", "target_id", "created_at", "updated_at")
@@ -1009,13 +1011,13 @@ If Marcus creates that new banned commbination, by selecting the product, it wil
 
 ##### Setting prices
 
-The schema for the pricing on the shop is based on three pieces. The base price of the products, the price changes caused by the attributes and price changes caused by the combination of products in a customization.
+The schema for the pricing on the shop is based on three pieces. The base price of the products, the price changes caused by the attributes, and price changes caused by the combination of products in a customization.
 
-If Marcus needs to change the price for a specific part, he only have to go to the product page and edit that product chaging the base price accordingly.
+If Marcus needs to change the price for a specific part, he only has to go to the product page and edit that product changing the base price accordingly.
 
-On the other hand if he wants to change the increment an attribute causes on the product if its selected then he have to edit that attribute option introducing the increment/decrement in the field Price Change of that one attribute option.
+On the other hand, if he wants to change the increment an attribute causes on the product if it's selected then he has to edit that attribute option introducing the increment/decrement in the field Price Change of that one attribute option.
 
-And in the last case, a price change based on combinations of parts, Marcus have to go to the product page that wants to be changed in price on presence of the other product and go to the last tab, the **Price Changes** one:
+In the last case, a price change based on combinations of parts, Marcus has to go to the product page that wants to be changed in price on the presence of the other product and go to the last tab, the **Price Changes** one:
 
 ![Product Admin list price changes](doc/assets/admin_product_edit_price_changes_tab.png)
 
@@ -1023,9 +1025,9 @@ If Marcus clicks on the plus button a modal will show a form to introduce the ne
 
 ![Product Admin new price change](doc/assets/admin_new_price_change.png)
 
-He will just fill in the price, select the product and click on the **Create Price Change**.
+He will just fill in the price, select the product, and click on the **Create Price Change**.
 
-* How the database changes?
+* How does the database change?
 
 If Marcus creates that new price change, it will be saved in the database inserting just a record on the table for price changes like this:
 
@@ -1040,32 +1042,32 @@ After implementing this project I realized about certain improvements that we co
 
 On the shop
 
-* Have actual users for the customers, access under authentication and support authorization.
+* Have actual users for the customers, access under authentication, and support authorization.
 * Multicurrency and multilanguage support.
-* Bag of data attributes for each product in a structured way. Add more info to each product that could be shown in the product page automatically. Info that doesn't need to be customized, like dimensions of a certain frame, number of pins for a chain, more technical info, etc.
-* Catalog filtering to narrow down the list of products to be shown, by brand, by price range, etc.
+* Bag of data attributes for each product in a structured way. Add more info to each product that could be shown on the product page automatically. Info that doesn't need to be customized, like dimensions of a certain frame, number of pins for a chain, more technical info, etc.
+* Catalog filtering to narrow down the list of products to be shown, by brand, price range, etc.
 * Catalog ordering, using different columns, like price, category, brand, etc.
 * Store many images per product. Eg. use them based on customizable attributes to show a different one if a different color of the product is selected:
 
 ![Multiple images](doc/assets/multiple_images.png)
 
-* Bookmark products for users
-* Comment and review on products
-* Related products that are sell together lately
-* Show an approximate idea of the stock remaining
-* Checkout the cart and create orders out of it
-* Delivery of the products
-* Discounts and promotions
+* Bookmark products for users.
+* Comment and review products.
+* Related products that are sold together lately.
+* Show an approximate idea of the stock remaining.
+* Checkout the cart and create orders out of it.
+* Delivery of the products.
+* Discounts and promotions.
 
 For the administrative side:
 
 * Be able to use categories as the products set a CustomizablePart can select options from instead of having to specify product by product as options.
-* Stock control of the products
-* Orders control through the whole lifecycle
+* Stock control of the products.
+* Orders control through the whole lifecycle.
 
 A more technical list of changes to the current codebase:
 
 * Create a JSON API to expose the same capabilities of the current codebase.
-* Move the logic out of the actions to service objects in order to be reused in other parts like the API.
-* Of course, move this app to a Backend only system that communicates via that JSON API with different frontends like a mobile app or a web app.
-* Add more specs to cover all the models, controllers and actions. I just added a few of them.
+* Move the business logic out of the actions to Service Objects in order to be reused in other parts like the API.
+* Of course, move this app to a Backend-only system that communicates via that JSON API with different frontends like a Mobile app or a Web app.
+* Add more specs to cover all the models, controllers, and actions. I just added a few of them.
