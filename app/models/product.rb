@@ -69,6 +69,8 @@ class Product < ApplicationRecord
   end
 
   # Pricing
+  # selected_attribute_option_ids: must contain all the selected attributes of this product and all the selected attributes of the parts
+  # selected_part_option_ids: must contain all the seletected parts
   def price(selected_attribute_option_ids:, selected_part_option_ids:)
     base_price +
       selected_attribute_options_price(selected_attribute_option_ids) +

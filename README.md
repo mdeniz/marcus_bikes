@@ -689,7 +689,7 @@ For the *Parts Customization* area it will be shown as follows. This area is als
   selected_products_ids = params[:selected_products].map(&:to_i)
 
   # Calculate what are the products for the current customizable part and are visible in the catalog
-  # Then just select the ones that have any incompatibility in the selected products
+  # Then just select the ones that does not have any incompatibility with the selected products
   @products = @customizable_part.products.in_catalog.select do |product|
     (product.incompatible_products_ids & selected_products_ids).empty?
   end
